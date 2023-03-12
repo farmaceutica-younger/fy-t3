@@ -1,0 +1,128 @@
+syntax = "proto3";
+
+package fy.blog.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "pkg.fy.science/proto/blog/v1;pbblogv1";
+
+import "fy/blog/v1/models.proto";
+
+service BlogSrv {
+  rpc GetBlogPosts(GetBlogPostsReq) returns (GetBlogPostsRes) {}
+  rpc GetPublishedBlogPosts(GetPublishedBlogPostsReq)
+      returns (GetPublishedBlogPostsRes) {}
+  rpc GetBlogPost(GetBlogPostReq) returns (GetBlogPostRes) {}
+  rpc GetBlogPostByPath(GetBlogPostByPathReq) returns (GetBlogPostByPathRes) {}
+  rpc CreateBlogPost(CreateBlogPostReq) returns (CreateBlogPostRes) {}
+  rpc PublishBlogPost(PublishBlogPostReq) returns (PublishBlogPostRes) {}
+  rpc UpdateBlogPost(UpdateBlogPostReq) returns (UpdateBlogPostRes) {}
+  rpc DeleteBlogPost(DeleteBlogPostReq) returns (DeleteBlogPostRes) {}
+
+  rpc GetAuthors(GetAuthorsReq) returns (GetAuthorsRes) {}
+  rpc GetAuthor(GetAuthorReq) returns (GetAuthorRes) {}
+  //   rpc CreateAuthors(CreateAuthorsReq) returns (CreateAuthorsRes) {}
+  //   rpc UpdateAuthors(UpdateAuthorsReq) returns (CreateAuthorsRes) {}
+  //   rpc DeleteAuthors(DeleteAuthorsReq) returns (CreateAuthorsRes) {}
+}
+
+message GetBlogPostsReq {
+  optional bool published = 1;
+  uint32 skip = 2;
+  uint32 take = 3;
+  repeated string tags = 4;
+}
+
+message GetBlogPostsRes {
+  repeated BlogPost posts = 1;
+  uint32 total = 2;
+}
+
+message GetPublishedBlogPostsReq {
+  uint32 skip = 2;
+  uint32 take = 3;
+  repeated string tags = 4;
+}
+
+message GetPublishedBlogPostsRes {
+  repeated BlogPost posts = 1;
+  uint32 total = 2;
+}
+
+message GetBlogPostReq {
+  string post_id = 1;
+}
+
+message GetBlogPostRes {
+  BlogPost post = 1;
+}
+
+message GetBlogPostByPathReq {
+  string path = 1;
+}
+
+message GetBlogPostByPathRes {
+  BlogPost post = 1;
+}
+
+message CreateBlogPostReq {
+  string author_id = 1;
+  repeated string tags = 2;
+  string description = 3;
+  string body = 4;
+  string title = 5;
+  string featured_image = 6;
+}
+
+message CreateBlogPostRes {
+  BlogPost post = 1;
+}
+
+message UpdateBlogPostReq {
+  string post_id = 1;
+  repeated string tags = 2;
+  optional string description = 3;
+  optional string body = 4;
+  optional string title = 5;
+  optional string featured_image = 6;
+  optional bool show_featured_image = 7;
+  optional google.protobuf.Timestamp published_time = 8;
+}
+
+message UpdateBlogPostRes {
+  BlogPost post = 1;
+}
+
+message PublishBlogPostReq {
+  string post_id = 1;
+}
+
+message PublishBlogPostRes {
+  BlogPost post = 1;
+}
+
+message DeleteBlogPostReq {
+  string post_id = 1;
+}
+
+message DeleteBlogPostRes {
+  BlogPost post = 1;
+}
+
+message GetAuthorsReq {
+  uint32 skip = 1;
+  uint32 take = 2;
+}
+
+message GetAuthorsRes {
+  repeated Author authors = 1;
+  uint32 total = 2;
+}
+
+message GetAuthorReq {
+  string author_id = 1;
+}
+
+message GetAuthorRes {
+  Author author = 1;
+}

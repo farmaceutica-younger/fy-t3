@@ -1,0 +1,170 @@
+syntax = "proto3";
+
+package fy.association.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "pkg.fy.science/proto/association/v1;pbassociationv1";
+
+import "fy/association/v1/models.proto";
+
+service AssociationSrv {
+  rpc GetMembers(GetMembersReq) returns (GetMembersRes) {}
+  rpc GetMember(GetMemberReq) returns (GetMemberRes) {}
+  rpc GetMemberAnswers(GetMemberAnswersReq) returns (GetMemberAnswersRes) {}
+  rpc AddMember(AddMemberReq) returns (AddMemberRes) {}
+  rpc RegisterMember(RegisterMemberReq) returns (RegisterMemberRes) {}
+  rpc MemberAnswerQuestionairre(MemberAnswerQuestionairreReq)
+      returns (MemberAnswerQuestionairreRes) {}
+  rpc ApproveMember(ApproveMemberReq) returns (ApproveMemberRes) {}
+  rpc MemberPaidMembershipFee(MemberPaidMembershipFeeReq)
+      returns (MemberPaidMembershipFeeRes) {}
+  rpc RemoveMember(RemoveMemberReq) returns (RemoveMemberRes) {}
+  rpc UpdateMember(UpdateMemberReq) returns (UpdateMemberRes) {}
+  rpc GetAssociationQuestionarre(GetAssociationQuestionarreReq)
+      returns (GetAssociationQuestionarreRes) {}
+  rpc GetCurrentAssociationQuestionarre(GetCurrentAssociationQuestionarreReq)
+      returns (GetCurrentAssociationQuestionarreRes) {}
+  rpc UpdateAssociationQuestionarre(UpdateAssociationQuestionarreReq)
+      returns (UpdateAssociationQuestionarreRes) {}
+}
+
+message NotFoundErr {}
+
+message GetMembersReq {
+  uint32 skip = 1;
+  uint32 take = 2;
+  optional string query = 3;
+}
+
+message GetMembersRes {
+  repeated Member members = 1;
+  uint32 total = 2;
+}
+
+message GetMemberAnswersReq {
+  string member_id = 1;
+}
+
+message GetMemberAnswersRes {
+  repeated MemberAnswers answers = 1;
+}
+
+message MemberAnswers {
+  uint32 version = 1;
+  map<string, string> answers = 2;
+}
+
+message GetMemberReq {
+  string member_id = 1;
+}
+
+message GetMemberRes {
+  oneof res {
+    Member member = 1;
+    NotFoundErr not_found = 2;
+  }
+}
+
+message AddMemberReq {
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string role = 5;
+  optional string linkedin = 9;
+  optional string telegram = 10;
+}
+
+message AddMemberRes {
+  Member member = 1;
+}
+
+message ApproveMemberReq {
+  string member_id = 1;
+}
+
+message ApproveMemberRes {
+  Member member = 1;
+}
+
+message MemberPaidMembershipFeeReq {
+  string member_id = 1;
+}
+
+message MemberPaidMembershipFeeRes {
+  Member member = 1;
+}
+
+message RegisterMemberReq {
+  string member_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string role = 5;
+  optional string linkedin = 9;
+  optional string telegram = 10;
+}
+
+message RegisterMemberRes {
+  Member member = 1;
+}
+
+message MemberAnswerQuestionairreReq {
+  string member_id = 1;
+  uint32 questionairre_verions = 2;
+  map<string, string> answers = 3;
+}
+
+message MemberAnswerQuestionairreRes {
+  Member member = 1;
+}
+
+message UpdateMemberReq {
+  string member_id = 1;
+  optional string first_name = 2;
+  optional string last_name = 3;
+  optional string email = 4;
+  optional string role = 5;
+  optional string linkedin = 9;
+  optional string telegram = 10;
+}
+
+message UpdateMemberRes {
+  oneof res {
+    Member member = 1;
+    NotFoundErr not_found = 2;
+  }
+}
+
+message RemoveMemberReq {
+  string member_id = 1;
+}
+
+message RemoveMemberRes {
+  oneof res {
+    Member member = 1;
+    NotFoundErr not_found = 2;
+  }
+}
+
+message GetAssociationQuestionarreReq {
+  uint32 version = 1;
+}
+
+message GetAssociationQuestionarreRes {
+  Questionairre questionairre = 1;
+}
+
+message GetCurrentAssociationQuestionarreReq {}
+
+message GetCurrentAssociationQuestionarreRes {
+  Questionairre questionairre = 1;
+}
+
+message UpdateAssociationQuestionarreReq {
+  repeated Question questions = 1;
+}
+
+message UpdateAssociationQuestionarreRes {
+  Questionairre questionairre = 1;
+}

@@ -1,0 +1,180 @@
+syntax = "proto3";
+
+package fy.blog.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "pkg.fy.science/proto/blog/v1;pbblogv1";
+
+import "fy/blog/v1/models.proto";
+
+service EventsSrv {
+  rpc GetEvents(GetEventsReq) returns (GetEventsRes) {}
+  rpc GetEvent(GetEventReq) returns (GetEventRes) {}
+  rpc GetEventBySlug(GetEventBySlugReq) returns (GetEventBySlugRes) {}
+  rpc CreateEvent(CreateEventReq) returns (CreateEventRes) {}
+  rpc PublishEvent(PublishEventReq) returns (PublishEventRes) {}
+  rpc UpdateEvent(UpdateEventReq) returns (UpdateEventRes) {}
+  rpc DeleteEvent(DeleteEventReq) returns (DeleteEventRes) {}
+  rpc EventIsOpen(EventIsOpenReq) returns (EventIsOpenRes) {}
+
+  rpc GetEventTickets(GetEventTicketsReq) returns (GetEventTicketsRes) {}
+  rpc GetEventTicket(GetEventTicketReq) returns (GetEventTicketRes) {}
+  rpc GetEventTicketByToken(GetEventTicketByTokenReq)
+      returns (GetEventTicketByTokenRes) {}
+  rpc UpsertEventTicket(UpsertEventTicketReq) returns (UpsertEventTicketRes) {}
+  rpc ConfirmEventTicket(ConfirmEventTicketReq)
+      returns (ConfirmEventTicketRes) {}
+}
+
+message GetEventsReq {
+  optional bool published = 1;
+  uint32 skip = 2;
+  uint32 take = 3;
+  repeated string tags = 4;
+  optional google.protobuf.Timestamp start_from = 5;
+}
+
+message GetEventsRes {
+  repeated Event events = 1;
+  uint32 total = 2;
+}
+
+message GetEventReq {
+  string event_id = 1;
+}
+
+message GetEventRes {
+  Event event = 1;
+}
+
+message GetEventBySlugReq {
+  string slug = 1;
+}
+
+message GetEventBySlugRes {
+  Event event = 1;
+}
+
+message CreateEventReq {
+  string author_id = 1;
+  repeated string tags = 2;
+  string description = 3;
+  string body = 4;
+  string title = 5;
+  string featured_image = 6;
+  google.protobuf.Timestamp start_date = 7;
+  google.protobuf.Timestamp end_date = 8;
+  string location = 9;
+  uint32 max_subscriptions = 10;
+  bool reserved_only_to_members = 18;
+  string external_registration_link = 19;
+  repeated string invitation_codes = 20;
+}
+
+message CreateEventRes {
+  Event event = 1;
+}
+
+message UpdateEventReq {
+  string event_id = 1;
+  optional string description = 3;
+  optional string body = 4;
+  optional string title = 5;
+  optional string featured_image = 6;
+  optional google.protobuf.Timestamp start_date = 7;
+  optional google.protobuf.Timestamp end_date = 8;
+  optional string location = 9;
+  optional Questionairre questionairre = 10;
+  optional uint32 max_subscriptions = 11;
+  optional bool subscriptions_opened = 12;
+  optional bool reserved_only_to_members = 18;
+  optional string external_registration_link = 19;
+  optional StringArray invitation_codes = 20;
+  optional StringArray tags = 21;
+}
+
+message UpdateEventRes {
+  Event event = 1;
+}
+
+message PublishEventReq {
+  string event_id = 1;
+}
+
+message PublishEventRes {
+  Event event = 1;
+}
+
+message DeleteEventReq {
+  string event_id = 1;
+}
+
+message DeleteEventRes {
+  Event event = 1;
+}
+
+message GetEventTicketsReq {
+  string event_id = 1;
+  uint32 skip = 2;
+  uint32 take = 3;
+}
+
+message GetEventTicketsRes {
+  repeated EventTicket tickets = 1;
+  uint32 total = 2;
+}
+
+message GetEventTicketReq {
+  string event_id = 1;
+  string ticket_id = 2;
+}
+
+message GetEventTicketRes {
+  EventTicket ticket = 1;
+}
+
+message GetEventTicketByTokenReq {
+  string event_id = 1;
+  string token = 2;
+}
+
+message GetEventTicketByTokenRes {
+  EventTicket ticket = 1;
+}
+
+message UpsertEventTicketReq {
+  string event_id = 1;
+  string email = 2;
+  string first_name = 3;
+  string last_name = 4;
+  string avatar = 5;
+  map<string, string> answers = 6;
+  bool privacy = 7;
+  bool recording_consensus = 8;
+}
+
+message UpsertEventTicketRes {
+  EventTicket ticket = 1;
+}
+
+message ConfirmEventTicketReq {
+  string event_id = 1;
+  string token = 2;
+}
+
+message ConfirmEventTicketRes {
+  EventTicket ticket = 1;
+}
+
+message EventIsOpenReq {
+  string event_id = 1;
+}
+
+message EventIsOpenRes {
+  bool is_open = 1;
+}
+
+message StringArray {
+  repeated string values = 1;
+}

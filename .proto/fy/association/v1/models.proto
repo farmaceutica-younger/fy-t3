@@ -1,0 +1,47 @@
+syntax = "proto3";
+
+package fy.association.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "pkg.fy.science/proto/association/v1;pbassociationv1";
+
+message Member {
+  string member_id = 1;
+  string first_name = 2;
+  string last_name = 3;
+  string email = 4;
+  string role = 5;
+  google.protobuf.Timestamp created_at = 6;
+  google.protobuf.Timestamp updated_at = 7;
+  google.protobuf.Timestamp member_since = 8;
+  optional string linkedin = 9;
+  optional string telegram = 10;
+  MemberStatus status = 11;
+}
+
+enum MemberStatus {
+  NONE = 0;
+  REGISTERED = 1;
+  QUESTIONAIRRE_SUBMITTED = 2;
+  APPROVED = 3;
+  MEMBER = 4;
+}
+
+message Questionairre {
+  uint32 version = 1;
+  Questions questions = 2;
+  google.protobuf.Timestamp created_at = 3;
+}
+
+message Questions {
+  repeated Question questions = 1;
+}
+
+message Question {
+  string cuid = 1;
+  string description = 2;
+  string type = 3;
+  repeated string options = 4;
+  bool required = 5;
+}

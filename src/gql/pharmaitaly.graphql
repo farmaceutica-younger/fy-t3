@@ -1,0 +1,22 @@
+query GetPharmaItalyCompanies($region: String!) {
+  getPharmaItalyCompanies(region: $region, skip: 0, take: 1000) {
+    total
+    edges {
+      company {
+        ...PharmaItalyCompany
+      }
+    }
+  }
+}
+
+fragment PharmaItalyCompany on PharmaItalyCompany {
+  id
+  companyName
+  description
+  address
+  latitude
+  longitude
+  region
+  city
+  province
+}

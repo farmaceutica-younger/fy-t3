@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package fy.livequiz.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "pkg.fy.science/proto/livequiz/v1;pblivequizv1";
+
+message LiveQuiz {
+  string id = 1;
+  string title = 2;
+  string description = 3;
+  QuizStatus status = 4;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+message Question {
+  string id = 1;
+  string live_quiz_id = 2;
+  string question = 3;
+  repeated string answers = 4;
+  uint32 correct_ans = 5;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+  google.protobuf.Timestamp start_time = 12;
+  google.protobuf.Timestamp end_time = 13;
+}
+
+message Participant {
+  string id = 1;
+  string live_quiz_id = 2;
+  string name = 3;
+  string email = 4;
+  google.protobuf.Timestamp created_at = 10;
+  google.protobuf.Timestamp updated_at = 11;
+}
+
+message QuizStatus {
+  message Empty {}
+  message Rank {}
+
+  oneof status {
+    Empty empty = 1;
+    Rank rank = 2;
+    Question question = 3;
+  }
+}
+
+message ParticipantRank {
+  string participant_id = 1;
+  string name = 3;
+  string email = 4;
+  uint32 score = 5;
+  uint32 total_time = 6;
+}

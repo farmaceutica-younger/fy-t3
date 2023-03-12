@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://www.farmaceuticayounger.science
+
+# Sitemaps
+Sitemap: https://www.farmaceuticayounger.science/sitemap.xml

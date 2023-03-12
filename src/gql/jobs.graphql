@@ -1,0 +1,65 @@
+query GetJobs(
+  $skip: Int!
+  $take: Int!
+  $regions: [String!]!
+  $companies: [String!]!
+) {
+  getSponsoredJobs(skip: 0, take: 10) {
+    total
+    edges {
+      job {
+        ...SponsoredJobPreview
+      }
+    }
+  }
+  getJobs(skip: $skip, take: $take, regions: $regions, companies: $companies) {
+    total
+    edges {
+      job {
+        id
+        title
+        url
+        company_id
+        location
+        postedAt
+      }
+    }
+  }
+}
+
+fragment SponsoredJobPreview on SponsoredJob {
+  id
+  title
+  description
+  location
+  ralRange
+  companyName
+  companyLogo
+  remoteType
+}
+
+query GetSponsoredJob($id: ID!) {
+  getSponsoredJob(id: $id) {
+    id
+    title
+    description
+    location
+    ralRange
+    companyName
+    companyLogo
+    remoteType
+    body
+    companyWebsite
+    applicationLink
+  }
+}
+
+query GetALlSponsoredJobIds($skip: Int!, $take: Int!) {
+  getSponsoredJobs(skip: $skip, take: $take) {
+    edges {
+      job {
+        id
+      }
+    }
+  }
+}

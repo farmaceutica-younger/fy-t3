@@ -1,0 +1,128 @@
+syntax = "proto3";
+
+package fy.livequiz.v1;
+
+import "google/protobuf/timestamp.proto";
+
+option go_package = "pkg.fy.science/proto/livequiz/v1;pblivequizv1";
+
+import "fy/livequiz/v1/models.proto";
+
+service LiveQuizV1Srv {
+  rpc GetLiveQuiz(GetLiveQuizReq) returns (GetLiveQuizRes) {}
+  rpc GetLiveQuizQuestions(GetLiveQuizQuestionsReq)
+      returns (GetLiveQuizQuestionsRes) {}
+  rpc GetLiveQuizQuestion(GetLiveQuizQuestionReq)
+      returns (GetLiveQuizQuestionRes) {}
+  rpc SetQuizStatusEmpty(SetQuizStatusEmptyReq)
+      returns (SetQuizStatusEmptyRes) {}
+  rpc SetQuizStatusRank(SetQuizStatusRankReq) returns (SetQuizStatusRankRes) {}
+  rpc SetQuizStatusQuestion(SetQuizStatusQuestionReq)
+      returns (SetQuizStatusQuestionRes) {}
+  rpc RegisterParticipant(RegisterParticipantReq)
+      returns (RegisterParticipantRes) {}
+  rpc GetParticipants(GetParticipantsReq) returns (GetParticipantsRes) {}
+  rpc GetParticipant(GetParticipantReq) returns (GetParticipantRes) {}
+  rpc SetParticipantAnswer(SetParticipantAnswerReq)
+      returns (SetParticipantAnswerRes) {}
+
+  rpc GetRank(GetRancReq) returns (GetRankRes);
+}
+
+message GetLiveQuizReq {
+  string quiz_id = 1;
+}
+
+message GetLiveQuizRes {
+  LiveQuiz quiz = 1;
+}
+
+message GetLiveQuizQuestionReq {
+  string quiz_id = 1;
+  string question_id = 2;
+}
+
+message GetLiveQuizQuestionRes {
+  Question question = 1;
+}
+
+message GetLiveQuizQuestionsReq {
+  string quiz_id = 1;
+}
+
+message GetLiveQuizQuestionsRes {
+  repeated Question questions = 1;
+  uint32 total = 2;
+}
+
+message SetQuizStatusEmptyReq {
+  string quiz_id = 1;
+}
+
+message SetQuizStatusEmptyRes {
+  LiveQuiz quiz = 1;
+}
+
+message SetQuizStatusRankReq {
+  string quiz_id = 1;
+}
+
+message SetQuizStatusRankRes {
+  LiveQuiz quiz = 1;
+}
+
+message SetQuizStatusQuestionReq {
+  string quiz_id = 1;
+  string question_id = 2;
+}
+
+message SetQuizStatusQuestionRes {
+  LiveQuiz quiz = 1;
+}
+
+message RegisterParticipantReq {
+  string quiz_id = 1;
+  string name = 2;
+  string email = 3;
+}
+
+message RegisterParticipantRes {
+  Participant participant = 1;
+}
+
+message GetParticipantsReq {
+  string quiz_id = 1;
+  uint32 skip = 2;
+  uint32 take = 3;
+}
+
+message GetParticipantsRes {
+  repeated Participant participants = 1;
+  uint32 total = 2;
+}
+
+message GetParticipantReq {
+  string quiz_id = 1;
+  string participant_id = 2;
+}
+
+message GetParticipantRes {
+  Participant participant = 1;
+}
+
+message SetParticipantAnswerReq {
+  string quiz_id = 1;
+  string question_id = 2;
+  string participant_id = 3;
+  uint32 answer_idx = 4;
+}
+
+message SetParticipantAnswerRes {}
+
+message GetRancReq {
+  string quiz_id = 1;
+}
+
+message GetRankRes {
+  repeated ParticipantRank rank = 1;
+}

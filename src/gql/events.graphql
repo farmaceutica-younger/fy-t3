@@ -1,0 +1,80 @@
+query GetNextEvents($startsFrom: Time!) {
+  getEvents(skip: 0, take: 100, startsFrom: $startsFrom) {
+    total
+    edges {
+      event {
+        ...EventPreview
+      }
+    }
+  }
+}
+
+fragment EventPreview on Event {
+  id
+  title
+  description
+  slug
+  startDate
+  endDate
+  location
+  featuredImage
+}
+
+query GetAllEventSlugs {
+  getEvents(skip: 0, take: 10) {
+    total
+    edges {
+      event {
+        id
+        slug
+      }
+    }
+  }
+}
+
+query GetEvent($slug: String!) {
+  getEvent(slug: $slug) {
+    id
+    title
+    description
+    body
+    startDate
+    endDate
+    location
+    featuredImage
+    tags
+    slug
+    createdAt
+    author {
+      id
+      name
+      profileImage
+    }
+  }
+}
+
+query getEventWithTicket($slug: String!, $ticketID: ID!) {
+  getEvent(slug: $slug) {
+    id
+    title
+    description
+    body
+    startDate
+    endDate
+    location
+    featuredImage
+    tags
+    slug
+    author {
+      id
+      name
+      profileImage
+    }
+    getTicket(id: $ticketID) {
+      id
+      firstName
+      avatar
+      ticketNum
+    }
+  }
+}

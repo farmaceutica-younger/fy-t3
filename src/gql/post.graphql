@@ -1,0 +1,57 @@
+query GetPostsPreview($skip: Int!, $take: Int!, $filterTags: [String!]) {
+  getBlogPosts(skip: $skip, take: $take, filterTags: $filterTags) {
+    total
+    edges {
+      post {
+        ...PostPreview
+      }
+    }
+  }
+}
+
+fragment PostPreview on BlogPost {
+  id
+  title
+  description
+  publishedTime
+  featuredImage
+  readTime
+  path
+  author {
+    id
+    name
+    profileImage
+  }
+}
+
+query GetAllPostsPaths($skip: Int!, $take: Int!, $filterTags: [String!]) {
+  getBlogPosts(skip: $skip, take: $take, filterTags: $filterTags) {
+    total
+    edges {
+      post {
+        id
+        path
+      }
+    }
+  }
+}
+
+query GetPostByPath($path: String!) {
+  getBlogPost(path: $path) {
+    id
+    title
+    description
+    publishedTime
+    featuredImage
+    readTime
+    path
+    tags
+    showFeaturedImage
+    author {
+      id
+      name
+      profileImage
+    }
+    body
+  }
+}

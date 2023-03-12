@@ -1,0 +1,182 @@
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["extendedWhereUnique", "clientExtensions"]
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Account {
+  id                 String  @id @default(cuid())
+  userId             String
+  type               String
+  provider           String
+  providerAccountId  String
+  refresh_token      String? @db.Text
+  access_token       String? @db.Text
+  expires_at         Int?
+  token_type         String?
+  scope              String?
+  id_token           String? @db.Text
+  session_state      String?
+  oauth_token_secret String?
+  oauth_token        String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Session {
+  id           String   @id @default(cuid())
+  sessionToken String   @unique
+  userId       String
+  expires      DateTime
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+}
+
+model User {
+  id                       String                    @id @default(cuid())
+  name                     String?
+  email                    String                    @unique
+  emailVerified            DateTime?
+  image                    String?
+  accounts                 Account[]
+  sessions                 Session[]
+  authorId                 String?                   @unique
+  isAdmin                  Boolean                   @default(false)
+  profile                  Profile?
+  membership               AssociationMembership?
+  solitiIgnotiParticipants SolitiIgnotiParticipant[]
+  transactions             CreditsTransaction[]
+  credits                  Float                     @default(0)
+}
+
+model CreditsTransaction {
+  id        String   @id @default(cuid())
+  createdAt DateTime @default(now())
+  amount    Float
+  reason    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId    String
+}
+
+model VerificationToken {
+  identifier String
+  token      String   @unique
+  expires    DateTime
+
+  @@unique([identifier, token])
+}
+
+model Profile {
+  id               String                 @id
+  firstName        String
+  lastName         String
+  telegramUsername String?
+  linkedinUrl      String?
+  user             User                   @relation(fields: [id], references: [id], onDelete: Cascade)
+  membership       AssociationMembership?
+}
+
+model AssociationMembership {
+  id            String                           @id
+  createdAt     DateTime                         @default(now())
+  updateAt      DateTime                         @default(now())
+  user          User                             @relation(fields: [id], references: [id], onDelete: Cascade)
+  profile       Profile                          @relation(fields: [id], references: [id], onDelete: Cascade, map: "AssociationMembership_profile_id_fkey")
+  answers       AssociationQuestionairreAnswer[]
+  status        MembershipStatus                 @default(PENDING)
+  type          MembershipType                   @default(NORMAL)
+  memberSince   DateTime?                        @default(now())
+  memberUntil   DateTime?
+  profileId     String?
+  toRenew       Boolean                          @default(false)
+  location      MemberLocation?
+  payments      AssociationMembershipPayment[]
+  privacySigned DateTime?
+
+  @@index([createdAt, status])
+}
+
+enum MembershipStatus {
+  PENDING
+  APPROVED
+  REJECTED
+  COMPLETED
+}
+
+enum MembershipType {
+  NORMAL
+  ONORARY
+  DIRECTORIAL
+}
+
+model AssociationMembershipPayment {
+  id           String                @id @default(cuid())
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+  method       String
+  membership   AssociationMembership @relation(fields: [membershipId], references: [id], onDelete: Cascade)
+  membershipId String
+  amount       Float
+  note         String
+  data         Json
+}
+
+model AssociationQuestionairre {
+  id        String                           @id @default(cuid())
+  version   Int                              @default(autoincrement())
+  createdAt DateTime                         @default(now())
+  questions Json[]
+  answers   AssociationQuestionairreAnswer[]
+}
+
+model AssociationQuestionairreAnswer {
+  id                      String                   @id @default(cuid())
+  timestmap               DateTime                 @default(now())
+  answers                 Json
+  questionairre           AssociationQuestionairre @relation(fields: [questionairreId], references: [id], onDelete: Cascade)
+  questionairreId         String
+  membership              AssociationMembership    @relation(fields: [associationMembershipId], references: [id])
+  associationMembershipId String
+}
+
+model MemberLocation {
+  id            String                @id
+  createdAt     DateTime              @default(now())
+  updatedAt     DateTime              @updatedAt
+  membership    AssociationMembership @relation(fields: [id], references: [id])
+  location      Json
+  name          String
+  jobTitle      String
+  jobField      String
+  image         String
+  linkedinUrl   String?
+  privacySigned DateTime
+}
+
+model SolitiIgnotiGame {
+  id           String                    @id @default(cuid())
+  createdAt    DateTime                  @default(now())
+  updatedAt    DateTime                  @updatedAt
+  name         String
+  ignoti       Json[]                    @default([])
+  participants SolitiIgnotiParticipant[]
+  isLive       Boolean                   @default(false)
+  status       Json                      @default("{}")
+}
+
+model SolitiIgnotiParticipant {
+  id                 String
+  createdAt          DateTime         @default(now())
+  game               SolitiIgnotiGame @relation(fields: [gameId], references: [id])
+  gameId             String
+  responses          Json[]
+  user               User             @relation(fields: [id], references: [id])
+  creditsTransferred Boolean          @default(false)
+
+  @@id([id, gameId])
+}

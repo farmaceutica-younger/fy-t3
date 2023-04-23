@@ -6,6 +6,7 @@
  */
 import { httpBatchLink, loggerLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
+import { createTRPCReact } from "@trpc/react-query";
 import { type inferRouterInputs, type inferRouterOutputs } from "@trpc/server";
 import superjson from "superjson";
 
@@ -66,3 +67,19 @@ export type RouterInputs = inferRouterInputs<AppRouter>;
  * @example type HelloOutput = RouterOutputs['example']['hello']
  */
 export type RouterOutputs = inferRouterOutputs<AppRouter>;
+
+export const reactApi = createTRPCReact<AppRouter>();
+
+export function createReactCli() {
+  return reactApi.createClient({
+    links: [
+      httpBatchLink({
+        url: getBaseUrl() + "/api/trpc",
+        headers() {
+          return {};
+        },
+      }),
+    ],
+    transformer: superjson,
+  });
+}

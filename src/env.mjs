@@ -34,6 +34,12 @@ const server = z.object({
   GRPC_SERVER_HOST: z.string(),
 
   GQL_API_URL: z.string().url(),
+
+  // cloudinary
+  CLOUDINARY_BASE_FOLDER: z.string().default("dev"),
+  CLOUDINARY_KEY: z.string(),
+  CLOUDINARY_SECRET: z.string(),
+  CLOUDINARY_CLOUD_NAME: z.string(),
 });
 
 /**
@@ -69,6 +75,11 @@ const processEnv = {
   GRPC_SERVER_HOST: process.env.GRPC_SERVER_HOST,
 
   GQL_API_URL: process.env.GQL_API_URL,
+
+  CLOUDINARY_BASE_FOLDER: process.env.CLOUDINARY_BASE_FOLDER,
+  CLOUDINARY_KEY: process.env.CLOUDINARY_KEY,
+  CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
+  CLOUDINARY_SECRET: process.env.CLOUDINARY_SECRET,
 };
 
 // Don't touch the part below

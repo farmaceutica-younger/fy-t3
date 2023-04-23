@@ -18,9 +18,9 @@ import { type CreateNextContextOptions } from "@trpc/server/adapters/next";
 import { type Session } from "next-auth";
 
 import { getServerAuthSession } from "~/server/auth";
+import { cloudinary } from "~/server/cloudinary";
 import { prisma } from "~/server/db";
 import { blogs, events } from "~/server/grpc";
-import { gqlCli } from "~/server/gql";
 
 type CreateContextOptions = {
   session: Session | null;
@@ -42,7 +42,7 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
     prisma,
     blogs,
     events,
-    gqlCli,
+    cloudinary,
   };
 };
 
@@ -110,6 +110,7 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
     ctx: {
       // infers the `session` as non-nullable
       session: { ...ctx.session, user: ctx.session.user },
+      user: ctx.session.user,
     },
   });
 });
@@ -123,3 +124,23 @@ const enforceUserIsAuthed = t.middleware(({ ctx, next }) => {
  * @see https://trpc.io/docs/procedures
  */
 export const protectedProcedure = t.procedure.use(enforceUserIsAuthed);
+
+/** Reusable middleware that enforces users are logged in before running the procedure. */
+const enforceUserIsAuthor = enforceUserIsAuthed.unstable_pipe(
+  ({ ctx, next }) => {
+    if (!ctx.user.authorId) {
+      throw new TRPCError({ code: "UNAUTHORIZED" });
+    }
+    return next({ ctx: { ...ctx, authorId: ctx.user.authorId } });
+  }
+);
+
+/**
+ * Protected (authenticated) procedure
+ *
+ * If you want a query or mutation to ONLY be accessible to logged in users, use this. It verifies
+ * the session is valid and guarantees `ctx.session.user` is not null.
+ *
+ * @see https://trpc.io/docs/procedures
+ */
+export const authordProcedure = t.procedure.use(enforceUserIsAuthor);

@@ -1,5 +1,20 @@
+import Image from "next/image";
+import { CloudinaryImage } from "~/ui/cloudinary-image";
 import { Layout } from "~/ui/layout";
 import { SEO } from "~/ui/seo";
+
+const EcommercePage = () => {
+  return (
+    <Layout>
+      <SEO title="GMP Pocker Book" />
+      <CTABook />
+      <Content />
+      <Testimonial />
+    </Layout>
+  );
+};
+
+export default EcommercePage;
 
 const CTABook = () => {
   return (
@@ -33,10 +48,12 @@ const CTABook = () => {
         </div>
       </div>
       <div className="relative h-64 w-full sm:h-72 md:h-96 lg:absolute lg:inset-y-0 lg:right-0 lg:h-full lg:w-1/2">
-        <img
+        <Image
+          width={720}
+          height={1280}
           className="absolute inset-0 h-full w-full object-cover"
           src="/gmp.jpeg"
-          alt=""
+          alt="GNP Pocket Book"
         />
       </div>
     </div>
@@ -224,10 +241,11 @@ const Testimonial = () => {
             />
             <div className="mx-auto max-w-md px-4 sm:max-w-3xl sm:px-6 lg:h-full lg:p-0">
               <div className="aspect-w-10 aspect-h-6 sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none overflow-hidden rounded-xl shadow-xl lg:h-full">
-                <img
+                <CloudinaryImage
                   className="object-cover lg:h-full lg:w-full"
-                  src="https://res.cloudinary.com/dbdvy5b2z/image/upload/f_auto,c_scale,w_600/v1646563513/fy/ecommerce/gmpbook_uxszzd.jpg"
-                  alt=""
+                  src="https://res.cloudinary.com/dbdvy5b2z/image/upload/v1646563513/fy/ecommerce/gmpbook_uxszzd.jpg"
+                  size={600}
+                  alt="Sara"
                 />
               </div>
             </div>
@@ -261,17 +279,3 @@ const Testimonial = () => {
     </div>
   );
 };
-
-const EcommercePage = () => {
-  return (
-    <Layout>
-      <SEO title={"GMP Pocker Book"} />
-      <CTABook />
-
-      <Content />
-      <Testimonial />
-    </Layout>
-  );
-};
-
-export default EcommercePage;

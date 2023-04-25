@@ -21,6 +21,8 @@ import { getServerAuthSession } from "~/server/auth";
 import { cloudinary } from "~/server/cloudinary";
 import { prisma } from "~/server/db";
 import { blogs, events } from "~/server/grpc";
+import { kannon } from "~/server/kannon";
+import { bot } from "~/server/bot";
 
 type CreateContextOptions = {
   session: Session | null;
@@ -43,6 +45,8 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
     blogs,
     events,
     cloudinary,
+    kannon,
+    bot,
   };
 };
 
@@ -135,12 +139,16 @@ const enforceUserIsAuthor = enforceUserIsAuthed.unstable_pipe(
   }
 );
 
-/**
- * Protected (authenticated) procedure
- *
- * If you want a query or mutation to ONLY be accessible to logged in users, use this. It verifies
- * the session is valid and guarantees `ctx.session.user` is not null.
- *
- * @see https://trpc.io/docs/procedures
- */
+const enforceUserIsAdmin = enforceUserIsAuthed.unstable_pipe(
+  ({ ctx, next }) => {
+    if (!ctx.user.isAdmin) {
+      throw new TRPCError({ code: "UNAUTHORIZED" });
+    }
+    return next({ ctx: { ...ctx } });
+  }
+);
+
 export const authordProcedure = t.procedure.use(enforceUserIsAuthor);
+export const adminProcedure = t.procedure.use(enforceUserIsAdmin);
+
+export type Context = Awaited<ReturnType<typeof createTRPCContext>>;

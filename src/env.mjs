@@ -40,6 +40,13 @@ const server = z.object({
   CLOUDINARY_KEY: z.string(),
   CLOUDINARY_SECRET: z.string(),
   CLOUDINARY_CLOUD_NAME: z.string(),
+
+  // kannon
+  KANNON_API_URL: z.string(),
+  KANNON_API_KEY: z.string(),
+  KANNON_DOMAIN: z.string(),
+  KANNON_FROM_ALIAS: z.string(),
+  KANNON_FROM_EMAIL: z.string(),
 });
 
 /**
@@ -80,6 +87,12 @@ const processEnv = {
   CLOUDINARY_KEY: process.env.CLOUDINARY_KEY,
   CLOUDINARY_CLOUD_NAME: process.env.CLOUDINARY_CLOUD_NAME,
   CLOUDINARY_SECRET: process.env.CLOUDINARY_SECRET,
+
+  KANNON_API_URL: process.env.KANNON_API_URL,
+  KANNON_API_KEY: process.env.KANNON_API_KEY,
+  KANNON_DOMAIN: process.env.KANNON_DOMAIN,
+  KANNON_FROM_ALIAS: process.env.KANNON_FROM_ALIAS,
+  KANNON_FROM_EMAIL: process.env.KANNON_FROM_EMAIL,
 };
 
 // Don't touch the part below

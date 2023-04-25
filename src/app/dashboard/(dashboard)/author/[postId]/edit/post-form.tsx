@@ -67,7 +67,7 @@ export const PostForm = ({
         return (
           <PostFormStyled onSubmit={handleSubmit}>
             <EditorField name="body" />
-            <div className="fields flex flex-col bg-white ring-2">
+            <div className="fields flex flex-col bg-white">
               <div className="flex-grow px-2 py-2">
                 <PostFormFiels uploadImage={uploadImage} />
               </div>

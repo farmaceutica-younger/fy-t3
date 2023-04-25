@@ -4,7 +4,41 @@ import { env } from "~/env.mjs";
 import { readTime } from "~/utils/read-time";
 
 const extendPrisma = (p: PrismaClient) => {
-  return p;
+  return p.$extends({
+    model: {
+      associationMembership: {
+        setPayment: (
+          id: string,
+          paymentData: {
+            amount: number;
+            method: string;
+            note: string;
+            data: any;
+          }
+        ) => {
+          return prisma.associationMembership.update({
+            data: {
+              status: "COMPLETED",
+              memberUntil: endOfSubscription(),
+              toRenew: false,
+              payments: {
+                create: {
+                  ...paymentData,
+                },
+              },
+            },
+            where: {
+              id: id,
+            },
+            include: {
+              user: true,
+              profile: true,
+            },
+          });
+        },
+      },
+    },
+  });
 };
 
 type ClientType = ReturnType<typeof extendPrisma>;
@@ -79,4 +113,14 @@ export async function getPublishedPostsCount(filterTags: string[] | undefined) {
   });
 
   return count;
+}
+
+function endOfSubscription() {
+  const date = new Date();
+
+  if (date.getMonth() > 8) {
+    return new Date(date.getFullYear() + 1, 11, 31);
+  }
+
+  return new Date(date.getFullYear(), 11, 31);
 }

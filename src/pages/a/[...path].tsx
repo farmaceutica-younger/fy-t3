@@ -1,47 +1,31 @@
+import { JSONContent } from "@tiptap/react";
 import { GetStaticPropsContext, InferGetStaticPropsType } from "next";
-import { MDXRemoteSerializeResult } from "next-mdx-remote";
-import { serialize } from "next-mdx-remote/serialize";
+import { GetAllPostsPathsDocument } from "src/generated/graphql";
+import { renderHTML } from "~/editor/render";
+import { prisma } from "~/server/db";
 import { gqlCli } from "~/server/gql";
-import {
-  GetAllPostsPathsDocument,
-  GetPostByPathDocument,
-} from "src/generated/graphql";
 import { GmpCta } from "~/ui/cta/gmp";
 import { Footer } from "~/ui/footer";
 import { Header } from "~/ui/header";
 import { PostPage } from "~/ui/post";
 import { SEO } from "~/ui/seo";
+import { readTime } from "~/utils/read-time";
 
-export default function TestPage({
-  source,
-  frontmatter,
+export default function TestPage(
+   { html, author,frontmatter 
 }: InferGetStaticPropsType<typeof getStaticProps>) {
-  if (!source || !frontmatter) {
-    return (
-      <>
-        <p>NOT FOUND</p>
-      </>
-    );
-  }
-
   return (
     <>
       <SEO
         title={frontmatter.title}
         description={frontmatter.description}
         image={frontmatter.featuredImage!}
-        author={frontmatter.author.name}
+        author={author.name}
         date={frontmatter.publishedTime}
         type="article"
       />
       <Header />
-      {source && (
-        <PostPage
-          frontmatter={frontmatter}
-          source={source}
-          author={frontmatter.author}
-        />
-      )}
+      <PostPage frontmatter={frontmatter} author={author} html={html} />
       <div className="bg-pink-50 pt-6">
         <GmpCta />
       </div>
@@ -81,30 +65,44 @@ export async function getStaticProps({
 }: GetStaticPropsContext<{ path: string[] }>) {
   const path = "/" + params!.path.join("/") + "/";
 
-  const data = await gqlCli.query(GetPostByPathDocument, { path }).toPromise();
-  const post = data.data?.getBlogPost;
-  if (!post) {
-    throw new Error("cannot get post");
-  }
-
-  const { body, ...frontmatter } = post;
-
-  let mdxSource: MDXRemoteSerializeResult<Record<string, unknown>> | undefined;
-  try {
-    mdxSource = await serialize(body, {
-      mdxOptions: {
-        rehypePlugins: [],
+  let {body, author, ...post} = await prisma.blogPost.findUniqueOrThrow({
+    where: {
+      path,
+      published: true,
+      publishedTime: {
+        lte: new Date(),
       },
-    });
-  } catch {}
+    },
+    select: {
+      id: true,
+      path: true,
+      title: true,
+      description: true,
+      featuredImage: true,
+      publishedTime: true,
+      showFeaturedImage: true,
+      body: true,
+      tags: true,
+      author: {
+        select: {
+          name: true,
+          image: true,
+        },
+      },
+    },
+  });
+
+  const html = renderHTML(body as unknown as JSONContent);
 
   return {
     props: {
-      source: mdxSource,
       frontmatter: {
-        ...frontmatter,
-        publishedTime: new Date(frontmatter.publishedTime),
+        ...post,
+        publishedTime: post.publishedTime || new Date(),
+        readTime: readTime(html),
       },
+      html,
+      author
     },
     revalidate: 10 * 60,
   };

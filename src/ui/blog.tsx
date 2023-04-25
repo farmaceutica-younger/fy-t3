@@ -13,7 +13,7 @@ interface PostPreview {
   readTime: number;
   author: {
     name: string;
-    profileImage: string;
+    image: string;
   };
 }
 
@@ -45,7 +45,7 @@ const BlogPostPreview: FC<{
             <h3 className="mt-2 text-xl leading-7 text-gray-900">
               {post.title}
             </h3>
-            <p className="truncate-3-lines mt-3 mb-4 text-base leading-6 text-gray-500">
+            <p className="truncate-3-lines mb-4 mt-3 text-base leading-6 text-gray-500">
               {post.description}
             </p>
           </div>
@@ -55,7 +55,7 @@ const BlogPostPreview: FC<{
           <div className="flex-shrink-0">
             <div className="h-10 w-10 overflow-hidden rounded-full">
               <CloudinaryImage
-                src={post.author.profileImage}
+                src={post.author.image}
                 alt={post.author.name}
                 className="h-10 w-10"
                 size={200}
@@ -85,7 +85,7 @@ export const PostsList: FC<{
   title: string;
   description: string;
 }> = ({ posts, title, description }) => (
-  <div className="relative bg-white px-4 pt-16 pb-20 sm:px-6 lg:px-8 lg:pt-24 lg:pb-28">
+  <div className="relative bg-white px-4 pb-20 pt-16 sm:px-6 lg:px-8 lg:pb-28 lg:pt-24">
     <div className="absolute inset-0">
       <div className="h-1/3 bg-white sm:h-2/3"></div>
     </div>

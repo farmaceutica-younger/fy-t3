@@ -14,10 +14,7 @@ const EditPostPage = ({ params }: { params: { postId: string } }) => {
   const { data: post, isLoading: isLoadingPost } =
     reactApi.author.getPost.useQuery({ id: postId });
 
-  const { data: author, isLoading: isLoadingAuthor } =
-    reactApi.author.getAuthor.useQuery();
-
-  if (isLoadingPost || isLoadingAuthor) {
+  if (isLoadingPost) {
     return <Loading />;
   }
 
@@ -31,12 +28,12 @@ const EditPostPage = ({ params }: { params: { postId: string } }) => {
         <PostForm
           uploadImage={upload}
           initialValue={post}
-          author={author!}
+          author={post.author}
           back={() => router.push("..")}
           onSave={async (value) => {
             savePost({
               data: value,
-              id: post.postId,
+              id: post.id,
             });
           }}
         />

@@ -180,3 +180,30 @@ model SolitiIgnotiParticipant {
 
   @@id([id, gameId])
 }
+
+model BlogPost {
+  id                String    @id @default(cuid())
+  createdAt         DateTime  @default(now())
+  updatedAt         DateTime  @updatedAt
+  title             String
+  featuredImage     String
+  path              String    @unique
+  authorId          String
+  published         Boolean   @default(false)
+  publishedTime     DateTime?
+  showFeaturedImage Boolean   @default(false)
+  description       String
+  body              Json
+  author            Author    @relation(fields: [authorId], references: [id])
+  tags              String[]  @default([])
+}
+
+model Author {
+  id        String     @id @default(cuid())
+  createdAt DateTime   @default(now())
+  updatedAt DateTime   @updatedAt
+  name      String
+  image     String
+  bio       String
+  posts     BlogPost[]
+}

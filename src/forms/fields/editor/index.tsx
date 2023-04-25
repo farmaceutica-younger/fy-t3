@@ -11,12 +11,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Listbox, Transition } from "@headlessui/react";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/react/20/solid";
 import { Editor, EditorContent, useEditor } from "@tiptap/react";
-import StarterKit from "@tiptap/starter-kit";
 import clsx from "clsx";
 import { Fragment, useCallback } from "react";
-import { Field, useField } from "react-final-form";
-import Link from "@tiptap/extension-link";
-import { Image } from "./image.plugin";
+import { useField } from "react-final-form";
+import { extensions } from "~/editor/extensions";
 
 interface EditorFieldProps {
   name: string;
@@ -27,16 +25,9 @@ export const EditorField = ({ name, uploadImage }: EditorFieldProps) => {
   const { input } = useField<string>(name, { type: "text" });
 
   const editor = useEditor({
-    extensions: [
-      Link.configure({
-        protocols: ["https"],
-        autolink: true,
-      }),
-      Image.configure({}),
-      StarterKit,
-    ],
+    extensions: extensions,
     onUpdate: ({ editor }) => {
-      const content = editor.getHTML();
+      const content = editor.getJSON();
       input.onChange(content);
     },
     content: input.value,
@@ -95,6 +86,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           "bg-blue-100 text-blue-800": editor.isActive("bold"),
         })}
       >
+        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faBold} className="h-4" />
       </button>
       <button
@@ -104,6 +96,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           "bg-blue-100 text-blue-800": editor.isActive("italic"),
         })}
       >
+        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faItalic} className="h-4" />
       </button>
       <div className="h-10 self-stretch border-l border-gray-200 "></div>
@@ -114,6 +107,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           "bg-blue-100 text-blue-800": editor.isActive("bulletList"),
         })}
       >
+        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faList} className="h-4" />
       </button>
       <button
@@ -122,6 +116,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           "bg-blue-100 text-blue-800": editor.isActive("orderedList"),
         })}
       >
+        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faListOl} className="h-4" />
       </button>
 
@@ -131,6 +126,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           "bg-blue-100 text-blue-800": editor.isActive("blockquote"),
         })}
       >
+        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faQuoteLeft} className="h-4" />
       </button>
       <button
@@ -139,6 +135,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           "bg-blue-100 text-blue-800": editor.isActive("link"),
         })}
       >
+        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faLink} className="h-4" />
       </button>
       <button
@@ -149,6 +146,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
           "bg-blue-100 text-blue-800": editor.isActive("link"),
         })}
       >
+        {/* @ts-ignore */}
         <FontAwesomeIcon icon={faImage} className="h-4" />
       </button>
     </div>

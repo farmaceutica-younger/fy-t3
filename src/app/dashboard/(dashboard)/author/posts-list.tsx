@@ -1,27 +1,20 @@
 import Link from "next/link";
 import { CloudinaryImage } from "~/ui/cloudinary-image";
+import { type BlogPost } from "@prisma/client";
 
 interface PostListProps {
   posts: Post[];
   publish: (postId: string) => void;
 }
 
-type Post = {
-  postId: string;
-  path: string;
-  description: string;
-  body: string;
-  title: string;
-  featuredImage: string;
-  publishedTime: Date | undefined;
-};
+type Post = BlogPost;
 
 export const PostsList = ({ posts, publish }: PostListProps) => {
   return (
     <>
       <ul className="space-y-4">
         {posts.map((p) => (
-          <PostView key={p.postId} post={p} publish={() => publish(p.postId)} />
+          <PostView key={p.id} post={p} publish={() => publish(p.id)} />
         ))}
       </ul>
     </>
@@ -38,7 +31,7 @@ function PostView({
   return (
     <li className="mt-4 rounded-md bg-slate-200 shadow-md">
       <Link
-        href={`/dashboard/author/${post.postId}/edit`}
+        href={`/dashboard/author/${post.id}/edit`}
         className="flex cursor-pointer gap-2 align-middle hover:ring-2"
       >
         <CloudinaryImage

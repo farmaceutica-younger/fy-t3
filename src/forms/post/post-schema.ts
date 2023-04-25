@@ -7,9 +7,11 @@ export const CreatePostSchema = z.object({
 
 export const PostFormSchema = z.object({
   ...CreatePostSchema.shape,
-  body: z.string(),
+  body: z.object({
+    type: z.literal("doc"),
+    content: z.array(z.any()),
+  }),
   featuredImage: z.string(),
-  publishedTime: z.date(),
   showFeaturedImage: z.boolean(),
   tags: z.string().array(),
 });

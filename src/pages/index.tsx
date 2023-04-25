@@ -1,10 +1,8 @@
 import { InferGetStaticPropsType } from "next";
 import Link from "next/link";
 import YouTube from "react-youtube";
-import {
-  GetNextEventsDocument,
-  GetPostsPreviewDocument,
-} from "~/generated/graphql";
+import { GetNextEventsDocument } from "~/generated/graphql";
+import { getPublishedPostsPreview } from "~/server/db";
 import { gqlCli } from "~/server/gql";
 import { PostsList } from "~/ui/blog";
 import { CloudinaryImage } from "~/ui/cloudinary-image";
@@ -27,11 +25,11 @@ export default function Home({
         <EventCTA event={nextEvent} />
         <div className="relative sm:max-h-[2200px] sm:overflow-hidden">
           <PostsList posts={posts} title="Gli ultimi articoli" description="" />
-          <div className="absolute left-0 right-0 bottom-0 z-10  hidden h-40 justify-center bg-gradient-to-t from-slate-100/[0.9] to-slate-100/[0] pt-10 md:flex">
+          <div className="absolute bottom-0 left-0 right-0 z-10  hidden h-40 justify-center bg-gradient-to-t from-slate-100/[0.9] to-slate-100/[0] pt-10 md:flex">
             <div>
               <Link
                 href="/a/blog"
-                className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-pink-500 focus:border-pink-700 focus:outline-none md:py-4 md:px-10 md:text-lg"
+                className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-pink-500 focus:border-pink-700 focus:outline-none md:px-10 md:py-4 md:text-lg"
               >
                 Vedi tutti gli articoli
               </Link>
@@ -41,7 +39,7 @@ export default function Home({
         <div className="sm:hidden">
           <Link
             href="/a/blog"
-            className="focus:shadow-outline-pink m-auto flex w-full max-w-sm items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-pink-500 focus:border-pink-700 focus:outline-none md:py-4 md:px-10 md:text-lg"
+            className="focus:shadow-outline-pink m-auto flex w-full max-w-sm items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-pink-500 focus:border-pink-700 focus:outline-none md:px-10 md:py-4 md:text-lg"
           >
             Vedi tutti gli articoli
           </Link>
@@ -59,7 +57,7 @@ export default function Home({
 
 const Interviews = () => {
   return (
-    <div className="flex flex-col items-center justify-center space-y-2 bg-stone-100 p-10 md:flex-row md:space-y-0 md:space-x-2">
+    <div className="flex flex-col items-center justify-center space-y-2 bg-stone-100 p-10 md:flex-row md:space-x-2 md:space-y-0">
       <div className="card w-96 max-w-full bg-base-100 shadow-xl ">
         <div className="asp"></div>
         <figure>
@@ -119,9 +117,9 @@ const Interviews = () => {
 const Silvia = ({ image }: { image: string }) => {
   return (
     <section className="overflow-hidden bg-white">
-      <div className="relative mx-auto max-w-screen-xl px-4 pt-20 pb-12 sm:px-6 lg:px-8 lg:py-20">
+      <div className="relative mx-auto max-w-screen-xl px-4 pb-12 pt-20 sm:px-6 lg:px-8 lg:py-20">
         <svg
-          className="absolute top-full left-0 translate-x-80 -translate-y-24 transform lg:hidden"
+          className="absolute left-0 top-full -translate-y-24 translate-x-80 transform lg:hidden"
           width="784"
           height="404"
           fill="none"
@@ -154,7 +152,7 @@ const Silvia = ({ image }: { image: string }) => {
         </svg>
 
         <svg
-          className="absolute right-full top-1/2 hidden translate-x-1/2 -translate-y-1/2 transform lg:block"
+          className="absolute right-full top-1/2 hidden -translate-y-1/2 translate-x-1/2 transform lg:block"
           width="404"
           height="784"
           fill="none"
@@ -197,7 +195,7 @@ const Silvia = ({ image }: { image: string }) => {
 
           <div className="relative lg:ml-10">
             <svg
-              className="absolute top-0 left-0 h-36 w-36 -translate-x-8 -translate-y-24 transform text-pink-200 opacity-50"
+              className="absolute left-0 top-0 h-36 w-36 -translate-x-8 -translate-y-24 transform text-pink-200 opacity-50"
               stroke="currentColor"
               fill="none"
               viewBox="0 0 144 144"
@@ -307,15 +305,15 @@ const Associazione = () => (
               <div className="rounded-md shadow">
                 <Link
                   href="dashboard/association/register"
-                  className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-pink-500 focus:border-pink-700 focus:outline-none md:py-4 md:px-10 md:text-lg"
+                  className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-pink-500 focus:border-pink-700 focus:outline-none md:px-10 md:py-4 md:text-lg"
                 >
                   Diventa Socio
                 </Link>
               </div>
-              <div className="mt-3 sm:mt-0 sm:ml-3">
+              <div className="mt-3 sm:ml-3 sm:mt-0">
                 <Link
                   href="/associazione"
-                  className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-100 px-8 py-3 text-base font-medium leading-6 text-pink-700 transition duration-150 ease-in-out hover:bg-pink-50 hover:text-pink-600 focus:border-pink-300 focus:outline-none md:py-4 md:px-10 md:text-lg"
+                  className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-100 px-8 py-3 text-base font-medium leading-6 text-pink-700 transition duration-150 ease-in-out hover:bg-pink-50 hover:text-pink-600 focus:border-pink-300 focus:outline-none md:px-10 md:py-4 md:text-lg"
                 >
                   Scopri di più
                 </Link>
@@ -344,9 +342,9 @@ const Associazione = () => (
 const ByY = () => {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl py-16 px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8">
         <div className="overflow-hidden rounded-lg bg-pink-500 shadow-xl lg:flex lg:gap-4">
-          <div className="px-6 pt-10 pb-12 sm:px-16 sm:pt-16 lg:py-16 lg:pr-0 xl:py-20 xl:px-20">
+          <div className="px-6 pb-12 pt-10 sm:px-16 sm:pt-16 lg:py-16 lg:pr-0 xl:px-20 xl:py-20">
             <div className="lg:self-center">
               <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
                 <span>La nuova rubrica B2Young</span>
@@ -413,10 +411,10 @@ const HeroJobs = () => (
               mondo del <strong>Life Science</strong> in Italia.
             </p>
             <div className="mt-5 sm:mt-8 sm:flex sm:justify-center lg:justify-start">
-              <div className="mt-3 sm:mt-0 sm:ml-3">
+              <div className="mt-3 sm:ml-3 sm:mt-0">
                 <Link
                   href="/jobs"
-                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-pink-100 px-8 py-3 text-base font-medium text-pink-700 hover:bg-pink-200 md:py-4 md:px-10 md:text-lg"
+                  className="flex w-full items-center justify-center rounded-md border border-transparent bg-pink-100 px-8 py-3 text-base font-medium text-pink-700 hover:bg-pink-200 md:px-10 md:py-4 md:text-lg"
                 >
                   Guarda gli annunci
                 </Link>
@@ -456,23 +454,9 @@ const getNextEvent = async () => {
 };
 
 export const getStaticProps = async () => {
-  const data = await gqlCli
-    .query(GetPostsPreviewDocument, {
-      skip: 0,
-      take: 24,
-    })
-    .toPromise();
-
-  const edges = data?.data?.getBlogPosts?.edges || [];
-
-  const posts = edges.map((e) => {
-    return {
-      ...e.post,
-      publishedTime: new Date(e.post.publishedTime),
-    };
-  });
-
   const nextEvent = await getNextEvent();
+  const posts = await getPublishedPostsPreview(0, 24, undefined);
+
   return {
     props: {
       posts,

@@ -1,5 +1,4 @@
-import { gqlCli } from "~/server/gql";
-import { GetPostsPreviewDocument } from "~/generated/graphql";
+import { getPublishedPostsCount, getPublishedPostsPreview } from "~/server/db";
 
 export const categories: {
   category: string;
@@ -40,24 +39,11 @@ export async function getPageProps(
   category: string,
   take: number
 ) {
-  const res = await gqlCli
-    .query(GetPostsPreviewDocument, {
-      skip: take * (page - 1),
-      take,
-      filterTags: [category],
-    })
-    .toPromise();
+  const posts = await getPublishedPostsPreview(take * (page - 1), take, [
+    category,
+  ]);
 
-  const data = res.data?.getBlogPosts;
-  if (!data) {
-    throw new Error("error");
-  }
-
-  const total = data.total;
-  const posts = data.edges.map((e) => ({
-    ...e.post,
-    publishedTime: new Date(e.post.publishedTime),
-  }));
+  const total = await getPublishedPostsCount([category]);
 
   return {
     props: {

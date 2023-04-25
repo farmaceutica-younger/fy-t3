@@ -12,11 +12,7 @@ declare module "@tiptap/core" {
       /**
        * Add an image
        */
-      setImage: (options: {
-        src: string;
-        alt?: string;
-        title?: string;
-      }) => ReturnType;
+      setImage: (options: { src: string; alt?: string }) => ReturnType;
     };
   }
 }
@@ -51,9 +47,6 @@ export const Image = Node.create<ImageOptions>({
         default: null,
       },
       alt: {
-        default: null,
-      },
-      title: {
         default: null,
       },
     };
@@ -95,9 +88,9 @@ export const Image = Node.create<ImageOptions>({
         find: inputRegex,
         type: this.type,
         getAttributes: (match) => {
-          const [, , alt, src, title] = match;
+          const [, , alt, src] = match;
 
-          return { src, alt, title };
+          return { src, alt };
         },
       }),
     ];

@@ -66,7 +66,7 @@ export const PostForm = ({
       {({ handleSubmit, invalid, submitting, values }) => {
         return (
           <PostFormStyled onSubmit={handleSubmit}>
-            <EditorField uploadImage={uploadImage} name="body" />
+            <EditorField name="body" />
             <div className="fields flex flex-col bg-white ring-2">
               <div className="flex-grow px-2 py-2">
                 <PostFormFiels uploadImage={uploadImage} />
@@ -77,7 +77,7 @@ export const PostForm = ({
                   type="button"
                   onClick={back}
                 >
-                  Annulla
+                  Indietro
                 </button>
                 <div className="flex-grow"></div>
                 <button

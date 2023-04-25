@@ -21,7 +21,7 @@ export const CloudinaryImage: FC<{
 };
 
 const rg = /https?:\/\/res.cloudinary.com\/(.*)\/image\/upload\/v[^\/]*(.*)/;
-const resizeCloudinaryImage = (link: string, w: number) => {
+export const resizeCloudinaryImage = (link: string, w: number) => {
   return link?.replace(rg, (_, name, id) => {
     return `https://res.cloudinary.com/${name}/image/upload/c_scale,w_${w},f_auto${id}`;
   });

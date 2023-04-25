@@ -4,6 +4,7 @@ import { useAuthorUpload } from "~/hooks/upload/upload-image";
 import { Loading } from "~/ui/loading";
 import { reactApi } from "~/utils/api";
 import { PostForm } from "./post-form";
+import { toast } from "react-toastify";
 
 const EditPostPage = ({ params }: { params: { postId: string } }) => {
   const postId = decodeURIComponent(params.postId);
@@ -31,9 +32,10 @@ const EditPostPage = ({ params }: { params: { postId: string } }) => {
           author={post.author}
           back={() => router.push("..")}
           onSave={async (value) => {
-            savePost({
-              data: value,
-              id: post.id,
+            await toast.promise(savePost({ data: value, id: post.id }), {
+              pending: "Salvataggio in corso",
+              success: "Salvato",
+              error: "Errore",
             });
           }}
         />

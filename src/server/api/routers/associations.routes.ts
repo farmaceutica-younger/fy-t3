@@ -44,6 +44,9 @@ const adminAssociationRouter = createTRPCRouter({
       const res = await ctx.prisma.associationMembership.findMany({
         skip: input.skip,
         take: input.take,
+        orderBy: {
+          memberSince: "asc",
+        },
         include: {
           user: true,
           profile: true,

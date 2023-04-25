@@ -12,43 +12,7 @@ export function MemberList({ members }: { members: Member[] }) {
       <div className="-mx-4 -my-2 overflow-x-auto sm:-mx-6 lg:-mx-8">
         <div className="inline-block min-w-full py-2 align-middle sm:px-6 lg:px-8">
           <table className="min-w-full divide-y divide-gray-300">
-            <thead>
-              <tr>
-                <th
-                  scope="col"
-                  className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
-                >
-                  Nome
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Data Iscrizione
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Stato
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Role
-                </th>
-                <th
-                  scope="col"
-                  className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
-                >
-                  Payments
-                </th>
-                <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
-                  <span className="sr-only">Edit</span>
-                </th>
-              </tr>
-            </thead>
+            <TableHeader />
             <tbody className="divide-y divide-gray-200 bg-white">
               {members.map((member) => (
                 <tr key={member.id}>
@@ -111,4 +75,46 @@ export function MemberList({ members }: { members: Member[] }) {
 
 function formatDate(d: Date) {
   return format(d, "dd MMM yyyy - HH:mm", { locale: it });
+}
+
+function TableHeader() {
+  return (
+    <thead>
+      <tr>
+        <th
+          scope="col"
+          className="py-3.5 pl-4 pr-3 text-left text-sm font-semibold text-gray-900 sm:pl-0"
+        >
+          Nome
+        </th>
+        <th
+          scope="col"
+          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+        >
+          Iscrizione
+        </th>
+        <th
+          scope="col"
+          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+        >
+          Stato
+        </th>
+        <th
+          scope="col"
+          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+        >
+          Role
+        </th>
+        <th
+          scope="col"
+          className="px-3 py-3.5 text-left text-sm font-semibold text-gray-900"
+        >
+          Pagamenti
+        </th>
+        <th scope="col" className="relative py-3.5 pl-3 pr-4 sm:pr-0">
+          <span className="sr-only">Edit</span>
+        </th>
+      </tr>
+    </thead>
+  );
 }

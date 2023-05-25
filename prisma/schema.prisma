@@ -207,3 +207,24 @@ model Author {
   bio       String
   posts     BlogPost[]
 }
+
+model SponsoredJob {
+  id              String  @id @default(cuid())
+  title           String
+  description     String
+  body            String
+  location        String
+  ralRange        String?
+  remoteType      String
+  applicationLink String
+
+  companyName    String
+  companyLogo    String
+  companyWebsite String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  startDate DateTime
+  endDate   DateTime
+  public    Boolean  @default(false)
+}

@@ -81,6 +81,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
       <Headings editor={editor} />
       <div className="h-10 self-stretch border-l border-gray-200 "></div>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleBold().run()}
         disabled={!editor.can().chain().focus().toggleBold().run()}
         className={clsx(className, {
@@ -91,6 +92,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
         <FontAwesomeIcon icon={faBold} className="h-4" />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleItalic().run()}
         disabled={!editor.can().chain().focus().toggleItalic().run()}
         className={clsx(className, {
@@ -103,6 +105,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
       <div className="h-10 self-stretch border-l border-gray-200 "></div>
 
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleBulletList().run()}
         className={clsx(className, {
           "bg-blue-100 text-blue-800": editor.isActive("bulletList"),
@@ -112,6 +115,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
         <FontAwesomeIcon icon={faList} className="h-4" />
       </button>
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleOrderedList().run()}
         className={clsx(className, {
           "bg-blue-100 text-blue-800": editor.isActive("orderedList"),
@@ -122,6 +126,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
       </button>
 
       <button
+        type="button"
         onClick={() => editor.chain().focus().toggleBlockquote().run()}
         className={clsx(className, {
           "bg-blue-100 text-blue-800": editor.isActive("blockquote"),
@@ -131,6 +136,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
         <FontAwesomeIcon icon={faQuoteLeft} className="h-4" />
       </button>
       <button
+        type="button"
         onClick={setLink}
         className={clsx(className, {
           "bg-blue-100 text-blue-800": editor.isActive("link"),
@@ -140,6 +146,7 @@ export const MenuBar = ({ editor }: { editor: Editor }) => {
         <FontAwesomeIcon icon={faLink} className="h-4" />
       </button>
       <button
+        type="button"
         onClick={() => openUploadDialog()}
         className={clsx(className, {
           "bg-blue-100 text-blue-800": editor.isActive("link"),

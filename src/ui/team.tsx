@@ -3,7 +3,7 @@ import { CloudinaryImage } from "./cloudinary-image";
 export const Team: React.FC<{}> = () => {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-screen-xl py-12 px-4 text-center sm:px-6 lg:px-8 lg:py-24">
+      <div className="mx-auto max-w-screen-xl px-4 py-12 text-center sm:px-6 lg:px-8 lg:py-24">
         <div className="space-y-12">
           <div className="space-y-5 sm:mx-auto sm:max-w-xl sm:space-y-4 lg:max-w-5xl">
             <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-pink-600 sm:text-4xl">

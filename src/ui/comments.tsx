@@ -31,7 +31,7 @@ const comments = [
 export const Comments = () => {
   return (
     <div className="bg-gray-50">
-      <div className="mx-auto py-12 px-4 text-center sm:px-6 lg:px-8 lg:py-24">
+      <div className="mx-auto px-4 py-12 text-center sm:px-6 lg:px-8 lg:py-24">
         <div className="space-y-12">
           {" "}
           <div className="space-y-5 sm:mx-auto sm:max-w-xl sm:space-y-4 lg:max-w-5xl">

@@ -11,8 +11,10 @@ import { PostPage } from "~/ui/post";
 import { SEO } from "~/ui/seo";
 import { readTime } from "~/utils/read-time";
 
-export default function TestPage(
-   { html, author,frontmatter 
+export default function TestPage({
+  html,
+  author,
+  frontmatter,
 }: InferGetStaticPropsType<typeof getStaticProps>) {
   return (
     <>
@@ -65,7 +67,7 @@ export async function getStaticProps({
 }: GetStaticPropsContext<{ path: string[] }>) {
   const path = "/" + params!.path.join("/") + "/";
 
-  let {body, author, ...post} = await prisma.blogPost.findUniqueOrThrow({
+  let { body, author, ...post } = await prisma.blogPost.findUniqueOrThrow({
     where: {
       path,
       published: true,
@@ -102,7 +104,7 @@ export async function getStaticProps({
         readTime: readTime(html),
       },
       html,
-      author
+      author,
     },
     revalidate: 10 * 60,
   };

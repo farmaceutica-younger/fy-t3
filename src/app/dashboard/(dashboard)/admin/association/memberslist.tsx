@@ -15,61 +15,79 @@ export function MemberList({ members }: { members: Member[] }) {
             <TableHeader />
             <tbody className="divide-y divide-gray-200 bg-white">
               {members.map((member) => (
-                <tr key={member.id}>
-                  <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
-                    <div className="flex items-center">
-                      <div className="h-11 w-11 flex-shrink-0">
-                        <img
-                          className="h-11 w-11 rounded-full"
-                          src={member.user!.image!}
-                          alt=""
-                        />
-                      </div>
-                      <div className="ml-4">
-                        <div className="font-medium text-gray-900">
-                          {member.profile.firstName} {member.profile.lastName}{" "}
-                          <MemberRoleBadge type={member.type} />
-                        </div>
-                        <div className="mt-1 text-gray-500">
-                          {member.user.email}
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                    <div className="text-gray-900">
-                      {member.memberSince && formatDate(member.memberSince)}
-                    </div>
-                    <div className="mt-1 font-mono text-xs text-gray-400">
-                      {member.id}
-                    </div>
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                    <MemberStatusBadge status={member.status} />
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                    {member.type}
-                  </td>
-                  <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
-                    {member.payments[0]?.createdAt &&
-                      formatDate(member.payments[0]?.createdAt)}{" "}
-                    ({member.payments.length})
-                  </td>
-                  <td className="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
-                    <a
-                      href="#"
-                      className="text-indigo-600 hover:text-indigo-900"
-                    >
-                      Edit
-                    </a>
-                  </td>
-                </tr>
+                <MemberRow key={member.id} member={member} />
               ))}
             </tbody>
           </table>
         </div>
       </div>
     </div>
+  );
+}
+
+function MemberRow({ member }: { member: Member }): JSX.Element {
+  return (
+    <tr>
+      <td className="whitespace-nowrap py-5 pl-4 pr-3 text-sm sm:pl-0">
+        <div className="flex items-center">
+          <div className="h-11 w-11 flex-shrink-0">
+            <img
+              className="h-11 w-11 rounded-full"
+              src={member.user!.image!}
+              alt=""
+            />
+          </div>
+          <div className="ml-4">
+            <div className="font-medium text-gray-900">
+              {member.profile.firstName} {member.profile.lastName}{" "}
+              <MemberRoleBadge type={member.type} />
+            </div>
+            <div className="mt-1 text-gray-500">{member.user.email}</div>
+          </div>
+        </div>
+      </td>
+      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+        <div className="text-gray-900">
+          {member.memberSince && formatDate(member.memberSince)}
+        </div>
+        <div className="mt-1 font-mono text-xs text-gray-400">{member.id}</div>
+      </td>
+      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+        <MemberStatusBadge status={member.status} />
+      </td>
+      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+        {member.type}
+      </td>
+      <td className="whitespace-nowrap px-3 py-5 text-sm text-gray-500">
+        <MemberPayments member={member} />
+      </td>
+      <td className="relative whitespace-nowrap py-5 pl-3 pr-4 text-right text-sm font-medium sm:pr-0">
+        <a href="#" className="text-indigo-600 hover:text-indigo-900">
+          Edit
+        </a>
+      </td>
+    </tr>
+  );
+}
+
+function MemberPayments({ member }: { member: Member }) {
+  const lastPayment = member.payments[0];
+  const totalPayments = member.payments.length;
+  const totalPayed =
+    member.payments.reduce((acc, payment) => acc + payment.amount, 0) / 100;
+
+  return (
+    <>
+      <p className="whitespace-nowrap">
+        <span className="font-bold">{totalPayed}€</span>
+        <span className="ml-2">{totalPayments} transactions</span>
+      </p>
+      {lastPayment && (
+        <p className="font-xs whitespace-nowrap text-gray-400">
+          <span>last</span> <span>{formatDate(lastPayment.createdAt)}</span>
+        </p>
+      )}
+    </>
   );
 }
 

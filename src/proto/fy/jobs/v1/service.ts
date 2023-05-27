@@ -50,8 +50,7 @@ export interface CreateJobData {
   postedAt: Date | undefined;
 }
 
-export interface CreateJobsRes {
-}
+export interface CreateJobsRes {}
 
 export interface GetSponsoredJobsReq {
   skip: number;
@@ -125,7 +124,10 @@ function createBaseGetJobsReq(): GetJobsReq {
 }
 
 export const GetJobsReq = {
-  encode(message: GetJobsReq, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: GetJobsReq,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.companyIds) {
       writer.uint32(10).string(v!);
     }
@@ -170,10 +172,14 @@ export const GetJobsReq = {
 
   fromJSON(object: any): GetJobsReq {
     return {
-      companyIds: Array.isArray(object?.companyIds) ? object.companyIds.map((e: any) => String(e)) : [],
+      companyIds: Array.isArray(object?.companyIds)
+        ? object.companyIds.map((e: any) => String(e))
+        : [],
       skip: isSet(object.skip) ? Number(object.skip) : 0,
       take: isSet(object.take) ? Number(object.take) : 0,
-      regions: Array.isArray(object?.regions) ? object.regions.map((e: any) => String(e)) : [],
+      regions: Array.isArray(object?.regions)
+        ? object.regions.map((e: any) => String(e))
+        : [],
     };
   },
 
@@ -198,7 +204,9 @@ export const GetJobsReq = {
     return GetJobsReq.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<GetJobsReq>, I>>(object: I): GetJobsReq {
+  fromPartial<I extends Exact<DeepPartial<GetJobsReq>, I>>(
+    object: I
+  ): GetJobsReq {
     const message = createBaseGetJobsReq();
     message.companyIds = object.companyIds?.map((e) => e) || [];
     message.skip = object.skip ?? 0;
@@ -213,7 +221,10 @@ function createBaseGetJobsRes(): GetJobsRes {
 }
 
 export const GetJobsRes = {
-  encode(message: GetJobsRes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: GetJobsRes,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.jobs) {
       Job.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -239,13 +250,17 @@ export const GetJobsRes = {
   },
 
   fromJSON(object: any): GetJobsRes {
-    return { jobs: Array.isArray(object?.jobs) ? object.jobs.map((e: any) => Job.fromJSON(e)) : [] };
+    return {
+      jobs: Array.isArray(object?.jobs)
+        ? object.jobs.map((e: any) => Job.fromJSON(e))
+        : [],
+    };
   },
 
   toJSON(message: GetJobsRes): unknown {
     const obj: any = {};
     if (message.jobs) {
-      obj.jobs = message.jobs.map((e) => e ? Job.toJSON(e) : undefined);
+      obj.jobs = message.jobs.map((e) => (e ? Job.toJSON(e) : undefined));
     } else {
       obj.jobs = [];
     }
@@ -256,7 +271,9 @@ export const GetJobsRes = {
     return GetJobsRes.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<GetJobsRes>, I>>(object: I): GetJobsRes {
+  fromPartial<I extends Exact<DeepPartial<GetJobsRes>, I>>(
+    object: I
+  ): GetJobsRes {
     const message = createBaseGetJobsRes();
     message.jobs = object.jobs?.map((e) => Job.fromPartial(e)) || [];
     return message;
@@ -268,7 +285,10 @@ function createBaseCountJobsReq(): CountJobsReq {
 }
 
 export const CountJobsReq = {
-  encode(message: CountJobsReq, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: CountJobsReq,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.companyIds) {
       writer.uint32(10).string(v!);
     }
@@ -301,8 +321,12 @@ export const CountJobsReq = {
 
   fromJSON(object: any): CountJobsReq {
     return {
-      companyIds: Array.isArray(object?.companyIds) ? object.companyIds.map((e: any) => String(e)) : [],
-      regions: Array.isArray(object?.regions) ? object.regions.map((e: any) => String(e)) : [],
+      companyIds: Array.isArray(object?.companyIds)
+        ? object.companyIds.map((e: any) => String(e))
+        : [],
+      regions: Array.isArray(object?.regions)
+        ? object.regions.map((e: any) => String(e))
+        : [],
     };
   },
 
@@ -321,11 +345,15 @@ export const CountJobsReq = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CountJobsReq>, I>>(base?: I): CountJobsReq {
+  create<I extends Exact<DeepPartial<CountJobsReq>, I>>(
+    base?: I
+  ): CountJobsReq {
     return CountJobsReq.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<CountJobsReq>, I>>(object: I): CountJobsReq {
+  fromPartial<I extends Exact<DeepPartial<CountJobsReq>, I>>(
+    object: I
+  ): CountJobsReq {
     const message = createBaseCountJobsReq();
     message.companyIds = object.companyIds?.map((e) => e) || [];
     message.regions = object.regions?.map((e) => e) || [];
@@ -338,7 +366,10 @@ function createBaseCountJobsRes(): CountJobsRes {
 }
 
 export const CountJobsRes = {
-  encode(message: CountJobsRes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: CountJobsRes,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.total !== 0) {
       writer.uint32(8).uint32(message.total);
     }
@@ -373,11 +404,15 @@ export const CountJobsRes = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CountJobsRes>, I>>(base?: I): CountJobsRes {
+  create<I extends Exact<DeepPartial<CountJobsRes>, I>>(
+    base?: I
+  ): CountJobsRes {
     return CountJobsRes.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<CountJobsRes>, I>>(object: I): CountJobsRes {
+  fromPartial<I extends Exact<DeepPartial<CountJobsRes>, I>>(
+    object: I
+  ): CountJobsRes {
     const message = createBaseCountJobsRes();
     message.total = object.total ?? 0;
     return message;
@@ -389,7 +424,10 @@ function createBaseCreateJobsReq(): CreateJobsReq {
 }
 
 export const CreateJobsReq = {
-  encode(message: CreateJobsReq, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: CreateJobsReq,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.jobs) {
       CreateJobData.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -415,24 +453,34 @@ export const CreateJobsReq = {
   },
 
   fromJSON(object: any): CreateJobsReq {
-    return { jobs: Array.isArray(object?.jobs) ? object.jobs.map((e: any) => CreateJobData.fromJSON(e)) : [] };
+    return {
+      jobs: Array.isArray(object?.jobs)
+        ? object.jobs.map((e: any) => CreateJobData.fromJSON(e))
+        : [],
+    };
   },
 
   toJSON(message: CreateJobsReq): unknown {
     const obj: any = {};
     if (message.jobs) {
-      obj.jobs = message.jobs.map((e) => e ? CreateJobData.toJSON(e) : undefined);
+      obj.jobs = message.jobs.map((e) =>
+        e ? CreateJobData.toJSON(e) : undefined
+      );
     } else {
       obj.jobs = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CreateJobsReq>, I>>(base?: I): CreateJobsReq {
+  create<I extends Exact<DeepPartial<CreateJobsReq>, I>>(
+    base?: I
+  ): CreateJobsReq {
     return CreateJobsReq.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<CreateJobsReq>, I>>(object: I): CreateJobsReq {
+  fromPartial<I extends Exact<DeepPartial<CreateJobsReq>, I>>(
+    object: I
+  ): CreateJobsReq {
     const message = createBaseCreateJobsReq();
     message.jobs = object.jobs?.map((e) => CreateJobData.fromPartial(e)) || [];
     return message;
@@ -440,11 +488,21 @@ export const CreateJobsReq = {
 };
 
 function createBaseCreateJobData(): CreateJobData {
-  return { title: "", description: "", url: "", companyId: "", location: "", postedAt: undefined };
+  return {
+    title: "",
+    description: "",
+    url: "",
+    companyId: "",
+    location: "",
+    postedAt: undefined,
+  };
 }
 
 export const CreateJobData = {
-  encode(message: CreateJobData, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: CreateJobData,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.title !== "") {
       writer.uint32(10).string(message.title);
     }
@@ -461,7 +519,10 @@ export const CreateJobData = {
       writer.uint32(42).string(message.location);
     }
     if (message.postedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.postedAt), writer.uint32(50).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.postedAt),
+        writer.uint32(50).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -489,7 +550,9 @@ export const CreateJobData = {
           message.location = reader.string();
           break;
         case 6:
-          message.postedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.postedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -506,26 +569,34 @@ export const CreateJobData = {
       url: isSet(object.url) ? String(object.url) : "",
       companyId: isSet(object.companyId) ? String(object.companyId) : "",
       location: isSet(object.location) ? String(object.location) : "",
-      postedAt: isSet(object.postedAt) ? fromJsonTimestamp(object.postedAt) : undefined,
+      postedAt: isSet(object.postedAt)
+        ? fromJsonTimestamp(object.postedAt)
+        : undefined,
     };
   },
 
   toJSON(message: CreateJobData): unknown {
     const obj: any = {};
     message.title !== undefined && (obj.title = message.title);
-    message.description !== undefined && (obj.description = message.description);
+    message.description !== undefined &&
+      (obj.description = message.description);
     message.url !== undefined && (obj.url = message.url);
     message.companyId !== undefined && (obj.companyId = message.companyId);
     message.location !== undefined && (obj.location = message.location);
-    message.postedAt !== undefined && (obj.postedAt = message.postedAt.toISOString());
+    message.postedAt !== undefined &&
+      (obj.postedAt = message.postedAt.toISOString());
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CreateJobData>, I>>(base?: I): CreateJobData {
+  create<I extends Exact<DeepPartial<CreateJobData>, I>>(
+    base?: I
+  ): CreateJobData {
     return CreateJobData.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<CreateJobData>, I>>(object: I): CreateJobData {
+  fromPartial<I extends Exact<DeepPartial<CreateJobData>, I>>(
+    object: I
+  ): CreateJobData {
     const message = createBaseCreateJobData();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
@@ -542,7 +613,10 @@ function createBaseCreateJobsRes(): CreateJobsRes {
 }
 
 export const CreateJobsRes = {
-  encode(_: CreateJobsRes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    _: CreateJobsRes,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     return writer;
   },
 
@@ -570,11 +644,15 @@ export const CreateJobsRes = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CreateJobsRes>, I>>(base?: I): CreateJobsRes {
+  create<I extends Exact<DeepPartial<CreateJobsRes>, I>>(
+    base?: I
+  ): CreateJobsRes {
     return CreateJobsRes.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<CreateJobsRes>, I>>(_: I): CreateJobsRes {
+  fromPartial<I extends Exact<DeepPartial<CreateJobsRes>, I>>(
+    _: I
+  ): CreateJobsRes {
     const message = createBaseCreateJobsRes();
     return message;
   },
@@ -585,7 +663,10 @@ function createBaseGetSponsoredJobsReq(): GetSponsoredJobsReq {
 }
 
 export const GetSponsoredJobsReq = {
-  encode(message: GetSponsoredJobsReq, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: GetSponsoredJobsReq,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.skip !== 0) {
       writer.uint32(8).uint32(message.skip);
     }
@@ -638,11 +719,15 @@ export const GetSponsoredJobsReq = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GetSponsoredJobsReq>, I>>(base?: I): GetSponsoredJobsReq {
+  create<I extends Exact<DeepPartial<GetSponsoredJobsReq>, I>>(
+    base?: I
+  ): GetSponsoredJobsReq {
     return GetSponsoredJobsReq.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<GetSponsoredJobsReq>, I>>(object: I): GetSponsoredJobsReq {
+  fromPartial<I extends Exact<DeepPartial<GetSponsoredJobsReq>, I>>(
+    object: I
+  ): GetSponsoredJobsReq {
     const message = createBaseGetSponsoredJobsReq();
     message.skip = object.skip ?? 0;
     message.take = object.take ?? 0;
@@ -656,7 +741,10 @@ function createBaseGetSponsoredJobsRes(): GetSponsoredJobsRes {
 }
 
 export const GetSponsoredJobsRes = {
-  encode(message: GetSponsoredJobsRes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: GetSponsoredJobsRes,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.jobs) {
       SponsoredJob.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -689,7 +777,9 @@ export const GetSponsoredJobsRes = {
 
   fromJSON(object: any): GetSponsoredJobsRes {
     return {
-      jobs: Array.isArray(object?.jobs) ? object.jobs.map((e: any) => SponsoredJob.fromJSON(e)) : [],
+      jobs: Array.isArray(object?.jobs)
+        ? object.jobs.map((e: any) => SponsoredJob.fromJSON(e))
+        : [],
       total: isSet(object.total) ? Number(object.total) : 0,
     };
   },
@@ -697,7 +787,9 @@ export const GetSponsoredJobsRes = {
   toJSON(message: GetSponsoredJobsRes): unknown {
     const obj: any = {};
     if (message.jobs) {
-      obj.jobs = message.jobs.map((e) => e ? SponsoredJob.toJSON(e) : undefined);
+      obj.jobs = message.jobs.map((e) =>
+        e ? SponsoredJob.toJSON(e) : undefined
+      );
     } else {
       obj.jobs = [];
     }
@@ -705,11 +797,15 @@ export const GetSponsoredJobsRes = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GetSponsoredJobsRes>, I>>(base?: I): GetSponsoredJobsRes {
+  create<I extends Exact<DeepPartial<GetSponsoredJobsRes>, I>>(
+    base?: I
+  ): GetSponsoredJobsRes {
     return GetSponsoredJobsRes.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<GetSponsoredJobsRes>, I>>(object: I): GetSponsoredJobsRes {
+  fromPartial<I extends Exact<DeepPartial<GetSponsoredJobsRes>, I>>(
+    object: I
+  ): GetSponsoredJobsRes {
     const message = createBaseGetSponsoredJobsRes();
     message.jobs = object.jobs?.map((e) => SponsoredJob.fromPartial(e)) || [];
     message.total = object.total ?? 0;
@@ -722,7 +818,10 @@ function createBaseGetSponsoredJobReq(): GetSponsoredJobReq {
 }
 
 export const GetSponsoredJobReq = {
-  encode(message: GetSponsoredJobReq, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: GetSponsoredJobReq,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.jobId !== "") {
       writer.uint32(10).string(message.jobId);
     }
@@ -757,11 +856,15 @@ export const GetSponsoredJobReq = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GetSponsoredJobReq>, I>>(base?: I): GetSponsoredJobReq {
+  create<I extends Exact<DeepPartial<GetSponsoredJobReq>, I>>(
+    base?: I
+  ): GetSponsoredJobReq {
     return GetSponsoredJobReq.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<GetSponsoredJobReq>, I>>(object: I): GetSponsoredJobReq {
+  fromPartial<I extends Exact<DeepPartial<GetSponsoredJobReq>, I>>(
+    object: I
+  ): GetSponsoredJobReq {
     const message = createBaseGetSponsoredJobReq();
     message.jobId = object.jobId ?? "";
     return message;
@@ -773,7 +876,10 @@ function createBaseGetSponsoredJobRes(): GetSponsoredJobRes {
 }
 
 export const GetSponsoredJobRes = {
-  encode(message: GetSponsoredJobRes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: GetSponsoredJobRes,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.job !== undefined) {
       SponsoredJob.encode(message.job, writer.uint32(10).fork()).ldelim();
     }
@@ -799,22 +905,32 @@ export const GetSponsoredJobRes = {
   },
 
   fromJSON(object: any): GetSponsoredJobRes {
-    return { job: isSet(object.job) ? SponsoredJob.fromJSON(object.job) : undefined };
+    return {
+      job: isSet(object.job) ? SponsoredJob.fromJSON(object.job) : undefined,
+    };
   },
 
   toJSON(message: GetSponsoredJobRes): unknown {
     const obj: any = {};
-    message.job !== undefined && (obj.job = message.job ? SponsoredJob.toJSON(message.job) : undefined);
+    message.job !== undefined &&
+      (obj.job = message.job ? SponsoredJob.toJSON(message.job) : undefined);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<GetSponsoredJobRes>, I>>(base?: I): GetSponsoredJobRes {
+  create<I extends Exact<DeepPartial<GetSponsoredJobRes>, I>>(
+    base?: I
+  ): GetSponsoredJobRes {
     return GetSponsoredJobRes.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<GetSponsoredJobRes>, I>>(object: I): GetSponsoredJobRes {
+  fromPartial<I extends Exact<DeepPartial<GetSponsoredJobRes>, I>>(
+    object: I
+  ): GetSponsoredJobRes {
     const message = createBaseGetSponsoredJobRes();
-    message.job = (object.job !== undefined && object.job !== null) ? SponsoredJob.fromPartial(object.job) : undefined;
+    message.job =
+      object.job !== undefined && object.job !== null
+        ? SponsoredJob.fromPartial(object.job)
+        : undefined;
     return message;
   },
 };
@@ -837,7 +953,10 @@ function createBaseCreateSponsoredJobReq(): CreateSponsoredJobReq {
 }
 
 export const CreateSponsoredJobReq = {
-  encode(message: CreateSponsoredJobReq, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: CreateSponsoredJobReq,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.title !== "") {
       writer.uint32(18).string(message.title);
     }
@@ -869,15 +988,24 @@ export const CreateSponsoredJobReq = {
       writer.uint32(90).string(message.companyWebsite);
     }
     if (message.publicStartDate !== undefined) {
-      Timestamp.encode(toTimestamp(message.publicStartDate), writer.uint32(98).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.publicStartDate),
+        writer.uint32(98).fork()
+      ).ldelim();
     }
     if (message.publicEndDate !== undefined) {
-      Timestamp.encode(toTimestamp(message.publicEndDate), writer.uint32(106).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.publicEndDate),
+        writer.uint32(106).fork()
+      ).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): CreateSponsoredJobReq {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): CreateSponsoredJobReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCreateSponsoredJobReq();
@@ -915,10 +1043,14 @@ export const CreateSponsoredJobReq = {
           message.companyWebsite = reader.string();
           break;
         case 12:
-          message.publicStartDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.publicStartDate = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 13:
-          message.publicEndDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.publicEndDate = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -936,37 +1068,56 @@ export const CreateSponsoredJobReq = {
       location: isSet(object.location) ? String(object.location) : "",
       ralRange: isSet(object.ralRange) ? String(object.ralRange) : "",
       remoteType: isSet(object.remoteType) ? String(object.remoteType) : "",
-      applicationLink: isSet(object.applicationLink) ? String(object.applicationLink) : "",
+      applicationLink: isSet(object.applicationLink)
+        ? String(object.applicationLink)
+        : "",
       companyName: isSet(object.companyName) ? String(object.companyName) : "",
       companyLogo: isSet(object.companyLogo) ? String(object.companyLogo) : "",
-      companyWebsite: isSet(object.companyWebsite) ? String(object.companyWebsite) : "",
-      publicStartDate: isSet(object.publicStartDate) ? fromJsonTimestamp(object.publicStartDate) : undefined,
-      publicEndDate: isSet(object.publicEndDate) ? fromJsonTimestamp(object.publicEndDate) : undefined,
+      companyWebsite: isSet(object.companyWebsite)
+        ? String(object.companyWebsite)
+        : "",
+      publicStartDate: isSet(object.publicStartDate)
+        ? fromJsonTimestamp(object.publicStartDate)
+        : undefined,
+      publicEndDate: isSet(object.publicEndDate)
+        ? fromJsonTimestamp(object.publicEndDate)
+        : undefined,
     };
   },
 
   toJSON(message: CreateSponsoredJobReq): unknown {
     const obj: any = {};
     message.title !== undefined && (obj.title = message.title);
-    message.description !== undefined && (obj.description = message.description);
+    message.description !== undefined &&
+      (obj.description = message.description);
     message.body !== undefined && (obj.body = message.body);
     message.location !== undefined && (obj.location = message.location);
     message.ralRange !== undefined && (obj.ralRange = message.ralRange);
     message.remoteType !== undefined && (obj.remoteType = message.remoteType);
-    message.applicationLink !== undefined && (obj.applicationLink = message.applicationLink);
-    message.companyName !== undefined && (obj.companyName = message.companyName);
-    message.companyLogo !== undefined && (obj.companyLogo = message.companyLogo);
-    message.companyWebsite !== undefined && (obj.companyWebsite = message.companyWebsite);
-    message.publicStartDate !== undefined && (obj.publicStartDate = message.publicStartDate.toISOString());
-    message.publicEndDate !== undefined && (obj.publicEndDate = message.publicEndDate.toISOString());
+    message.applicationLink !== undefined &&
+      (obj.applicationLink = message.applicationLink);
+    message.companyName !== undefined &&
+      (obj.companyName = message.companyName);
+    message.companyLogo !== undefined &&
+      (obj.companyLogo = message.companyLogo);
+    message.companyWebsite !== undefined &&
+      (obj.companyWebsite = message.companyWebsite);
+    message.publicStartDate !== undefined &&
+      (obj.publicStartDate = message.publicStartDate.toISOString());
+    message.publicEndDate !== undefined &&
+      (obj.publicEndDate = message.publicEndDate.toISOString());
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CreateSponsoredJobReq>, I>>(base?: I): CreateSponsoredJobReq {
+  create<I extends Exact<DeepPartial<CreateSponsoredJobReq>, I>>(
+    base?: I
+  ): CreateSponsoredJobReq {
     return CreateSponsoredJobReq.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<CreateSponsoredJobReq>, I>>(object: I): CreateSponsoredJobReq {
+  fromPartial<I extends Exact<DeepPartial<CreateSponsoredJobReq>, I>>(
+    object: I
+  ): CreateSponsoredJobReq {
     const message = createBaseCreateSponsoredJobReq();
     message.title = object.title ?? "";
     message.description = object.description ?? "";
@@ -989,14 +1140,20 @@ function createBaseCreateSponsoredJobRes(): CreateSponsoredJobRes {
 }
 
 export const CreateSponsoredJobRes = {
-  encode(message: CreateSponsoredJobRes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: CreateSponsoredJobRes,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.job !== undefined) {
       SponsoredJob.encode(message.job, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): CreateSponsoredJobRes {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): CreateSponsoredJobRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseCreateSponsoredJobRes();
@@ -1015,22 +1172,32 @@ export const CreateSponsoredJobRes = {
   },
 
   fromJSON(object: any): CreateSponsoredJobRes {
-    return { job: isSet(object.job) ? SponsoredJob.fromJSON(object.job) : undefined };
+    return {
+      job: isSet(object.job) ? SponsoredJob.fromJSON(object.job) : undefined,
+    };
   },
 
   toJSON(message: CreateSponsoredJobRes): unknown {
     const obj: any = {};
-    message.job !== undefined && (obj.job = message.job ? SponsoredJob.toJSON(message.job) : undefined);
+    message.job !== undefined &&
+      (obj.job = message.job ? SponsoredJob.toJSON(message.job) : undefined);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<CreateSponsoredJobRes>, I>>(base?: I): CreateSponsoredJobRes {
+  create<I extends Exact<DeepPartial<CreateSponsoredJobRes>, I>>(
+    base?: I
+  ): CreateSponsoredJobRes {
     return CreateSponsoredJobRes.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<CreateSponsoredJobRes>, I>>(object: I): CreateSponsoredJobRes {
+  fromPartial<I extends Exact<DeepPartial<CreateSponsoredJobRes>, I>>(
+    object: I
+  ): CreateSponsoredJobRes {
     const message = createBaseCreateSponsoredJobRes();
-    message.job = (object.job !== undefined && object.job !== null) ? SponsoredJob.fromPartial(object.job) : undefined;
+    message.job =
+      object.job !== undefined && object.job !== null
+        ? SponsoredJob.fromPartial(object.job)
+        : undefined;
     return message;
   },
 };
@@ -1055,7 +1222,10 @@ function createBaseUpdateSponsoredJobReq(): UpdateSponsoredJobReq {
 }
 
 export const UpdateSponsoredJobReq = {
-  encode(message: UpdateSponsoredJobReq, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: UpdateSponsoredJobReq,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.jobId !== "") {
       writer.uint32(10).string(message.jobId);
     }
@@ -1090,10 +1260,16 @@ export const UpdateSponsoredJobReq = {
       writer.uint32(90).string(message.companyWebsite);
     }
     if (message.publicStartDate !== undefined) {
-      Timestamp.encode(toTimestamp(message.publicStartDate), writer.uint32(98).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.publicStartDate),
+        writer.uint32(98).fork()
+      ).ldelim();
     }
     if (message.publicEndDate !== undefined) {
-      Timestamp.encode(toTimestamp(message.publicEndDate), writer.uint32(106).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.publicEndDate),
+        writer.uint32(106).fork()
+      ).ldelim();
     }
     if (message.draft !== undefined) {
       writer.uint32(144).bool(message.draft);
@@ -1101,7 +1277,10 @@ export const UpdateSponsoredJobReq = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): UpdateSponsoredJobReq {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): UpdateSponsoredJobReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUpdateSponsoredJobReq();
@@ -1142,10 +1321,14 @@ export const UpdateSponsoredJobReq = {
           message.companyWebsite = reader.string();
           break;
         case 12:
-          message.publicStartDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.publicStartDate = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 13:
-          message.publicEndDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.publicEndDate = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 18:
           message.draft = reader.bool();
@@ -1162,17 +1345,33 @@ export const UpdateSponsoredJobReq = {
     return {
       jobId: isSet(object.jobId) ? String(object.jobId) : "",
       title: isSet(object.title) ? String(object.title) : undefined,
-      description: isSet(object.description) ? String(object.description) : undefined,
+      description: isSet(object.description)
+        ? String(object.description)
+        : undefined,
       body: isSet(object.body) ? String(object.body) : undefined,
       location: isSet(object.location) ? String(object.location) : undefined,
       ralRange: isSet(object.ralRange) ? String(object.ralRange) : undefined,
-      remoteType: isSet(object.remoteType) ? String(object.remoteType) : undefined,
-      applicationLink: isSet(object.applicationLink) ? String(object.applicationLink) : undefined,
-      companyName: isSet(object.companyName) ? String(object.companyName) : undefined,
-      companyLogo: isSet(object.companyLogo) ? String(object.companyLogo) : undefined,
-      companyWebsite: isSet(object.companyWebsite) ? String(object.companyWebsite) : undefined,
-      publicStartDate: isSet(object.publicStartDate) ? fromJsonTimestamp(object.publicStartDate) : undefined,
-      publicEndDate: isSet(object.publicEndDate) ? fromJsonTimestamp(object.publicEndDate) : undefined,
+      remoteType: isSet(object.remoteType)
+        ? String(object.remoteType)
+        : undefined,
+      applicationLink: isSet(object.applicationLink)
+        ? String(object.applicationLink)
+        : undefined,
+      companyName: isSet(object.companyName)
+        ? String(object.companyName)
+        : undefined,
+      companyLogo: isSet(object.companyLogo)
+        ? String(object.companyLogo)
+        : undefined,
+      companyWebsite: isSet(object.companyWebsite)
+        ? String(object.companyWebsite)
+        : undefined,
+      publicStartDate: isSet(object.publicStartDate)
+        ? fromJsonTimestamp(object.publicStartDate)
+        : undefined,
+      publicEndDate: isSet(object.publicEndDate)
+        ? fromJsonTimestamp(object.publicEndDate)
+        : undefined,
       draft: isSet(object.draft) ? Boolean(object.draft) : undefined,
     };
   },
@@ -1181,26 +1380,37 @@ export const UpdateSponsoredJobReq = {
     const obj: any = {};
     message.jobId !== undefined && (obj.jobId = message.jobId);
     message.title !== undefined && (obj.title = message.title);
-    message.description !== undefined && (obj.description = message.description);
+    message.description !== undefined &&
+      (obj.description = message.description);
     message.body !== undefined && (obj.body = message.body);
     message.location !== undefined && (obj.location = message.location);
     message.ralRange !== undefined && (obj.ralRange = message.ralRange);
     message.remoteType !== undefined && (obj.remoteType = message.remoteType);
-    message.applicationLink !== undefined && (obj.applicationLink = message.applicationLink);
-    message.companyName !== undefined && (obj.companyName = message.companyName);
-    message.companyLogo !== undefined && (obj.companyLogo = message.companyLogo);
-    message.companyWebsite !== undefined && (obj.companyWebsite = message.companyWebsite);
-    message.publicStartDate !== undefined && (obj.publicStartDate = message.publicStartDate.toISOString());
-    message.publicEndDate !== undefined && (obj.publicEndDate = message.publicEndDate.toISOString());
+    message.applicationLink !== undefined &&
+      (obj.applicationLink = message.applicationLink);
+    message.companyName !== undefined &&
+      (obj.companyName = message.companyName);
+    message.companyLogo !== undefined &&
+      (obj.companyLogo = message.companyLogo);
+    message.companyWebsite !== undefined &&
+      (obj.companyWebsite = message.companyWebsite);
+    message.publicStartDate !== undefined &&
+      (obj.publicStartDate = message.publicStartDate.toISOString());
+    message.publicEndDate !== undefined &&
+      (obj.publicEndDate = message.publicEndDate.toISOString());
     message.draft !== undefined && (obj.draft = message.draft);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<UpdateSponsoredJobReq>, I>>(base?: I): UpdateSponsoredJobReq {
+  create<I extends Exact<DeepPartial<UpdateSponsoredJobReq>, I>>(
+    base?: I
+  ): UpdateSponsoredJobReq {
     return UpdateSponsoredJobReq.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<UpdateSponsoredJobReq>, I>>(object: I): UpdateSponsoredJobReq {
+  fromPartial<I extends Exact<DeepPartial<UpdateSponsoredJobReq>, I>>(
+    object: I
+  ): UpdateSponsoredJobReq {
     const message = createBaseUpdateSponsoredJobReq();
     message.jobId = object.jobId ?? "";
     message.title = object.title ?? undefined;
@@ -1225,14 +1435,20 @@ function createBaseUpdateSponsoredJobRes(): UpdateSponsoredJobRes {
 }
 
 export const UpdateSponsoredJobRes = {
-  encode(message: UpdateSponsoredJobRes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: UpdateSponsoredJobRes,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.job !== undefined) {
       SponsoredJob.encode(message.job, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): UpdateSponsoredJobRes {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): UpdateSponsoredJobRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseUpdateSponsoredJobRes();
@@ -1251,22 +1467,32 @@ export const UpdateSponsoredJobRes = {
   },
 
   fromJSON(object: any): UpdateSponsoredJobRes {
-    return { job: isSet(object.job) ? SponsoredJob.fromJSON(object.job) : undefined };
+    return {
+      job: isSet(object.job) ? SponsoredJob.fromJSON(object.job) : undefined,
+    };
   },
 
   toJSON(message: UpdateSponsoredJobRes): unknown {
     const obj: any = {};
-    message.job !== undefined && (obj.job = message.job ? SponsoredJob.toJSON(message.job) : undefined);
+    message.job !== undefined &&
+      (obj.job = message.job ? SponsoredJob.toJSON(message.job) : undefined);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<UpdateSponsoredJobRes>, I>>(base?: I): UpdateSponsoredJobRes {
+  create<I extends Exact<DeepPartial<UpdateSponsoredJobRes>, I>>(
+    base?: I
+  ): UpdateSponsoredJobRes {
     return UpdateSponsoredJobRes.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<UpdateSponsoredJobRes>, I>>(object: I): UpdateSponsoredJobRes {
+  fromPartial<I extends Exact<DeepPartial<UpdateSponsoredJobRes>, I>>(
+    object: I
+  ): UpdateSponsoredJobRes {
     const message = createBaseUpdateSponsoredJobRes();
-    message.job = (object.job !== undefined && object.job !== null) ? SponsoredJob.fromPartial(object.job) : undefined;
+    message.job =
+      object.job !== undefined && object.job !== null
+        ? SponsoredJob.fromPartial(object.job)
+        : undefined;
     return message;
   },
 };
@@ -1276,14 +1502,20 @@ function createBaseDeleteSponsoredJobReq(): DeleteSponsoredJobReq {
 }
 
 export const DeleteSponsoredJobReq = {
-  encode(message: DeleteSponsoredJobReq, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: DeleteSponsoredJobReq,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.jobId !== "") {
       writer.uint32(10).string(message.jobId);
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): DeleteSponsoredJobReq {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): DeleteSponsoredJobReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDeleteSponsoredJobReq();
@@ -1311,11 +1543,15 @@ export const DeleteSponsoredJobReq = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<DeleteSponsoredJobReq>, I>>(base?: I): DeleteSponsoredJobReq {
+  create<I extends Exact<DeepPartial<DeleteSponsoredJobReq>, I>>(
+    base?: I
+  ): DeleteSponsoredJobReq {
     return DeleteSponsoredJobReq.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<DeleteSponsoredJobReq>, I>>(object: I): DeleteSponsoredJobReq {
+  fromPartial<I extends Exact<DeepPartial<DeleteSponsoredJobReq>, I>>(
+    object: I
+  ): DeleteSponsoredJobReq {
     const message = createBaseDeleteSponsoredJobReq();
     message.jobId = object.jobId ?? "";
     return message;
@@ -1327,14 +1563,20 @@ function createBaseDeleteSponsoredJobRes(): DeleteSponsoredJobRes {
 }
 
 export const DeleteSponsoredJobRes = {
-  encode(message: DeleteSponsoredJobRes, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: DeleteSponsoredJobRes,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.job !== undefined) {
       SponsoredJob.encode(message.job, writer.uint32(10).fork()).ldelim();
     }
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): DeleteSponsoredJobRes {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): DeleteSponsoredJobRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseDeleteSponsoredJobRes();
@@ -1353,22 +1595,32 @@ export const DeleteSponsoredJobRes = {
   },
 
   fromJSON(object: any): DeleteSponsoredJobRes {
-    return { job: isSet(object.job) ? SponsoredJob.fromJSON(object.job) : undefined };
+    return {
+      job: isSet(object.job) ? SponsoredJob.fromJSON(object.job) : undefined,
+    };
   },
 
   toJSON(message: DeleteSponsoredJobRes): unknown {
     const obj: any = {};
-    message.job !== undefined && (obj.job = message.job ? SponsoredJob.toJSON(message.job) : undefined);
+    message.job !== undefined &&
+      (obj.job = message.job ? SponsoredJob.toJSON(message.job) : undefined);
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<DeleteSponsoredJobRes>, I>>(base?: I): DeleteSponsoredJobRes {
+  create<I extends Exact<DeepPartial<DeleteSponsoredJobRes>, I>>(
+    base?: I
+  ): DeleteSponsoredJobRes {
     return DeleteSponsoredJobRes.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<DeleteSponsoredJobRes>, I>>(object: I): DeleteSponsoredJobRes {
+  fromPartial<I extends Exact<DeepPartial<DeleteSponsoredJobRes>, I>>(
+    object: I
+  ): DeleteSponsoredJobRes {
     const message = createBaseDeleteSponsoredJobRes();
-    message.job = (object.job !== undefined && object.job !== null) ? SponsoredJob.fromPartial(object.job) : undefined;
+    message.job =
+      object.job !== undefined && object.job !== null
+        ? SponsoredJob.fromPartial(object.job)
+        : undefined;
     return message;
   },
 };
@@ -1379,72 +1631,88 @@ export const JobsSrvService = {
     path: "/fy.jobs.v1.JobsSrv/GetJobs",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: GetJobsReq) => Buffer.from(GetJobsReq.encode(value).finish()),
+    requestSerialize: (value: GetJobsReq) =>
+      Buffer.from(GetJobsReq.encode(value).finish()),
     requestDeserialize: (value: Buffer) => GetJobsReq.decode(value),
-    responseSerialize: (value: GetJobsRes) => Buffer.from(GetJobsRes.encode(value).finish()),
+    responseSerialize: (value: GetJobsRes) =>
+      Buffer.from(GetJobsRes.encode(value).finish()),
     responseDeserialize: (value: Buffer) => GetJobsRes.decode(value),
   },
   countJobs: {
     path: "/fy.jobs.v1.JobsSrv/CountJobs",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: CountJobsReq) => Buffer.from(CountJobsReq.encode(value).finish()),
+    requestSerialize: (value: CountJobsReq) =>
+      Buffer.from(CountJobsReq.encode(value).finish()),
     requestDeserialize: (value: Buffer) => CountJobsReq.decode(value),
-    responseSerialize: (value: CountJobsRes) => Buffer.from(CountJobsRes.encode(value).finish()),
+    responseSerialize: (value: CountJobsRes) =>
+      Buffer.from(CountJobsRes.encode(value).finish()),
     responseDeserialize: (value: Buffer) => CountJobsRes.decode(value),
   },
   createJobs: {
     path: "/fy.jobs.v1.JobsSrv/CreateJobs",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: CreateJobsReq) => Buffer.from(CreateJobsReq.encode(value).finish()),
+    requestSerialize: (value: CreateJobsReq) =>
+      Buffer.from(CreateJobsReq.encode(value).finish()),
     requestDeserialize: (value: Buffer) => CreateJobsReq.decode(value),
-    responseSerialize: (value: CreateJobsRes) => Buffer.from(CreateJobsRes.encode(value).finish()),
+    responseSerialize: (value: CreateJobsRes) =>
+      Buffer.from(CreateJobsRes.encode(value).finish()),
     responseDeserialize: (value: Buffer) => CreateJobsRes.decode(value),
   },
   getSponsoredJobs: {
     path: "/fy.jobs.v1.JobsSrv/GetSponsoredJobs",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: GetSponsoredJobsReq) => Buffer.from(GetSponsoredJobsReq.encode(value).finish()),
+    requestSerialize: (value: GetSponsoredJobsReq) =>
+      Buffer.from(GetSponsoredJobsReq.encode(value).finish()),
     requestDeserialize: (value: Buffer) => GetSponsoredJobsReq.decode(value),
-    responseSerialize: (value: GetSponsoredJobsRes) => Buffer.from(GetSponsoredJobsRes.encode(value).finish()),
+    responseSerialize: (value: GetSponsoredJobsRes) =>
+      Buffer.from(GetSponsoredJobsRes.encode(value).finish()),
     responseDeserialize: (value: Buffer) => GetSponsoredJobsRes.decode(value),
   },
   getSponsoredJob: {
     path: "/fy.jobs.v1.JobsSrv/GetSponsoredJob",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: GetSponsoredJobReq) => Buffer.from(GetSponsoredJobReq.encode(value).finish()),
+    requestSerialize: (value: GetSponsoredJobReq) =>
+      Buffer.from(GetSponsoredJobReq.encode(value).finish()),
     requestDeserialize: (value: Buffer) => GetSponsoredJobReq.decode(value),
-    responseSerialize: (value: GetSponsoredJobRes) => Buffer.from(GetSponsoredJobRes.encode(value).finish()),
+    responseSerialize: (value: GetSponsoredJobRes) =>
+      Buffer.from(GetSponsoredJobRes.encode(value).finish()),
     responseDeserialize: (value: Buffer) => GetSponsoredJobRes.decode(value),
   },
   createSponsoredJob: {
     path: "/fy.jobs.v1.JobsSrv/CreateSponsoredJob",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: CreateSponsoredJobReq) => Buffer.from(CreateSponsoredJobReq.encode(value).finish()),
+    requestSerialize: (value: CreateSponsoredJobReq) =>
+      Buffer.from(CreateSponsoredJobReq.encode(value).finish()),
     requestDeserialize: (value: Buffer) => CreateSponsoredJobReq.decode(value),
-    responseSerialize: (value: CreateSponsoredJobRes) => Buffer.from(CreateSponsoredJobRes.encode(value).finish()),
+    responseSerialize: (value: CreateSponsoredJobRes) =>
+      Buffer.from(CreateSponsoredJobRes.encode(value).finish()),
     responseDeserialize: (value: Buffer) => CreateSponsoredJobRes.decode(value),
   },
   updateSponsoredJob: {
     path: "/fy.jobs.v1.JobsSrv/UpdateSponsoredJob",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: UpdateSponsoredJobReq) => Buffer.from(UpdateSponsoredJobReq.encode(value).finish()),
+    requestSerialize: (value: UpdateSponsoredJobReq) =>
+      Buffer.from(UpdateSponsoredJobReq.encode(value).finish()),
     requestDeserialize: (value: Buffer) => UpdateSponsoredJobReq.decode(value),
-    responseSerialize: (value: UpdateSponsoredJobRes) => Buffer.from(UpdateSponsoredJobRes.encode(value).finish()),
+    responseSerialize: (value: UpdateSponsoredJobRes) =>
+      Buffer.from(UpdateSponsoredJobRes.encode(value).finish()),
     responseDeserialize: (value: Buffer) => UpdateSponsoredJobRes.decode(value),
   },
   deleteSponsoredJob: {
     path: "/fy.jobs.v1.JobsSrv/DeleteSponsoredJob",
     requestStream: false,
     responseStream: false,
-    requestSerialize: (value: DeleteSponsoredJobReq) => Buffer.from(DeleteSponsoredJobReq.encode(value).finish()),
+    requestSerialize: (value: DeleteSponsoredJobReq) =>
+      Buffer.from(DeleteSponsoredJobReq.encode(value).finish()),
     requestDeserialize: (value: Buffer) => DeleteSponsoredJobReq.decode(value),
-    responseSerialize: (value: DeleteSponsoredJobRes) => Buffer.from(DeleteSponsoredJobRes.encode(value).finish()),
+    responseSerialize: (value: DeleteSponsoredJobRes) =>
+      Buffer.from(DeleteSponsoredJobRes.encode(value).finish()),
     responseDeserialize: (value: Buffer) => DeleteSponsoredJobRes.decode(value),
   },
 } as const;
@@ -1455,146 +1723,216 @@ export interface JobsSrvServer extends UntypedServiceImplementation {
   createJobs: handleUnaryCall<CreateJobsReq, CreateJobsRes>;
   getSponsoredJobs: handleUnaryCall<GetSponsoredJobsReq, GetSponsoredJobsRes>;
   getSponsoredJob: handleUnaryCall<GetSponsoredJobReq, GetSponsoredJobRes>;
-  createSponsoredJob: handleUnaryCall<CreateSponsoredJobReq, CreateSponsoredJobRes>;
-  updateSponsoredJob: handleUnaryCall<UpdateSponsoredJobReq, UpdateSponsoredJobRes>;
-  deleteSponsoredJob: handleUnaryCall<DeleteSponsoredJobReq, DeleteSponsoredJobRes>;
+  createSponsoredJob: handleUnaryCall<
+    CreateSponsoredJobReq,
+    CreateSponsoredJobRes
+  >;
+  updateSponsoredJob: handleUnaryCall<
+    UpdateSponsoredJobReq,
+    UpdateSponsoredJobRes
+  >;
+  deleteSponsoredJob: handleUnaryCall<
+    DeleteSponsoredJobReq,
+    DeleteSponsoredJobRes
+  >;
 }
 
 export interface JobsSrvClient extends Client {
-  getJobs(request: GetJobsReq, callback: (error: ServiceError | null, response: GetJobsRes) => void): ClientUnaryCall;
+  getJobs(
+    request: GetJobsReq,
+    callback: (error: ServiceError | null, response: GetJobsRes) => void
+  ): ClientUnaryCall;
   getJobs(
     request: GetJobsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetJobsRes) => void,
+    callback: (error: ServiceError | null, response: GetJobsRes) => void
   ): ClientUnaryCall;
   getJobs(
     request: GetJobsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetJobsRes) => void,
+    callback: (error: ServiceError | null, response: GetJobsRes) => void
   ): ClientUnaryCall;
   countJobs(
     request: CountJobsReq,
-    callback: (error: ServiceError | null, response: CountJobsRes) => void,
-  ): ClientUnaryCall;
-  countJobs(
-    request: CountJobsReq,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: CountJobsRes) => void,
+    callback: (error: ServiceError | null, response: CountJobsRes) => void
   ): ClientUnaryCall;
   countJobs(
     request: CountJobsReq,
     metadata: Metadata,
+    callback: (error: ServiceError | null, response: CountJobsRes) => void
+  ): ClientUnaryCall;
+  countJobs(
+    request: CountJobsReq,
+    metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: CountJobsRes) => void,
+    callback: (error: ServiceError | null, response: CountJobsRes) => void
   ): ClientUnaryCall;
   createJobs(
     request: CreateJobsReq,
-    callback: (error: ServiceError | null, response: CreateJobsRes) => void,
+    callback: (error: ServiceError | null, response: CreateJobsRes) => void
   ): ClientUnaryCall;
   createJobs(
     request: CreateJobsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: CreateJobsRes) => void,
+    callback: (error: ServiceError | null, response: CreateJobsRes) => void
   ): ClientUnaryCall;
   createJobs(
     request: CreateJobsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: CreateJobsRes) => void,
+    callback: (error: ServiceError | null, response: CreateJobsRes) => void
   ): ClientUnaryCall;
   getSponsoredJobs(
     request: GetSponsoredJobsReq,
-    callback: (error: ServiceError | null, response: GetSponsoredJobsRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: GetSponsoredJobsRes
+    ) => void
   ): ClientUnaryCall;
   getSponsoredJobs(
     request: GetSponsoredJobsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetSponsoredJobsRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: GetSponsoredJobsRes
+    ) => void
   ): ClientUnaryCall;
   getSponsoredJobs(
     request: GetSponsoredJobsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetSponsoredJobsRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: GetSponsoredJobsRes
+    ) => void
   ): ClientUnaryCall;
   getSponsoredJob(
     request: GetSponsoredJobReq,
-    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void,
+    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void
   ): ClientUnaryCall;
   getSponsoredJob(
     request: GetSponsoredJobReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void,
+    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void
   ): ClientUnaryCall;
   getSponsoredJob(
     request: GetSponsoredJobReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void,
+    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void
   ): ClientUnaryCall;
   createSponsoredJob(
     request: CreateSponsoredJobReq,
-    callback: (error: ServiceError | null, response: CreateSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: CreateSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
   createSponsoredJob(
     request: CreateSponsoredJobReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: CreateSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: CreateSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
   createSponsoredJob(
     request: CreateSponsoredJobReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: CreateSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: CreateSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
   updateSponsoredJob(
     request: UpdateSponsoredJobReq,
-    callback: (error: ServiceError | null, response: UpdateSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
   updateSponsoredJob(
     request: UpdateSponsoredJobReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: UpdateSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
   updateSponsoredJob(
     request: UpdateSponsoredJobReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: UpdateSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: UpdateSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
   deleteSponsoredJob(
     request: DeleteSponsoredJobReq,
-    callback: (error: ServiceError | null, response: DeleteSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: DeleteSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
   deleteSponsoredJob(
     request: DeleteSponsoredJobReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: DeleteSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: DeleteSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
   deleteSponsoredJob(
     request: DeleteSponsoredJobReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: DeleteSponsoredJobRes) => void,
+    callback: (
+      error: ServiceError | null,
+      response: DeleteSponsoredJobRes
+    ) => void
   ): ClientUnaryCall;
 }
 
-export const JobsSrvClient = makeGenericClientConstructor(JobsSrvService, "fy.jobs.v1.JobsSrv") as unknown as {
-  new (address: string, credentials: ChannelCredentials, options?: Partial<ClientOptions>): JobsSrvClient;
+export const JobsSrvClient = makeGenericClientConstructor(
+  JobsSrvService,
+  "fy.jobs.v1.JobsSrv"
+) as unknown as {
+  new (
+    address: string,
+    credentials: ChannelCredentials,
+    options?: Partial<ClientOptions>
+  ): JobsSrvClient;
   service: typeof JobsSrvService;
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+    };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;

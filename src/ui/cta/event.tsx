@@ -40,7 +40,7 @@ export const EventCTA = ({ event }: EventCTAProps) => {
               aria-hidden="true"
             >
               <svg
-                className="absolute bottom-full left-full translate-y-1/3 -translate-x-2/3 transform xl:bottom-auto xl:top-0 xl:translate-y-0"
+                className="absolute bottom-full left-full -translate-x-2/3 translate-y-1/3 transform xl:bottom-auto xl:top-0 xl:translate-y-0"
                 width={404}
                 height={384}
                 fill="none"
@@ -73,7 +73,7 @@ export const EventCTA = ({ event }: EventCTAProps) => {
                 />
               </svg>
               <svg
-                className="absolute top-full -translate-y-1/3 -translate-x-1/3 transform xl:-translate-y-1/2"
+                className="absolute top-full -translate-x-1/3 -translate-y-1/3 transform xl:-translate-y-1/2"
                 width={404}
                 height={384}
                 fill="none"
@@ -106,7 +106,7 @@ export const EventCTA = ({ event }: EventCTAProps) => {
                 />
               </svg>
             </div>
-            <div className="relative mx-auto max-w-md space-y-6 py-12 px-4 sm:max-w-3xl sm:py-16 sm:px-6 lg:col-span-6 lg:col-start-4 lg:max-w-none lg:p-0">
+            <div className="relative mx-auto max-w-md space-y-6 px-4 py-12 sm:max-w-3xl sm:px-6 sm:py-16 lg:col-span-6 lg:col-start-4 lg:max-w-none lg:p-0">
               <div>
                 <h2
                   className="text-4xl font-extrabold text-white"
@@ -128,7 +128,7 @@ export const EventCTA = ({ event }: EventCTAProps) => {
               <p className="text-lg text-white">{event.description}</p>
               <Link
                 href={`/events/${event.slug}`}
-                className="block w-full rounded-md border border-transparent bg-white py-3 px-5 text-center text-base font-medium text-pink-700 shadow-md hover:bg-gray-50 sm:inline-block sm:w-auto"
+                className="block w-full rounded-md border border-transparent bg-white px-5 py-3 text-center text-base font-medium text-pink-700 shadow-md hover:bg-gray-50 sm:inline-block sm:w-auto"
               >
                 Scopri di più
               </Link>

@@ -51,15 +51,15 @@ const Hero = () => (
               <div className="rounded-md shadow">
                 <Link
                   href="/dashboard/association/register"
-                  className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-pink-500 focus:border-pink-700 focus:outline-none md:py-4 md:px-10 md:text-lg"
+                  className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out hover:bg-pink-500 focus:border-pink-700 focus:outline-none md:px-10 md:py-4 md:text-lg"
                 >
                   Diventa socio
                 </Link>
               </div>
-              <div className="mt-3 sm:mt-0 sm:ml-3">
+              <div className="mt-3 sm:ml-3 sm:mt-0">
                 <Link
                   href="/associazione/statuto"
-                  className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-100 px-8 py-3 text-base font-medium leading-6 text-pink-700 transition duration-150 ease-in-out hover:bg-pink-50 hover:text-pink-600 focus:border-pink-300 focus:outline-none md:py-4 md:px-10 md:text-lg"
+                  className="focus:shadow-outline-pink flex w-full items-center justify-center rounded-md border border-transparent bg-pink-100 px-8 py-3 text-base font-medium leading-6 text-pink-700 transition duration-150 ease-in-out hover:bg-pink-50 hover:text-pink-600 focus:border-pink-300 focus:outline-none md:px-10 md:py-4 md:text-lg"
                 >
                   Leggi lo Statuto
                 </Link>
@@ -622,9 +622,9 @@ const Principles = () => {
 const Help = () => {
   return (
     <div className="overflow-hidden bg-gray-50">
-      <div className="relative mx-auto max-w-screen-xl py-12 px-4 sm:px-6 lg:px-8">
+      <div className="relative mx-auto max-w-screen-xl px-4 py-12 sm:px-6 lg:px-8">
         <svg
-          className="absolute top-0 left-full -translate-x-1/2 -translate-y-3/4 transform lg:left-auto lg:right-full lg:translate-x-2/3 lg:translate-y-1/4"
+          className="absolute left-full top-0 -translate-x-1/2 -translate-y-3/4 transform lg:left-auto lg:right-full lg:translate-x-2/3 lg:translate-y-1/4"
           width="404"
           height="784"
           fill="none"

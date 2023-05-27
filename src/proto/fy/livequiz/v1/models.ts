@@ -40,11 +40,9 @@ export interface QuizStatus {
   question?: Question | undefined;
 }
 
-export interface QuizStatus_Empty {
-}
+export interface QuizStatus_Empty {}
 
-export interface QuizStatus_Rank {
-}
+export interface QuizStatus_Rank {}
 
 export interface ParticipantRank {
   participantId: string;
@@ -55,11 +53,21 @@ export interface ParticipantRank {
 }
 
 function createBaseLiveQuiz(): LiveQuiz {
-  return { id: "", title: "", description: "", status: undefined, createdAt: undefined, updatedAt: undefined };
+  return {
+    id: "",
+    title: "",
+    description: "",
+    status: undefined,
+    createdAt: undefined,
+    updatedAt: undefined,
+  };
 }
 
 export const LiveQuiz = {
-  encode(message: LiveQuiz, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: LiveQuiz,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
@@ -73,10 +81,16 @@ export const LiveQuiz = {
       QuizStatus.encode(message.status, writer.uint32(34).fork()).ldelim();
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(82).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(82).fork()
+      ).ldelim();
     }
     if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(90).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(90).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -101,10 +115,14 @@ export const LiveQuiz = {
           message.status = QuizStatus.decode(reader, reader.uint32());
           break;
         case 10:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 11:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -119,9 +137,15 @@ export const LiveQuiz = {
       id: isSet(object.id) ? String(object.id) : "",
       title: isSet(object.title) ? String(object.title) : "",
       description: isSet(object.description) ? String(object.description) : "",
-      status: isSet(object.status) ? QuizStatus.fromJSON(object.status) : undefined,
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
-      updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
+      status: isSet(object.status)
+        ? QuizStatus.fromJSON(object.status)
+        : undefined,
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
+      updatedAt: isSet(object.updatedAt)
+        ? fromJsonTimestamp(object.updatedAt)
+        : undefined,
     };
   },
 
@@ -129,10 +153,16 @@ export const LiveQuiz = {
     const obj: any = {};
     message.id !== undefined && (obj.id = message.id);
     message.title !== undefined && (obj.title = message.title);
-    message.description !== undefined && (obj.description = message.description);
-    message.status !== undefined && (obj.status = message.status ? QuizStatus.toJSON(message.status) : undefined);
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt.toISOString());
+    message.description !== undefined &&
+      (obj.description = message.description);
+    message.status !== undefined &&
+      (obj.status = message.status
+        ? QuizStatus.toJSON(message.status)
+        : undefined);
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
     return obj;
   },
 
@@ -145,9 +175,10 @@ export const LiveQuiz = {
     message.id = object.id ?? "";
     message.title = object.title ?? "";
     message.description = object.description ?? "";
-    message.status = (object.status !== undefined && object.status !== null)
-      ? QuizStatus.fromPartial(object.status)
-      : undefined;
+    message.status =
+      object.status !== undefined && object.status !== null
+        ? QuizStatus.fromPartial(object.status)
+        : undefined;
     message.createdAt = object.createdAt ?? undefined;
     message.updatedAt = object.updatedAt ?? undefined;
     return message;
@@ -169,7 +200,10 @@ function createBaseQuestion(): Question {
 }
 
 export const Question = {
-  encode(message: Question, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Question,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
@@ -186,16 +220,28 @@ export const Question = {
       writer.uint32(40).uint32(message.correctAns);
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(82).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(82).fork()
+      ).ldelim();
     }
     if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(90).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(90).fork()
+      ).ldelim();
     }
     if (message.startTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.startTime), writer.uint32(98).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.startTime),
+        writer.uint32(98).fork()
+      ).ldelim();
     }
     if (message.endTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.endTime), writer.uint32(106).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.endTime),
+        writer.uint32(106).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -223,16 +269,24 @@ export const Question = {
           message.correctAns = reader.uint32();
           break;
         case 10:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 11:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 12:
-          message.startTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.startTime = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 13:
-          message.endTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.endTime = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -247,12 +301,22 @@ export const Question = {
       id: isSet(object.id) ? String(object.id) : "",
       liveQuizId: isSet(object.liveQuizId) ? String(object.liveQuizId) : "",
       question: isSet(object.question) ? String(object.question) : "",
-      answers: Array.isArray(object?.answers) ? object.answers.map((e: any) => String(e)) : [],
+      answers: Array.isArray(object?.answers)
+        ? object.answers.map((e: any) => String(e))
+        : [],
       correctAns: isSet(object.correctAns) ? Number(object.correctAns) : 0,
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
-      updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
-      startTime: isSet(object.startTime) ? fromJsonTimestamp(object.startTime) : undefined,
-      endTime: isSet(object.endTime) ? fromJsonTimestamp(object.endTime) : undefined,
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
+      updatedAt: isSet(object.updatedAt)
+        ? fromJsonTimestamp(object.updatedAt)
+        : undefined,
+      startTime: isSet(object.startTime)
+        ? fromJsonTimestamp(object.startTime)
+        : undefined,
+      endTime: isSet(object.endTime)
+        ? fromJsonTimestamp(object.endTime)
+        : undefined,
     };
   },
 
@@ -266,11 +330,16 @@ export const Question = {
     } else {
       obj.answers = [];
     }
-    message.correctAns !== undefined && (obj.correctAns = Math.round(message.correctAns));
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt.toISOString());
-    message.startTime !== undefined && (obj.startTime = message.startTime.toISOString());
-    message.endTime !== undefined && (obj.endTime = message.endTime.toISOString());
+    message.correctAns !== undefined &&
+      (obj.correctAns = Math.round(message.correctAns));
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
+    message.startTime !== undefined &&
+      (obj.startTime = message.startTime.toISOString());
+    message.endTime !== undefined &&
+      (obj.endTime = message.endTime.toISOString());
     return obj;
   },
 
@@ -294,11 +363,21 @@ export const Question = {
 };
 
 function createBaseParticipant(): Participant {
-  return { id: "", liveQuizId: "", name: "", email: "", createdAt: undefined, updatedAt: undefined };
+  return {
+    id: "",
+    liveQuizId: "",
+    name: "",
+    email: "",
+    createdAt: undefined,
+    updatedAt: undefined,
+  };
 }
 
 export const Participant = {
-  encode(message: Participant, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Participant,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
     }
@@ -312,10 +391,16 @@ export const Participant = {
       writer.uint32(34).string(message.email);
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(82).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(82).fork()
+      ).ldelim();
     }
     if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(90).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(90).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -340,10 +425,14 @@ export const Participant = {
           message.email = reader.string();
           break;
         case 10:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 11:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -359,8 +448,12 @@ export const Participant = {
       liveQuizId: isSet(object.liveQuizId) ? String(object.liveQuizId) : "",
       name: isSet(object.name) ? String(object.name) : "",
       email: isSet(object.email) ? String(object.email) : "",
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
-      updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
+      updatedAt: isSet(object.updatedAt)
+        ? fromJsonTimestamp(object.updatedAt)
+        : undefined,
     };
   },
 
@@ -370,8 +463,10 @@ export const Participant = {
     message.liveQuizId !== undefined && (obj.liveQuizId = message.liveQuizId);
     message.name !== undefined && (obj.name = message.name);
     message.email !== undefined && (obj.email = message.email);
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt.toISOString());
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
     return obj;
   },
 
@@ -379,7 +474,9 @@ export const Participant = {
     return Participant.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<Participant>, I>>(object: I): Participant {
+  fromPartial<I extends Exact<DeepPartial<Participant>, I>>(
+    object: I
+  ): Participant {
     const message = createBaseParticipant();
     message.id = object.id ?? "";
     message.liveQuizId = object.liveQuizId ?? "";
@@ -396,7 +493,10 @@ function createBaseQuizStatus(): QuizStatus {
 }
 
 export const QuizStatus = {
-  encode(message: QuizStatus, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: QuizStatus,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.empty !== undefined) {
       QuizStatus_Empty.encode(message.empty, writer.uint32(10).fork()).ldelim();
     }
@@ -435,17 +535,32 @@ export const QuizStatus = {
 
   fromJSON(object: any): QuizStatus {
     return {
-      empty: isSet(object.empty) ? QuizStatus_Empty.fromJSON(object.empty) : undefined,
-      rank: isSet(object.rank) ? QuizStatus_Rank.fromJSON(object.rank) : undefined,
-      question: isSet(object.question) ? Question.fromJSON(object.question) : undefined,
+      empty: isSet(object.empty)
+        ? QuizStatus_Empty.fromJSON(object.empty)
+        : undefined,
+      rank: isSet(object.rank)
+        ? QuizStatus_Rank.fromJSON(object.rank)
+        : undefined,
+      question: isSet(object.question)
+        ? Question.fromJSON(object.question)
+        : undefined,
     };
   },
 
   toJSON(message: QuizStatus): unknown {
     const obj: any = {};
-    message.empty !== undefined && (obj.empty = message.empty ? QuizStatus_Empty.toJSON(message.empty) : undefined);
-    message.rank !== undefined && (obj.rank = message.rank ? QuizStatus_Rank.toJSON(message.rank) : undefined);
-    message.question !== undefined && (obj.question = message.question ? Question.toJSON(message.question) : undefined);
+    message.empty !== undefined &&
+      (obj.empty = message.empty
+        ? QuizStatus_Empty.toJSON(message.empty)
+        : undefined);
+    message.rank !== undefined &&
+      (obj.rank = message.rank
+        ? QuizStatus_Rank.toJSON(message.rank)
+        : undefined);
+    message.question !== undefined &&
+      (obj.question = message.question
+        ? Question.toJSON(message.question)
+        : undefined);
     return obj;
   },
 
@@ -453,17 +568,22 @@ export const QuizStatus = {
     return QuizStatus.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<QuizStatus>, I>>(object: I): QuizStatus {
+  fromPartial<I extends Exact<DeepPartial<QuizStatus>, I>>(
+    object: I
+  ): QuizStatus {
     const message = createBaseQuizStatus();
-    message.empty = (object.empty !== undefined && object.empty !== null)
-      ? QuizStatus_Empty.fromPartial(object.empty)
-      : undefined;
-    message.rank = (object.rank !== undefined && object.rank !== null)
-      ? QuizStatus_Rank.fromPartial(object.rank)
-      : undefined;
-    message.question = (object.question !== undefined && object.question !== null)
-      ? Question.fromPartial(object.question)
-      : undefined;
+    message.empty =
+      object.empty !== undefined && object.empty !== null
+        ? QuizStatus_Empty.fromPartial(object.empty)
+        : undefined;
+    message.rank =
+      object.rank !== undefined && object.rank !== null
+        ? QuizStatus_Rank.fromPartial(object.rank)
+        : undefined;
+    message.question =
+      object.question !== undefined && object.question !== null
+        ? Question.fromPartial(object.question)
+        : undefined;
     return message;
   },
 };
@@ -473,7 +593,10 @@ function createBaseQuizStatus_Empty(): QuizStatus_Empty {
 }
 
 export const QuizStatus_Empty = {
-  encode(_: QuizStatus_Empty, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    _: QuizStatus_Empty,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     return writer;
   },
 
@@ -501,11 +624,15 @@ export const QuizStatus_Empty = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QuizStatus_Empty>, I>>(base?: I): QuizStatus_Empty {
+  create<I extends Exact<DeepPartial<QuizStatus_Empty>, I>>(
+    base?: I
+  ): QuizStatus_Empty {
     return QuizStatus_Empty.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<QuizStatus_Empty>, I>>(_: I): QuizStatus_Empty {
+  fromPartial<I extends Exact<DeepPartial<QuizStatus_Empty>, I>>(
+    _: I
+  ): QuizStatus_Empty {
     const message = createBaseQuizStatus_Empty();
     return message;
   },
@@ -516,7 +643,10 @@ function createBaseQuizStatus_Rank(): QuizStatus_Rank {
 }
 
 export const QuizStatus_Rank = {
-  encode(_: QuizStatus_Rank, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    _: QuizStatus_Rank,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     return writer;
   },
 
@@ -544,11 +674,15 @@ export const QuizStatus_Rank = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<QuizStatus_Rank>, I>>(base?: I): QuizStatus_Rank {
+  create<I extends Exact<DeepPartial<QuizStatus_Rank>, I>>(
+    base?: I
+  ): QuizStatus_Rank {
     return QuizStatus_Rank.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<QuizStatus_Rank>, I>>(_: I): QuizStatus_Rank {
+  fromPartial<I extends Exact<DeepPartial<QuizStatus_Rank>, I>>(
+    _: I
+  ): QuizStatus_Rank {
     const message = createBaseQuizStatus_Rank();
     return message;
   },
@@ -559,7 +693,10 @@ function createBaseParticipantRank(): ParticipantRank {
 }
 
 export const ParticipantRank = {
-  encode(message: ParticipantRank, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: ParticipantRank,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.participantId !== "") {
       writer.uint32(10).string(message.participantId);
     }
@@ -610,7 +747,9 @@ export const ParticipantRank = {
 
   fromJSON(object: any): ParticipantRank {
     return {
-      participantId: isSet(object.participantId) ? String(object.participantId) : "",
+      participantId: isSet(object.participantId)
+        ? String(object.participantId)
+        : "",
       name: isSet(object.name) ? String(object.name) : "",
       email: isSet(object.email) ? String(object.email) : "",
       score: isSet(object.score) ? Number(object.score) : 0,
@@ -620,19 +759,25 @@ export const ParticipantRank = {
 
   toJSON(message: ParticipantRank): unknown {
     const obj: any = {};
-    message.participantId !== undefined && (obj.participantId = message.participantId);
+    message.participantId !== undefined &&
+      (obj.participantId = message.participantId);
     message.name !== undefined && (obj.name = message.name);
     message.email !== undefined && (obj.email = message.email);
     message.score !== undefined && (obj.score = Math.round(message.score));
-    message.totalTime !== undefined && (obj.totalTime = Math.round(message.totalTime));
+    message.totalTime !== undefined &&
+      (obj.totalTime = Math.round(message.totalTime));
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<ParticipantRank>, I>>(base?: I): ParticipantRank {
+  create<I extends Exact<DeepPartial<ParticipantRank>, I>>(
+    base?: I
+  ): ParticipantRank {
     return ParticipantRank.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<ParticipantRank>, I>>(object: I): ParticipantRank {
+  fromPartial<I extends Exact<DeepPartial<ParticipantRank>, I>>(
+    object: I
+  ): ParticipantRank {
     const message = createBaseParticipantRank();
     message.participantId = object.participantId ?? "";
     message.name = object.name ?? "";
@@ -643,16 +788,31 @@ export const ParticipantRank = {
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+    };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;

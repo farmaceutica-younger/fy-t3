@@ -47,6 +47,7 @@ const createInnerTRPCContext = (opts: CreateContextOptions) => {
     cloudinary,
     kannon,
     bot,
+    gameService: new GameService(prisma),
   };
 };
 
@@ -74,6 +75,7 @@ export const createTRPCContext = async (opts: CreateNextContextOptions) => {
  */
 import { initTRPC, TRPCError } from "@trpc/server";
 import superjson from "superjson";
+import { GameService } from "./services/game.service";
 
 const t = initTRPC.context<typeof createTRPCContext>().create({
   transformer: superjson,

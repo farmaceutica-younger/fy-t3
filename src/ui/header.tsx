@@ -175,7 +175,7 @@ const MobileMenu = () => (
             <div className="absolute inset-x-0 top-0 z-10 origin-top-right transform p-2 transition lg:hidden">
               <div className="rounded-lg shadow-lg">
                 <div className="shadow-xs divide-y-2 divide-gray-50 rounded-lg bg-white">
-                  <div className="space-y-6 px-5 pt-5 pb-6">
+                  <div className="space-y-6 px-5 pb-6 pt-5">
                     <div>
                       <nav className="grid grid-cols-1 gap-7">
                         {blogMenuSections.map((menu) => (
@@ -195,7 +195,7 @@ const MobileMenu = () => (
                       </nav>
                     </div>
                   </div>
-                  <div className="space-y-6 py-6 px-5">
+                  <div className="space-y-6 px-5 py-6">
                     <div className="grid grid-cols-2 gap-4">
                       {otherSections.map(({ href, name }, idx) => (
                         <Link
@@ -222,7 +222,7 @@ export const Header = () => {
   return (
     <div>
       <div className="relative bg-pink-500">
-        <div className="flex items-center justify-between px-4 py-2 sm:py-4 sm:px-6 lg:justify-start lg:space-x-10">
+        <div className="flex items-center justify-between px-4 py-2 sm:px-6 sm:py-4 lg:justify-start lg:space-x-10">
           <div className="lg:w-0 lg:flex-1">
             <Link href="/" className="flex">
               <BlogLogo className="h-10 w-10 text-white sm:h-14 sm:w-14" />

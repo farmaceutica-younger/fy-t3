@@ -19,7 +19,7 @@ export default EcommercePage;
 const CTABook = () => {
   return (
     <div className="lg:relative">
-      <div className="mx-auto w-full max-w-7xl pt-16 pb-20 text-center lg:py-48 lg:text-left">
+      <div className="mx-auto w-full max-w-7xl pb-20 pt-16 text-center lg:py-48 lg:text-left">
         <div className="px-4 sm:px-8 lg:w-1/2 xl:pr-16">
           <h1 className="text-4xl font-extrabold tracking-tight text-gray-900 sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl">
             <span className="block xl:inline">Scopri il </span>{" "}
@@ -39,7 +39,7 @@ const CTABook = () => {
                 href="https://amzn.to/3sGVHO7"
                 rel="noreferrer"
                 target="_blank"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium text-white hover:bg-pink-700 md:py-4 md:px-10 md:text-lg"
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium text-white hover:bg-pink-700 md:px-10 md:py-4 md:text-lg"
               >
                 Acquista su Amazon
               </a>
@@ -69,7 +69,7 @@ const Content = () => {
           aria-hidden="true"
         >
           <svg
-            className="absolute top-12 left-full translate-x-32 transform"
+            className="absolute left-full top-12 translate-x-32 transform"
             width={404}
             height={384}
             fill="none"
@@ -101,7 +101,7 @@ const Content = () => {
             />
           </svg>
           <svg
-            className="absolute top-1/2 right-full -translate-y-1/2 -translate-x-32 transform"
+            className="absolute right-full top-1/2 -translate-x-32 -translate-y-1/2 transform"
             width={404}
             height={384}
             fill="none"
@@ -217,7 +217,7 @@ const Content = () => {
                 href="https://amzn.to/3sGVHO7"
                 rel="noreferrer"
                 target="_blank"
-                className="flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium text-white hover:bg-pink-700 md:py-4 md:px-10 md:text-lg"
+                className="flex w-full items-center justify-center rounded-md border border-transparent bg-pink-600 px-8 py-3 text-base font-medium text-white hover:bg-pink-700 md:px-10 md:py-4 md:text-lg"
               >
                 Acquista su Amazon
               </a>

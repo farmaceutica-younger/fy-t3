@@ -12,8 +12,7 @@ export type Post = {
   created_at: string;
   updated_at: string;
   show_featured_image: boolean;
-}
-
+};
 
 export const posts: Post[] = [
   {
@@ -7672,6 +7671,4 @@ export const posts: Post[] = [
     updated_at: "2022-08-19T05:50:21.868Z",
     show_featured_image: true,
   },
-] ;
-
-
+];

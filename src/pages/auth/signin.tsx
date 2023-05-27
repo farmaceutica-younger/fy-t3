@@ -61,14 +61,14 @@ export default function SignIn({ providers }: Props) {
         </div>
 
         <div className="mt-8 sm:mx-auto sm:w-full sm:max-w-md">
-          <div className="bg-white py-8 px-4 shadow sm:rounded-lg sm:px-10">
+          <div className="bg-white px-4 py-8 shadow sm:rounded-lg sm:px-10">
             {error && <p className="mb-4 text-center">{errors[error]}</p>}
             <div className="mt-0">
               <div className="mt-2 grid grid-cols-1 gap-3">
                 <div>
                   <button
                     onClick={() => signIn(providers.google.id)}
-                    className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                    className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                   >
                     <FontAwesomeIcon
                       icon={faGoogle}
@@ -82,7 +82,7 @@ export default function SignIn({ providers }: Props) {
                 <div>
                   <button
                     onClick={() => signIn(providers.linkedin.id)}
-                    className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white py-2 px-4 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
+                    className="inline-flex w-full justify-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-500 shadow-sm hover:bg-gray-50"
                   >
                     <FontAwesomeIcon
                       icon={faLinkedin}

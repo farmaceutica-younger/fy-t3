@@ -104,7 +104,10 @@ function createBaseMember(): Member {
 }
 
 export const Member = {
-  encode(message: Member, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Member,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.memberId !== "") {
       writer.uint32(10).string(message.memberId);
     }
@@ -121,13 +124,22 @@ export const Member = {
       writer.uint32(42).string(message.role);
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(50).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(50).fork()
+      ).ldelim();
     }
     if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(58).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(58).fork()
+      ).ldelim();
     }
     if (message.memberSince !== undefined) {
-      Timestamp.encode(toTimestamp(message.memberSince), writer.uint32(66).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.memberSince),
+        writer.uint32(66).fork()
+      ).ldelim();
     }
     if (message.linkedin !== undefined) {
       writer.uint32(74).string(message.linkedin);
@@ -164,13 +176,19 @@ export const Member = {
           message.role = reader.string();
           break;
         case 6:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 7:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 8:
-          message.memberSince = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.memberSince = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 9:
           message.linkedin = reader.string();
@@ -196,9 +214,15 @@ export const Member = {
       lastName: isSet(object.lastName) ? String(object.lastName) : "",
       email: isSet(object.email) ? String(object.email) : "",
       role: isSet(object.role) ? String(object.role) : "",
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
-      updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
-      memberSince: isSet(object.memberSince) ? fromJsonTimestamp(object.memberSince) : undefined,
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
+      updatedAt: isSet(object.updatedAt)
+        ? fromJsonTimestamp(object.updatedAt)
+        : undefined,
+      memberSince: isSet(object.memberSince)
+        ? fromJsonTimestamp(object.memberSince)
+        : undefined,
       linkedin: isSet(object.linkedin) ? String(object.linkedin) : undefined,
       telegram: isSet(object.telegram) ? String(object.telegram) : undefined,
       status: isSet(object.status) ? memberStatusFromJSON(object.status) : 0,
@@ -212,12 +236,16 @@ export const Member = {
     message.lastName !== undefined && (obj.lastName = message.lastName);
     message.email !== undefined && (obj.email = message.email);
     message.role !== undefined && (obj.role = message.role);
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt.toISOString());
-    message.memberSince !== undefined && (obj.memberSince = message.memberSince.toISOString());
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
+    message.memberSince !== undefined &&
+      (obj.memberSince = message.memberSince.toISOString());
     message.linkedin !== undefined && (obj.linkedin = message.linkedin);
     message.telegram !== undefined && (obj.telegram = message.telegram);
-    message.status !== undefined && (obj.status = memberStatusToJSON(message.status));
+    message.status !== undefined &&
+      (obj.status = memberStatusToJSON(message.status));
     return obj;
   },
 
@@ -247,7 +275,10 @@ function createBaseQuestionairre(): Questionairre {
 }
 
 export const Questionairre = {
-  encode(message: Questionairre, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Questionairre,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.version !== 0) {
       writer.uint32(8).uint32(message.version);
     }
@@ -255,7 +286,10 @@ export const Questionairre = {
       Questions.encode(message.questions, writer.uint32(18).fork()).ldelim();
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(26).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(26).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -274,7 +308,9 @@ export const Questionairre = {
           message.questions = Questions.decode(reader, reader.uint32());
           break;
         case 3:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -287,30 +323,43 @@ export const Questionairre = {
   fromJSON(object: any): Questionairre {
     return {
       version: isSet(object.version) ? Number(object.version) : 0,
-      questions: isSet(object.questions) ? Questions.fromJSON(object.questions) : undefined,
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
+      questions: isSet(object.questions)
+        ? Questions.fromJSON(object.questions)
+        : undefined,
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
     };
   },
 
   toJSON(message: Questionairre): unknown {
     const obj: any = {};
-    message.version !== undefined && (obj.version = Math.round(message.version));
+    message.version !== undefined &&
+      (obj.version = Math.round(message.version));
     message.questions !== undefined &&
-      (obj.questions = message.questions ? Questions.toJSON(message.questions) : undefined);
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
+      (obj.questions = message.questions
+        ? Questions.toJSON(message.questions)
+        : undefined);
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Questionairre>, I>>(base?: I): Questionairre {
+  create<I extends Exact<DeepPartial<Questionairre>, I>>(
+    base?: I
+  ): Questionairre {
     return Questionairre.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<Questionairre>, I>>(object: I): Questionairre {
+  fromPartial<I extends Exact<DeepPartial<Questionairre>, I>>(
+    object: I
+  ): Questionairre {
     const message = createBaseQuestionairre();
     message.version = object.version ?? 0;
-    message.questions = (object.questions !== undefined && object.questions !== null)
-      ? Questions.fromPartial(object.questions)
-      : undefined;
+    message.questions =
+      object.questions !== undefined && object.questions !== null
+        ? Questions.fromPartial(object.questions)
+        : undefined;
     message.createdAt = object.createdAt ?? undefined;
     return message;
   },
@@ -321,7 +370,10 @@ function createBaseQuestions(): Questions {
 }
 
 export const Questions = {
-  encode(message: Questions, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Questions,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.questions) {
       Question.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -348,14 +400,18 @@ export const Questions = {
 
   fromJSON(object: any): Questions {
     return {
-      questions: Array.isArray(object?.questions) ? object.questions.map((e: any) => Question.fromJSON(e)) : [],
+      questions: Array.isArray(object?.questions)
+        ? object.questions.map((e: any) => Question.fromJSON(e))
+        : [],
     };
   },
 
   toJSON(message: Questions): unknown {
     const obj: any = {};
     if (message.questions) {
-      obj.questions = message.questions.map((e) => e ? Question.toJSON(e) : undefined);
+      obj.questions = message.questions.map((e) =>
+        e ? Question.toJSON(e) : undefined
+      );
     } else {
       obj.questions = [];
     }
@@ -366,9 +422,12 @@ export const Questions = {
     return Questions.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<Questions>, I>>(object: I): Questions {
+  fromPartial<I extends Exact<DeepPartial<Questions>, I>>(
+    object: I
+  ): Questions {
     const message = createBaseQuestions();
-    message.questions = object.questions?.map((e) => Question.fromPartial(e)) || [];
+    message.questions =
+      object.questions?.map((e) => Question.fromPartial(e)) || [];
     return message;
   },
 };
@@ -378,7 +437,10 @@ function createBaseQuestion(): Question {
 }
 
 export const Question = {
-  encode(message: Question, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Question,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.cuid !== "") {
       writer.uint32(10).string(message.cuid);
     }
@@ -432,7 +494,9 @@ export const Question = {
       cuid: isSet(object.cuid) ? String(object.cuid) : "",
       description: isSet(object.description) ? String(object.description) : "",
       type: isSet(object.type) ? String(object.type) : "",
-      options: Array.isArray(object?.options) ? object.options.map((e: any) => String(e)) : [],
+      options: Array.isArray(object?.options)
+        ? object.options.map((e: any) => String(e))
+        : [],
       required: isSet(object.required) ? Boolean(object.required) : false,
     };
   },
@@ -440,7 +504,8 @@ export const Question = {
   toJSON(message: Question): unknown {
     const obj: any = {};
     message.cuid !== undefined && (obj.cuid = message.cuid);
-    message.description !== undefined && (obj.description = message.description);
+    message.description !== undefined &&
+      (obj.description = message.description);
     message.type !== undefined && (obj.type = message.type);
     if (message.options) {
       obj.options = message.options.map((e) => e);
@@ -466,16 +531,31 @@ export const Question = {
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+    };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;

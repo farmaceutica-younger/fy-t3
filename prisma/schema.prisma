@@ -52,6 +52,7 @@ model User {
   solitiIgnotiParticipants SolitiIgnotiParticipant[]
   transactions             CreditsTransaction[]
   credits                  Float                     @default(0)
+  QuizGameParticipant      QuizGameParticipant[]
 }
 
 model CreditsTransaction {
@@ -227,4 +228,27 @@ model SponsoredJob {
   startDate DateTime
   endDate   DateTime
   public    Boolean  @default(false)
+}
+
+model QuizGame {
+  id           String                @id @default(cuid())
+  createdAt    DateTime              @default(now())
+  updatedAt    DateTime              @updatedAt
+  name         String
+  questions    Json                  @default("{}")
+  isLive       Boolean               @default(false)
+  participants QuizGameParticipant[]
+}
+
+model QuizGameParticipant {
+  userId        String
+  createdAt     DateTime  @default(now())
+  game          QuizGame  @relation(fields: [gameId], references: [id])
+  gameId        String
+  responses     Json      @default("{}")
+  user          User      @relation(fields: [userId], references: [id])
+  privacySigned DateTime?
+  points        Int       @default(0)
+
+  @@id([userId, gameId])
 }

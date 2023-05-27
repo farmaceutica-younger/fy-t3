@@ -44,7 +44,7 @@ export const Footer = () => {
     <>
       <Partners />
       <footer className="bg-gray-50">
-        <div className="mx-auto max-w-screen-xl space-y-8 overflow-hidden py-12 px-4 sm:px-6 lg:px-8">
+        <div className="mx-auto max-w-screen-xl space-y-8 overflow-hidden px-4 py-12 sm:px-6 lg:px-8">
           <div className="text-center text-xl text-gray-600">
             <p>
               <span className="font-bold">Farmaceutica Younger</span> by Silvia
@@ -93,12 +93,12 @@ export const Footer = () => {
 const Partners = () => {
   return (
     <div className="bg-white">
-      <div className="mx-auto max-w-7xl py-12 px-4 sm:px-6 lg:py-16 lg:px-8">
+      <div className="mx-auto max-w-7xl px-4 py-12 sm:px-6 lg:px-8 lg:py-16">
         <p className="text-center text-lg font-semibold text-gray-600">
           I nostri partner
         </p>
         <div className="mt-6 flex justify-center lg:mt-8">
-          <div className="col-span-1 flex justify-center py-8 px-8">
+          <div className="col-span-1 flex justify-center px-8 py-8">
             <Link
               href="https://www.aboutpharma.com/"
               target="_blank"

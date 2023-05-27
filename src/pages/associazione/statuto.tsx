@@ -13,7 +13,7 @@ const IndexPage = () => (
       {/* <p className="text-base text-center leading-6 text-pink-600 font-semibold tracking-wide uppercase">
         Associazione Farmaceutica Younger
       </p> */}
-      <h1 className="mt-2 mb-8 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
+      <h1 className="mb-8 mt-2 text-center text-3xl font-extrabold leading-8 tracking-tight text-gray-900 sm:text-4xl sm:leading-10">
         Lo statuto
       </h1>
     </div>

@@ -41,9 +41,9 @@ const extendPrisma = (p: PrismaClient) => {
   });
 };
 
-type ClientType = ReturnType<typeof extendPrisma>;
+export type FyPrismaClient = ReturnType<typeof extendPrisma>;
 
-const globalForPrisma = globalThis as unknown as { prisma: ClientType };
+const globalForPrisma = globalThis as unknown as { prisma: FyPrismaClient };
 
 export const prisma =
   globalForPrisma.prisma ||

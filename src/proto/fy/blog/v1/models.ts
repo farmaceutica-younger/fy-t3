@@ -88,11 +88,21 @@ export interface EventTicket_AnswersEntry {
 }
 
 function createBaseAuthor(): Author {
-  return { authorId: "", name: "", bio: "", profileImage: "", createdAt: undefined, updatedAt: undefined };
+  return {
+    authorId: "",
+    name: "",
+    bio: "",
+    profileImage: "",
+    createdAt: undefined,
+    updatedAt: undefined,
+  };
 }
 
 export const Author = {
-  encode(message: Author, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Author,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.authorId !== "") {
       writer.uint32(10).string(message.authorId);
     }
@@ -106,10 +116,16 @@ export const Author = {
       writer.uint32(34).string(message.profileImage);
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(42).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(42).fork()
+      ).ldelim();
     }
     if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(50).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(50).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -134,10 +150,14 @@ export const Author = {
           message.profileImage = reader.string();
           break;
         case 5:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 6:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -152,9 +172,15 @@ export const Author = {
       authorId: isSet(object.authorId) ? String(object.authorId) : "",
       name: isSet(object.name) ? String(object.name) : "",
       bio: isSet(object.bio) ? String(object.bio) : "",
-      profileImage: isSet(object.profileImage) ? String(object.profileImage) : "",
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
-      updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
+      profileImage: isSet(object.profileImage)
+        ? String(object.profileImage)
+        : "",
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
+      updatedAt: isSet(object.updatedAt)
+        ? fromJsonTimestamp(object.updatedAt)
+        : undefined,
     };
   },
 
@@ -163,9 +189,12 @@ export const Author = {
     message.authorId !== undefined && (obj.authorId = message.authorId);
     message.name !== undefined && (obj.name = message.name);
     message.bio !== undefined && (obj.bio = message.bio);
-    message.profileImage !== undefined && (obj.profileImage = message.profileImage);
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt.toISOString());
+    message.profileImage !== undefined &&
+      (obj.profileImage = message.profileImage);
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
     return obj;
   },
 
@@ -204,7 +233,10 @@ function createBaseBlogPost(): BlogPost {
 }
 
 export const BlogPost = {
-  encode(message: BlogPost, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: BlogPost,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.postId !== "") {
       writer.uint32(10).string(message.postId);
     }
@@ -230,13 +262,22 @@ export const BlogPost = {
       writer.uint32(66).string(message.featuredImage);
     }
     if (message.publishedTime !== undefined) {
-      Timestamp.encode(toTimestamp(message.publishedTime), writer.uint32(74).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.publishedTime),
+        writer.uint32(74).fork()
+      ).ldelim();
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(82).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(82).fork()
+      ).ldelim();
     }
     if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(90).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(90).fork()
+      ).ldelim();
     }
     if (message.showFeaturedImage === true) {
       writer.uint32(96).bool(message.showFeaturedImage);
@@ -279,13 +320,19 @@ export const BlogPost = {
           message.featuredImage = reader.string();
           break;
         case 9:
-          message.publishedTime = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.publishedTime = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 10:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 11:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 12:
           message.showFeaturedImage = reader.bool();
@@ -306,15 +353,27 @@ export const BlogPost = {
       postId: isSet(object.postId) ? String(object.postId) : "",
       path: isSet(object.path) ? String(object.path) : "",
       authorId: isSet(object.authorId) ? String(object.authorId) : "",
-      tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => String(e)) : [],
+      tags: Array.isArray(object?.tags)
+        ? object.tags.map((e: any) => String(e))
+        : [],
       description: isSet(object.description) ? String(object.description) : "",
       body: isSet(object.body) ? String(object.body) : "",
       title: isSet(object.title) ? String(object.title) : "",
-      featuredImage: isSet(object.featuredImage) ? String(object.featuredImage) : "",
-      publishedTime: isSet(object.publishedTime) ? fromJsonTimestamp(object.publishedTime) : undefined,
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
-      updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
-      showFeaturedImage: isSet(object.showFeaturedImage) ? Boolean(object.showFeaturedImage) : false,
+      featuredImage: isSet(object.featuredImage)
+        ? String(object.featuredImage)
+        : "",
+      publishedTime: isSet(object.publishedTime)
+        ? fromJsonTimestamp(object.publishedTime)
+        : undefined,
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
+      updatedAt: isSet(object.updatedAt)
+        ? fromJsonTimestamp(object.updatedAt)
+        : undefined,
+      showFeaturedImage: isSet(object.showFeaturedImage)
+        ? Boolean(object.showFeaturedImage)
+        : false,
       published: isSet(object.published) ? Boolean(object.published) : false,
     };
   },
@@ -329,14 +388,20 @@ export const BlogPost = {
     } else {
       obj.tags = [];
     }
-    message.description !== undefined && (obj.description = message.description);
+    message.description !== undefined &&
+      (obj.description = message.description);
     message.body !== undefined && (obj.body = message.body);
     message.title !== undefined && (obj.title = message.title);
-    message.featuredImage !== undefined && (obj.featuredImage = message.featuredImage);
-    message.publishedTime !== undefined && (obj.publishedTime = message.publishedTime.toISOString());
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt.toISOString());
-    message.showFeaturedImage !== undefined && (obj.showFeaturedImage = message.showFeaturedImage);
+    message.featuredImage !== undefined &&
+      (obj.featuredImage = message.featuredImage);
+    message.publishedTime !== undefined &&
+      (obj.publishedTime = message.publishedTime.toISOString());
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
+    message.showFeaturedImage !== undefined &&
+      (obj.showFeaturedImage = message.showFeaturedImage);
     message.published !== undefined && (obj.published = message.published);
     return obj;
   },
@@ -416,25 +481,40 @@ export const Event = {
       writer.uint32(66).string(message.featuredImage);
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(74).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(74).fork()
+      ).ldelim();
     }
     if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(82).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(82).fork()
+      ).ldelim();
     }
     if (message.published === true) {
       writer.uint32(88).bool(message.published);
     }
     if (message.startDate !== undefined) {
-      Timestamp.encode(toTimestamp(message.startDate), writer.uint32(98).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.startDate),
+        writer.uint32(98).fork()
+      ).ldelim();
     }
     if (message.endDate !== undefined) {
-      Timestamp.encode(toTimestamp(message.endDate), writer.uint32(106).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.endDate),
+        writer.uint32(106).fork()
+      ).ldelim();
     }
     if (message.location !== "") {
       writer.uint32(114).string(message.location);
     }
     if (message.questionairre !== undefined) {
-      Questionairre.encode(message.questionairre, writer.uint32(122).fork()).ldelim();
+      Questionairre.encode(
+        message.questionairre,
+        writer.uint32(122).fork()
+      ).ldelim();
     }
     if (message.maxSubscriptions !== 0) {
       writer.uint32(128).uint32(message.maxSubscriptions);
@@ -486,19 +566,27 @@ export const Event = {
           message.featuredImage = reader.string();
           break;
         case 9:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 10:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 11:
           message.published = reader.bool();
           break;
         case 12:
-          message.startDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.startDate = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 13:
-          message.endDate = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.endDate = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 14:
           message.location = reader.string();
@@ -534,23 +622,47 @@ export const Event = {
       eventId: isSet(object.eventId) ? String(object.eventId) : "",
       slug: isSet(object.slug) ? String(object.slug) : undefined,
       authorId: isSet(object.authorId) ? String(object.authorId) : "",
-      tags: Array.isArray(object?.tags) ? object.tags.map((e: any) => String(e)) : [],
+      tags: Array.isArray(object?.tags)
+        ? object.tags.map((e: any) => String(e))
+        : [],
       description: isSet(object.description) ? String(object.description) : "",
       body: isSet(object.body) ? String(object.body) : "",
       title: isSet(object.title) ? String(object.title) : "",
-      featuredImage: isSet(object.featuredImage) ? String(object.featuredImage) : "",
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
-      updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
+      featuredImage: isSet(object.featuredImage)
+        ? String(object.featuredImage)
+        : "",
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
+      updatedAt: isSet(object.updatedAt)
+        ? fromJsonTimestamp(object.updatedAt)
+        : undefined,
       published: isSet(object.published) ? Boolean(object.published) : false,
-      startDate: isSet(object.startDate) ? fromJsonTimestamp(object.startDate) : undefined,
-      endDate: isSet(object.endDate) ? fromJsonTimestamp(object.endDate) : undefined,
+      startDate: isSet(object.startDate)
+        ? fromJsonTimestamp(object.startDate)
+        : undefined,
+      endDate: isSet(object.endDate)
+        ? fromJsonTimestamp(object.endDate)
+        : undefined,
       location: isSet(object.location) ? String(object.location) : "",
-      questionairre: isSet(object.questionairre) ? Questionairre.fromJSON(object.questionairre) : undefined,
-      maxSubscriptions: isSet(object.maxSubscriptions) ? Number(object.maxSubscriptions) : 0,
-      subscriptionsOpened: isSet(object.subscriptionsOpened) ? Boolean(object.subscriptionsOpened) : false,
-      reservedOnlyToMembers: isSet(object.reservedOnlyToMembers) ? Boolean(object.reservedOnlyToMembers) : false,
-      externalRegistrationLink: isSet(object.externalRegistrationLink) ? String(object.externalRegistrationLink) : "",
-      invitationCodes: Array.isArray(object?.invitationCodes) ? object.invitationCodes.map((e: any) => String(e)) : [],
+      questionairre: isSet(object.questionairre)
+        ? Questionairre.fromJSON(object.questionairre)
+        : undefined,
+      maxSubscriptions: isSet(object.maxSubscriptions)
+        ? Number(object.maxSubscriptions)
+        : 0,
+      subscriptionsOpened: isSet(object.subscriptionsOpened)
+        ? Boolean(object.subscriptionsOpened)
+        : false,
+      reservedOnlyToMembers: isSet(object.reservedOnlyToMembers)
+        ? Boolean(object.reservedOnlyToMembers)
+        : false,
+      externalRegistrationLink: isSet(object.externalRegistrationLink)
+        ? String(object.externalRegistrationLink)
+        : "",
+      invitationCodes: Array.isArray(object?.invitationCodes)
+        ? object.invitationCodes.map((e: any) => String(e))
+        : [],
     };
   },
 
@@ -564,22 +676,34 @@ export const Event = {
     } else {
       obj.tags = [];
     }
-    message.description !== undefined && (obj.description = message.description);
+    message.description !== undefined &&
+      (obj.description = message.description);
     message.body !== undefined && (obj.body = message.body);
     message.title !== undefined && (obj.title = message.title);
-    message.featuredImage !== undefined && (obj.featuredImage = message.featuredImage);
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt.toISOString());
+    message.featuredImage !== undefined &&
+      (obj.featuredImage = message.featuredImage);
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
     message.published !== undefined && (obj.published = message.published);
-    message.startDate !== undefined && (obj.startDate = message.startDate.toISOString());
-    message.endDate !== undefined && (obj.endDate = message.endDate.toISOString());
+    message.startDate !== undefined &&
+      (obj.startDate = message.startDate.toISOString());
+    message.endDate !== undefined &&
+      (obj.endDate = message.endDate.toISOString());
     message.location !== undefined && (obj.location = message.location);
     message.questionairre !== undefined &&
-      (obj.questionairre = message.questionairre ? Questionairre.toJSON(message.questionairre) : undefined);
-    message.maxSubscriptions !== undefined && (obj.maxSubscriptions = Math.round(message.maxSubscriptions));
-    message.subscriptionsOpened !== undefined && (obj.subscriptionsOpened = message.subscriptionsOpened);
-    message.reservedOnlyToMembers !== undefined && (obj.reservedOnlyToMembers = message.reservedOnlyToMembers);
-    message.externalRegistrationLink !== undefined && (obj.externalRegistrationLink = message.externalRegistrationLink);
+      (obj.questionairre = message.questionairre
+        ? Questionairre.toJSON(message.questionairre)
+        : undefined);
+    message.maxSubscriptions !== undefined &&
+      (obj.maxSubscriptions = Math.round(message.maxSubscriptions));
+    message.subscriptionsOpened !== undefined &&
+      (obj.subscriptionsOpened = message.subscriptionsOpened);
+    message.reservedOnlyToMembers !== undefined &&
+      (obj.reservedOnlyToMembers = message.reservedOnlyToMembers);
+    message.externalRegistrationLink !== undefined &&
+      (obj.externalRegistrationLink = message.externalRegistrationLink);
     if (message.invitationCodes) {
       obj.invitationCodes = message.invitationCodes.map((e) => e);
     } else {
@@ -608,9 +732,10 @@ export const Event = {
     message.startDate = object.startDate ?? undefined;
     message.endDate = object.endDate ?? undefined;
     message.location = object.location ?? "";
-    message.questionairre = (object.questionairre !== undefined && object.questionairre !== null)
-      ? Questionairre.fromPartial(object.questionairre)
-      : undefined;
+    message.questionairre =
+      object.questionairre !== undefined && object.questionairre !== null
+        ? Questionairre.fromPartial(object.questionairre)
+        : undefined;
     message.maxSubscriptions = object.maxSubscriptions ?? 0;
     message.subscriptionsOpened = object.subscriptionsOpened ?? false;
     message.reservedOnlyToMembers = object.reservedOnlyToMembers ?? false;
@@ -625,7 +750,10 @@ function createBaseQuestionairre(): Questionairre {
 }
 
 export const Questionairre = {
-  encode(message: Questionairre, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Questionairre,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     for (const v of message.questions) {
       Question.encode(v!, writer.uint32(10).fork()).ldelim();
     }
@@ -652,27 +780,36 @@ export const Questionairre = {
 
   fromJSON(object: any): Questionairre {
     return {
-      questions: Array.isArray(object?.questions) ? object.questions.map((e: any) => Question.fromJSON(e)) : [],
+      questions: Array.isArray(object?.questions)
+        ? object.questions.map((e: any) => Question.fromJSON(e))
+        : [],
     };
   },
 
   toJSON(message: Questionairre): unknown {
     const obj: any = {};
     if (message.questions) {
-      obj.questions = message.questions.map((e) => e ? Question.toJSON(e) : undefined);
+      obj.questions = message.questions.map((e) =>
+        e ? Question.toJSON(e) : undefined
+      );
     } else {
       obj.questions = [];
     }
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<Questionairre>, I>>(base?: I): Questionairre {
+  create<I extends Exact<DeepPartial<Questionairre>, I>>(
+    base?: I
+  ): Questionairre {
     return Questionairre.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<Questionairre>, I>>(object: I): Questionairre {
+  fromPartial<I extends Exact<DeepPartial<Questionairre>, I>>(
+    object: I
+  ): Questionairre {
     const message = createBaseQuestionairre();
-    message.questions = object.questions?.map((e) => Question.fromPartial(e)) || [];
+    message.questions =
+      object.questions?.map((e) => Question.fromPartial(e)) || [];
     return message;
   },
 };
@@ -682,7 +819,10 @@ function createBaseQuestion(): Question {
 }
 
 export const Question = {
-  encode(message: Question, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: Question,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.cuid !== "") {
       writer.uint32(10).string(message.cuid);
     }
@@ -736,7 +876,9 @@ export const Question = {
       cuid: isSet(object.cuid) ? String(object.cuid) : "",
       description: isSet(object.description) ? String(object.description) : "",
       type: isSet(object.type) ? String(object.type) : "",
-      options: Array.isArray(object?.options) ? object.options.map((e: any) => String(e)) : [],
+      options: Array.isArray(object?.options)
+        ? object.options.map((e: any) => String(e))
+        : [],
       required: isSet(object.required) ? Boolean(object.required) : false,
     };
   },
@@ -744,7 +886,8 @@ export const Question = {
   toJSON(message: Question): unknown {
     const obj: any = {};
     message.cuid !== undefined && (obj.cuid = message.cuid);
-    message.description !== undefined && (obj.description = message.description);
+    message.description !== undefined &&
+      (obj.description = message.description);
     message.type !== undefined && (obj.type = message.type);
     if (message.options) {
       obj.options = message.options.map((e) => e);
@@ -791,7 +934,10 @@ function createBaseEventTicket(): EventTicket {
 }
 
 export const EventTicket = {
-  encode(message: EventTicket, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: EventTicket,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.ticketId !== "") {
       writer.uint32(10).string(message.ticketId);
     }
@@ -820,22 +966,40 @@ export const EventTicket = {
       writer.uint32(72).uint32(message.ticketNum);
     }
     if (message.createdAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.createdAt), writer.uint32(82).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.createdAt),
+        writer.uint32(82).fork()
+      ).ldelim();
     }
     if (message.updatedAt !== undefined) {
-      Timestamp.encode(toTimestamp(message.updatedAt), writer.uint32(90).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.updatedAt),
+        writer.uint32(90).fork()
+      ).ldelim();
     }
     Object.entries(message.answers).forEach(([key, value]) => {
-      EventTicket_AnswersEntry.encode({ key: key as any, value }, writer.uint32(98).fork()).ldelim();
+      EventTicket_AnswersEntry.encode(
+        { key: key as any, value },
+        writer.uint32(98).fork()
+      ).ldelim();
     });
     if (message.privacySigned !== undefined) {
-      Timestamp.encode(toTimestamp(message.privacySigned), writer.uint32(106).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.privacySigned),
+        writer.uint32(106).fork()
+      ).ldelim();
     }
     if (message.confirmed !== undefined) {
-      Timestamp.encode(toTimestamp(message.confirmed), writer.uint32(114).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.confirmed),
+        writer.uint32(114).fork()
+      ).ldelim();
     }
     if (message.recordingConsensus !== undefined) {
-      Timestamp.encode(toTimestamp(message.recordingConsensus), writer.uint32(122).fork()).ldelim();
+      Timestamp.encode(
+        toTimestamp(message.recordingConsensus),
+        writer.uint32(122).fork()
+      ).ldelim();
     }
     return writer;
   },
@@ -875,25 +1039,38 @@ export const EventTicket = {
           message.ticketNum = reader.uint32();
           break;
         case 10:
-          message.createdAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.createdAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 11:
-          message.updatedAt = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.updatedAt = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 12:
-          const entry12 = EventTicket_AnswersEntry.decode(reader, reader.uint32());
+          const entry12 = EventTicket_AnswersEntry.decode(
+            reader,
+            reader.uint32()
+          );
           if (entry12.value !== undefined) {
             message.answers[entry12.key] = entry12.value;
           }
           break;
         case 13:
-          message.privacySigned = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.privacySigned = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 14:
-          message.confirmed = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.confirmed = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         case 15:
-          message.recordingConsensus = fromTimestamp(Timestamp.decode(reader, reader.uint32()));
+          message.recordingConsensus = fromTimestamp(
+            Timestamp.decode(reader, reader.uint32())
+          );
           break;
         default:
           reader.skipType(tag & 7);
@@ -914,17 +1091,30 @@ export const EventTicket = {
       avatar: isSet(object.avatar) ? String(object.avatar) : "",
       role: isSet(object.role) ? String(object.role) : "",
       ticketNum: isSet(object.ticketNum) ? Number(object.ticketNum) : 0,
-      createdAt: isSet(object.createdAt) ? fromJsonTimestamp(object.createdAt) : undefined,
-      updatedAt: isSet(object.updatedAt) ? fromJsonTimestamp(object.updatedAt) : undefined,
+      createdAt: isSet(object.createdAt)
+        ? fromJsonTimestamp(object.createdAt)
+        : undefined,
+      updatedAt: isSet(object.updatedAt)
+        ? fromJsonTimestamp(object.updatedAt)
+        : undefined,
       answers: isObject(object.answers)
-        ? Object.entries(object.answers).reduce<{ [key: string]: string }>((acc, [key, value]) => {
-          acc[key] = String(value);
-          return acc;
-        }, {})
+        ? Object.entries(object.answers).reduce<{ [key: string]: string }>(
+            (acc, [key, value]) => {
+              acc[key] = String(value);
+              return acc;
+            },
+            {}
+          )
         : {},
-      privacySigned: isSet(object.privacySigned) ? fromJsonTimestamp(object.privacySigned) : undefined,
-      confirmed: isSet(object.confirmed) ? fromJsonTimestamp(object.confirmed) : undefined,
-      recordingConsensus: isSet(object.recordingConsensus) ? fromJsonTimestamp(object.recordingConsensus) : undefined,
+      privacySigned: isSet(object.privacySigned)
+        ? fromJsonTimestamp(object.privacySigned)
+        : undefined,
+      confirmed: isSet(object.confirmed)
+        ? fromJsonTimestamp(object.confirmed)
+        : undefined,
+      recordingConsensus: isSet(object.recordingConsensus)
+        ? fromJsonTimestamp(object.recordingConsensus)
+        : undefined,
     };
   },
 
@@ -938,18 +1128,24 @@ export const EventTicket = {
     message.lastName !== undefined && (obj.lastName = message.lastName);
     message.avatar !== undefined && (obj.avatar = message.avatar);
     message.role !== undefined && (obj.role = message.role);
-    message.ticketNum !== undefined && (obj.ticketNum = Math.round(message.ticketNum));
-    message.createdAt !== undefined && (obj.createdAt = message.createdAt.toISOString());
-    message.updatedAt !== undefined && (obj.updatedAt = message.updatedAt.toISOString());
+    message.ticketNum !== undefined &&
+      (obj.ticketNum = Math.round(message.ticketNum));
+    message.createdAt !== undefined &&
+      (obj.createdAt = message.createdAt.toISOString());
+    message.updatedAt !== undefined &&
+      (obj.updatedAt = message.updatedAt.toISOString());
     obj.answers = {};
     if (message.answers) {
       Object.entries(message.answers).forEach(([k, v]) => {
         obj.answers[k] = v;
       });
     }
-    message.privacySigned !== undefined && (obj.privacySigned = message.privacySigned.toISOString());
-    message.confirmed !== undefined && (obj.confirmed = message.confirmed.toISOString());
-    message.recordingConsensus !== undefined && (obj.recordingConsensus = message.recordingConsensus.toISOString());
+    message.privacySigned !== undefined &&
+      (obj.privacySigned = message.privacySigned.toISOString());
+    message.confirmed !== undefined &&
+      (obj.confirmed = message.confirmed.toISOString());
+    message.recordingConsensus !== undefined &&
+      (obj.recordingConsensus = message.recordingConsensus.toISOString());
     return obj;
   },
 
@@ -957,7 +1153,9 @@ export const EventTicket = {
     return EventTicket.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<EventTicket>, I>>(object: I): EventTicket {
+  fromPartial<I extends Exact<DeepPartial<EventTicket>, I>>(
+    object: I
+  ): EventTicket {
     const message = createBaseEventTicket();
     message.ticketId = object.ticketId ?? "";
     message.eventId = object.eventId ?? "";
@@ -970,7 +1168,9 @@ export const EventTicket = {
     message.ticketNum = object.ticketNum ?? 0;
     message.createdAt = object.createdAt ?? undefined;
     message.updatedAt = object.updatedAt ?? undefined;
-    message.answers = Object.entries(object.answers ?? {}).reduce<{ [key: string]: string }>((acc, [key, value]) => {
+    message.answers = Object.entries(object.answers ?? {}).reduce<{
+      [key: string]: string;
+    }>((acc, [key, value]) => {
       if (value !== undefined) {
         acc[key] = String(value);
       }
@@ -988,7 +1188,10 @@ function createBaseEventTicket_AnswersEntry(): EventTicket_AnswersEntry {
 }
 
 export const EventTicket_AnswersEntry = {
-  encode(message: EventTicket_AnswersEntry, writer: _m0.Writer = _m0.Writer.create()): _m0.Writer {
+  encode(
+    message: EventTicket_AnswersEntry,
+    writer: _m0.Writer = _m0.Writer.create()
+  ): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
     }
@@ -998,7 +1201,10 @@ export const EventTicket_AnswersEntry = {
     return writer;
   },
 
-  decode(input: _m0.Reader | Uint8Array, length?: number): EventTicket_AnswersEntry {
+  decode(
+    input: _m0.Reader | Uint8Array,
+    length?: number
+  ): EventTicket_AnswersEntry {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
     const message = createBaseEventTicket_AnswersEntry();
@@ -1020,7 +1226,10 @@ export const EventTicket_AnswersEntry = {
   },
 
   fromJSON(object: any): EventTicket_AnswersEntry {
-    return { key: isSet(object.key) ? String(object.key) : "", value: isSet(object.value) ? String(object.value) : "" };
+    return {
+      key: isSet(object.key) ? String(object.key) : "",
+      value: isSet(object.value) ? String(object.value) : "",
+    };
   },
 
   toJSON(message: EventTicket_AnswersEntry): unknown {
@@ -1030,11 +1239,15 @@ export const EventTicket_AnswersEntry = {
     return obj;
   },
 
-  create<I extends Exact<DeepPartial<EventTicket_AnswersEntry>, I>>(base?: I): EventTicket_AnswersEntry {
+  create<I extends Exact<DeepPartial<EventTicket_AnswersEntry>, I>>(
+    base?: I
+  ): EventTicket_AnswersEntry {
     return EventTicket_AnswersEntry.fromPartial(base ?? {});
   },
 
-  fromPartial<I extends Exact<DeepPartial<EventTicket_AnswersEntry>, I>>(object: I): EventTicket_AnswersEntry {
+  fromPartial<I extends Exact<DeepPartial<EventTicket_AnswersEntry>, I>>(
+    object: I
+  ): EventTicket_AnswersEntry {
     const message = createBaseEventTicket_AnswersEntry();
     message.key = object.key ?? "";
     message.value = object.value ?? "";
@@ -1042,16 +1255,31 @@ export const EventTicket_AnswersEntry = {
   },
 };
 
-type Builtin = Date | Function | Uint8Array | string | number | boolean | undefined;
+type Builtin =
+  | Date
+  | Function
+  | Uint8Array
+  | string
+  | number
+  | boolean
+  | undefined;
 
-export type DeepPartial<T> = T extends Builtin ? T
-  : T extends Array<infer U> ? Array<DeepPartial<U>> : T extends ReadonlyArray<infer U> ? ReadonlyArray<DeepPartial<U>>
-  : T extends {} ? { [K in keyof T]?: DeepPartial<T[K]> }
+export type DeepPartial<T> = T extends Builtin
+  ? T
+  : T extends Array<infer U>
+  ? Array<DeepPartial<U>>
+  : T extends ReadonlyArray<infer U>
+  ? ReadonlyArray<DeepPartial<U>>
+  : T extends {}
+  ? { [K in keyof T]?: DeepPartial<T[K]> }
   : Partial<T>;
 
 type KeysOfUnion<T> = T extends T ? keyof T : never;
-export type Exact<P, I extends P> = P extends Builtin ? P
-  : P & { [K in keyof P]: Exact<P[K], I[K]> } & { [K in Exclude<keyof I, KeysOfUnion<P>>]: never };
+export type Exact<P, I extends P> = P extends Builtin
+  ? P
+  : P & { [K in keyof P]: Exact<P[K], I[K]> } & {
+      [K in Exclude<keyof I, KeysOfUnion<P>>]: never;
+    };
 
 function toTimestamp(date: Date): Timestamp {
   const seconds = date.getTime() / 1_000;

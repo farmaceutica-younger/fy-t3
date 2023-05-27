@@ -1,14 +1,14 @@
 "use client";
 import { useState } from "react";
 import { LeaderBaord, Rank } from "./leaderboard";
-import { AfiQRcode } from "./qrcode";
+import { GameQRCode } from "./qrcode";
 import { QuizQuestion, type Question } from "./question";
 
 export default function AfiPage() {
   const [selected, setSelected] = useState<string | undefined>();
   return (
     <div className="flex space-x-10 p-10">
-      <AfiQRcode url="https://www.farmaceuticayounger.science" />
+      <GameQRCode url="https://www.farmaceuticayounger.science" />
       <LeaderBaord ranks={ranks} yourRank={ranks[3]} />
       <QuizQuestion
         question={question}

@@ -24,7 +24,7 @@ const EditPostPage = () => {
     (file: Blob) => {
       return cloudinaryUploadImage(file, () => getCloudinarySecret());
     },
-    [getCloudinarySecret]
+    [getCloudinarySecret],
   );
 
   if (isLoading) {

@@ -1,5 +1,5 @@
 import { Dialog, Transition } from "@headlessui/react";
-import { MapIcon } from "@heroicons/react/20/solid";
+import { MapIcon, PuzzlePieceIcon } from "@heroicons/react/20/solid";
 import {
   BookOpenIcon,
   BriefcaseIcon,
@@ -116,7 +116,7 @@ const Navigation = () => {
     (path: string) => {
       return path === pathname;
     },
-    [pathname]
+    [pathname],
   );
 
   return (
@@ -131,7 +131,7 @@ const Navigation = () => {
                 isCurrentPath(item.href)
                   ? "bg-pink-800 text-white"
                   : "text-pink-100 hover:bg-pink-600",
-                "group flex items-center rounded-md px-2 py-2 text-sm font-medium"
+                "group flex items-center rounded-md px-2 py-2 text-sm font-medium",
               )}
             >
               <item.icon
@@ -217,16 +217,29 @@ function useNavigation(): Nav[] {
       href: "/dashboard/admin/card",
       icon: ClipboardIcon,
     });
+    navigation.push({
+      type: "link",
+      name: "Games",
+      href: "/dashboard/admin/games",
+      icon: PuzzlePieceIcon,
+    });
   }
 
   return navigation;
 }
 
+type Icon = React.ForwardRefExoticComponent<
+  React.PropsWithoutRef<React.SVGProps<SVGSVGElement>> & {
+    title?: string;
+    titleId?: string;
+  } & React.RefAttributes<SVGSVGElement>
+>;
+
 interface LinkNav {
   readonly type: "link";
   name: string;
   href: string;
-  icon: (props: SVGProps<SVGSVGElement>) => JSX.Element | null;
+  icon: Icon;
 }
 
 interface SectionNav {

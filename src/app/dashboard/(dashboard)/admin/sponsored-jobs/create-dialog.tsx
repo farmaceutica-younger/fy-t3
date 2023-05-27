@@ -32,7 +32,7 @@ const CreateSponsoredJobDialog = () => {
               pending: "Creating Post",
               success: "Post Created",
               error: "Error Creating Post",
-            }
+            },
           );
         }}
         schema={CreateSponsoreJobSchema}

@@ -121,7 +121,7 @@ export const EventCTA = ({ event }: EventCTAProps) => {
                   📅{" "}
                   {getEventDate(
                     new Date(event.startDate || new Date()),
-                    new Date(event.endDate || new Date())
+                    new Date(event.endDate || new Date()),
                   )}
                 </h3>
               </div>

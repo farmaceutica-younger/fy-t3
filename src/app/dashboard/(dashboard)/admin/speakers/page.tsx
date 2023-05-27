@@ -22,7 +22,9 @@ const SpeakerCard = (speaker: Speaker) => {
         <div className="flex items-center text-sky-400">
           <BlogIcon className="h-10 w-10" />
           <div className="ml-3 flex flex-col text-xs">
-            <span className="font-bold">Farmaceutica</span> <span>Younger</span>{" "}
+            <span className="font-bold">Farmaceutica</span> <span>
+              Younger
+            </span>{" "}
           </div>
         </div>
       </div>

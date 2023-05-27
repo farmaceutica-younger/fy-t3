@@ -238,6 +238,7 @@ model QuizGame {
   questions    Json                  @default("{}")
   isLive       Boolean               @default(false)
   participants QuizGameParticipant[]
+  description  String                @default("")
 }
 
 model QuizGameParticipant {

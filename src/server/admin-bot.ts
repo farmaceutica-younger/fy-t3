@@ -19,38 +19,34 @@ class TelegramBot {
     await this.sendToAdmin(
       fmt`🎫 Utente ${bold(ticket.email)} registrato all'evento ${event.title}!
 
-  ${getUrl(`/events/${event.slug}/tickets/${ticket!.ticketId}`)}`
+  ${getUrl(`/events/${event.slug}/tickets/${ticket!.ticketId}`)}`,
     );
   }
 
   async notifyUserCreated(user: { email: string }) {
     await this.sendToAdmin(
-      fmt`🚀 Nuovo utente ${bold(user.email)} registrato!`
+      fmt`🚀 Nuovo utente ${bold(user.email)} registrato!`,
     );
   }
 
   async notifyMembershipRequest(profile: Profile) {
     await this.sendToAdmin(
-      fmt`🚀 ${bold(
-        profile.firstName + " " + profile.lastName
-      )} ha chiesto di diventare membro di FY! 
+      fmt`🚀 ${bold(profile.firstName + " " + profile.lastName)} ha chiesto di diventare membro di FY! 
       
-${getUrl("/dashboard/admin/association/members/" + profile.id)}`
+${getUrl("/dashboard/admin/association/members/" + profile.id)}`,
     );
   }
 
   async notifyMembershipPaid(profile: Profile) {
     await this.sendToAdmin(
-      fmt`💰 ${bold(
-        profile.firstName + " " + profile.lastName
-      )} ha pagato la quota associativa! 
+      fmt`💰 ${bold(profile.firstName + " " + profile.lastName)} ha pagato la quota associativa! 
       
-${getUrl("/dashboard/admin/association/members/" + profile.id)}`
+${getUrl("/dashboard/admin/association/members/" + profile.id)}`,
     );
   }
 }
 
 export const adminbBot = new TelegramBot(
   env.TELEGRAM_BOT_TOKEN,
-  env.TELEGRAM_ADMIN_CHAT_ID
+  env.TELEGRAM_ADMIN_CHAT_ID,
 );

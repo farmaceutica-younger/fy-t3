@@ -1,7 +1,6 @@
-import { QuizGame } from "@prisma/client";
 import { TRPCError } from "@trpc/server";
-import { parsePrismaGame } from "~/models/peapletrasure/types";
-import Trpc from "~/pages/api/trpc/[trpc]";
+import { QuestionsSchema, type Questions } from "~/models/peapletrasure/schema";
+import { QuizGame, parsePrismaGame } from "~/models/peapletrasure/types";
 import { FyPrismaClient } from "~/server/db";
 
 export class GameService {
@@ -19,6 +18,69 @@ export class GameService {
       throw new TRPCError({
         code: "NOT_FOUND",
         message: "Game not found",
+        cause: (e as Error).message,
+      });
+    }
+  }
+
+  async setGameQuestions(gameId: string, questions: Questions) {
+    return await this.prisma.quizGame.update({
+      data: {
+        questions: QuestionsSchema.parse(questions),
+      },
+      where: {
+        id: gameId,
+      },
+    });
+  }
+
+  async createGame(name: string, description: string): Promise<QuizGame> {
+    try {
+      const res = await this.prisma.quizGame.create({
+        data: {
+          name,
+          description,
+        },
+      });
+      return parsePrismaGame(res);
+    } catch (e) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "unkwon error",
+        cause: (e as Error).message,
+      });
+    }
+  }
+
+  async deleteGame(gameId: string): Promise<QuizGame> {
+    try {
+      const res = await this.prisma.quizGame.delete({
+        where: {
+          id: gameId,
+        },
+      });
+      return parsePrismaGame(res);
+    } catch (e) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "unkwon error",
+        cause: (e as Error).message,
+      });
+    }
+  }
+
+  async listGames(skip: number, take: number): Promise<QuizGame[]> {
+    try {
+      const res = await this.prisma.quizGame.findMany({
+        skip,
+        take,
+      });
+      return res.map(parsePrismaGame);
+    } catch (e) {
+      throw new TRPCError({
+        code: "INTERNAL_SERVER_ERROR",
+        message: "unkwon error",
+        cause: (e as Error).message,
       });
     }
   }

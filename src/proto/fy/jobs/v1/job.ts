@@ -67,19 +67,19 @@ export const Job = {
     if (message.postedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.postedAt),
-        writer.uint32(50).fork()
+        writer.uint32(50).fork(),
       ).ldelim();
     }
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(58).fork()
+        writer.uint32(58).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(66).fork()
+        writer.uint32(66).fork(),
       ).ldelim();
     }
     return writer;
@@ -109,17 +109,17 @@ export const Job = {
           break;
         case 6:
           message.postedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 7:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 8:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -208,7 +208,7 @@ function createBaseSponsoredJob(): SponsoredJob {
 export const SponsoredJob = {
   encode(
     message: SponsoredJob,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.jobId !== "") {
       writer.uint32(10).string(message.jobId);
@@ -246,25 +246,25 @@ export const SponsoredJob = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(98).fork()
+        writer.uint32(98).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(106).fork()
+        writer.uint32(106).fork(),
       ).ldelim();
     }
     if (message.publicStartDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.publicStartDate),
-        writer.uint32(114).fork()
+        writer.uint32(114).fork(),
       ).ldelim();
     }
     if (message.publicEndDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.publicEndDate),
-        writer.uint32(122).fork()
+        writer.uint32(122).fork(),
       ).ldelim();
     }
     if (message.draft === true) {
@@ -315,22 +315,22 @@ export const SponsoredJob = {
           break;
         case 12:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 13:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 14:
           message.publicStartDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 15:
           message.publicEndDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 18:
@@ -408,13 +408,13 @@ export const SponsoredJob = {
   },
 
   create<I extends Exact<DeepPartial<SponsoredJob>, I>>(
-    base?: I
+    base?: I,
   ): SponsoredJob {
     return SponsoredJob.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SponsoredJob>, I>>(
-    object: I
+    object: I,
   ): SponsoredJob {
     const message = createBaseSponsoredJob();
     message.jobId = object.jobId ?? "";

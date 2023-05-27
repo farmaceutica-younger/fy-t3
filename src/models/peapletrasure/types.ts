@@ -1,15 +1,16 @@
 import { type QuizGame as PrismaQuizGame } from "@prisma/client";
-import { QuestionSchema, type Question } from "./schema";
+import { QuestionsSchema, type Question, type Questions } from "./schema";
 
 export type { Question };
 
 export function parsePrismaGame(game: PrismaQuizGame): QuizGame {
+  const q = QuestionsSchema.parse(game.questions);
   return {
     ...game,
-    questions: QuestionSchema.array().parse(game.questions),
+    questions: q,
   };
 }
 
-export type QuizGame = PrismaQuizGame & {
-  questions: Question[];
+export type QuizGame = Omit<PrismaQuizGame, "questions"> & {
+  questions: Questions;
 };

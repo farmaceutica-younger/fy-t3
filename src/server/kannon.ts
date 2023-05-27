@@ -20,7 +20,7 @@ class Mailer {
     recipients: Recipient[],
     subject: string,
     html: string,
-    scheduledTime = new Date()
+    scheduledTime = new Date(),
   ) {
     return this.mailer.sendHtml(recipients, subject, html, scheduledTime);
   }
@@ -29,13 +29,13 @@ class Mailer {
     recipients: Recipient[],
     subject: string,
     templateId: string,
-    scheduledTime = new Date()
+    scheduledTime = new Date(),
   ) {
     return this.mailer.sendTemplate(
       recipients,
       subject,
       templateId,
-      scheduledTime
+      scheduledTime,
     );
   }
 
@@ -50,14 +50,14 @@ class Mailer {
         },
       ],
       "💊 La tua richiesta di diventare socio di FY è stata ricevuta!",
-      "template_clbgfmnwi0033018z3zfn3oga@k.farmaceuticayounger.science"
+      "template_clbgfmnwi0033018z3zfn3oga@k.farmaceuticayounger.science",
     );
   }
 
   async sendMembershipApproved(
     email: string,
     name: string,
-    paymentUrl: string
+    paymentUrl: string,
   ) {
     await this.sendMailTemplate(
       [
@@ -70,7 +70,7 @@ class Mailer {
         },
       ],
       "🎉 La tua richiesta è stata approvata!",
-      "template_clbgfna9m0034018z6h5wg985@k.farmaceuticayounger.science"
+      "template_clbgfna9m0034018z6h5wg985@k.farmaceuticayounger.science",
     );
   }
 
@@ -85,7 +85,7 @@ class Mailer {
         },
       ],
       "💊 Ora fai parte di di Farmaceutica Younger!",
-      "template_clbgn7oix003d018z6bvv1oth@k.farmaceuticayounger.science"
+      "template_clbgn7oix003d018z6bvv1oth@k.farmaceuticayounger.science",
     );
   }
 
@@ -108,7 +108,7 @@ class Mailer {
         },
       ],
       "🎫 Ecco il tuo Biglietto per partecipare all'evento di Farmaceutica Younger!",
-      "template_cl6nckogj000a01b2l2zktm39@k.farmaceuticayounger.science"
+      "template_cl6nckogj000a01b2l2zktm39@k.farmaceuticayounger.science",
     );
   }
 }
@@ -122,7 +122,7 @@ const cli = new KannonCli(
   },
   {
     host: conf.apiUrl,
-  }
+  },
 );
 
 export const kannon = new Mailer(cli);

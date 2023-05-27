@@ -116,7 +116,7 @@ const Navigation = () => {
     (path: string) => {
       return path === pathname;
     },
-    [pathname]
+    [pathname],
   );
 
   return (
@@ -131,7 +131,7 @@ const Navigation = () => {
                 isCurrentPath(item.href)
                   ? "bg-primary-800 text-white"
                   : "text-primary-100 hover:bg-primary-600",
-                "group flex items-center rounded-md px-2 py-2 text-sm font-medium"
+                "group flex items-center rounded-md px-2 py-2 text-sm font-medium",
               )}
             >
               <item.icon

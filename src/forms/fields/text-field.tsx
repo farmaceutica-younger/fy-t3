@@ -37,7 +37,7 @@ export const TextField = ({
               className="textarea-primary textarea h-24 w-full"
               placeholder={placeholder}
               rows={numRows}
-            ></textarea>
+            />
           ) : (
             <input
               {...input}

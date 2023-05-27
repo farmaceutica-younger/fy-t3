@@ -106,7 +106,7 @@ function createBaseMember(): Member {
 export const Member = {
   encode(
     message: Member,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.memberId !== "") {
       writer.uint32(10).string(message.memberId);
@@ -126,19 +126,19 @@ export const Member = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(50).fork()
+        writer.uint32(50).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(58).fork()
+        writer.uint32(58).fork(),
       ).ldelim();
     }
     if (message.memberSince !== undefined) {
       Timestamp.encode(
         toTimestamp(message.memberSince),
-        writer.uint32(66).fork()
+        writer.uint32(66).fork(),
       ).ldelim();
     }
     if (message.linkedin !== undefined) {
@@ -177,17 +177,17 @@ export const Member = {
           break;
         case 6:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 7:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 8:
           message.memberSince = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 9:
@@ -277,7 +277,7 @@ function createBaseQuestionairre(): Questionairre {
 export const Questionairre = {
   encode(
     message: Questionairre,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.version !== 0) {
       writer.uint32(8).uint32(message.version);
@@ -288,7 +288,7 @@ export const Questionairre = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(26).fork()
+        writer.uint32(26).fork(),
       ).ldelim();
     }
     return writer;
@@ -309,7 +309,7 @@ export const Questionairre = {
           break;
         case 3:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -346,13 +346,13 @@ export const Questionairre = {
   },
 
   create<I extends Exact<DeepPartial<Questionairre>, I>>(
-    base?: I
+    base?: I,
   ): Questionairre {
     return Questionairre.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<Questionairre>, I>>(
-    object: I
+    object: I,
   ): Questionairre {
     const message = createBaseQuestionairre();
     message.version = object.version ?? 0;
@@ -372,7 +372,7 @@ function createBaseQuestions(): Questions {
 export const Questions = {
   encode(
     message: Questions,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.questions) {
       Question.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -410,7 +410,7 @@ export const Questions = {
     const obj: any = {};
     if (message.questions) {
       obj.questions = message.questions.map((e) =>
-        e ? Question.toJSON(e) : undefined
+        e ? Question.toJSON(e) : undefined,
       );
     } else {
       obj.questions = [];
@@ -423,7 +423,7 @@ export const Questions = {
   },
 
   fromPartial<I extends Exact<DeepPartial<Questions>, I>>(
-    object: I
+    object: I,
   ): Questions {
     const message = createBaseQuestions();
     message.questions =
@@ -439,7 +439,7 @@ function createBaseQuestion(): Question {
 export const Question = {
   encode(
     message: Question,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.cuid !== "") {
       writer.uint32(10).string(message.cuid);

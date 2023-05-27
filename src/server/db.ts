@@ -14,7 +14,7 @@ const extendPrisma = (p: PrismaClient) => {
             method: string;
             note: string;
             data: any;
-          }
+          },
         ) => {
           return prisma.associationMembership.update({
             data: {
@@ -51,7 +51,7 @@ export const prisma =
     new PrismaClient({
       log:
         env.NODE_ENV === "development" ? ["query", "error", "warn"] : ["error"],
-    })
+    }),
   );
 
 if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
@@ -59,7 +59,7 @@ if (env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
 export async function getPublishedPostsPreview(
   skip: number,
   take: number,
-  filterTags: string[] | undefined
+  filterTags: string[] | undefined,
 ) {
   const posts = await prisma.blogPost.findMany({
     where: {

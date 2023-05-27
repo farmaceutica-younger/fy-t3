@@ -7,5 +7,5 @@ export const gqlCli = initUrqlClient(
     url: env.GQL_API_URL,
     exchanges: [fetchExchange],
   },
-  false
+  false,
 )!;

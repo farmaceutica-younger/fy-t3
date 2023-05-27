@@ -31,7 +31,7 @@ export default CardPage;
 
 const getCards = async () => {
   const cards = await readCsv(
-    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQIXeEIa0Df5Cof019rz-6oZTqwn2x2HG0KsWF-T6_wc7SVw2ywMsT8upjo4KbhUz2WGCzcCvkYRNi5/pub?gid=0&single=true&output=csv"
+    "https://docs.google.com/spreadsheets/d/e/2PACX-1vQIXeEIa0Df5Cof019rz-6oZTqwn2x2HG0KsWF-T6_wc7SVw2ywMsT8upjo4KbhUz2WGCzcCvkYRNi5/pub?gid=0&single=true&output=csv",
   );
   return cards;
 };

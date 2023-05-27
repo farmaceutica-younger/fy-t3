@@ -4,7 +4,7 @@ export const pageview = (url: string) => {
     process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS,
     {
       page_path: url,
-    }
+    },
   );
 };
 

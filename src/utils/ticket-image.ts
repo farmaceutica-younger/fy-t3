@@ -4,7 +4,7 @@ import { formatDate, formatTime } from "~/utils/dates";
 export function getTicketImage(
   ticket: Pick<EventTicket, "avatar" | "firstName" | "ticketNum">,
   event: Pick<Event, "title" | "startDate" | "endDate" | "location">,
-  transparent = false
+  transparent = false,
 ) {
   const query = {
     name: ticket.firstName,
@@ -14,7 +14,7 @@ export function getTicketImage(
     event: event.title,
     date: formatDate(event.startDate!),
     time: `${formatTime(event.startDate || new Date())} - ${formatTime(
-      event.endDate || new Date()
+      event.endDate || new Date(),
     )}`,
     transparent: transparent ? "true" : "",
   };

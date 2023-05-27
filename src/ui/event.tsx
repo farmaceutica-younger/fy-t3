@@ -99,7 +99,7 @@ export const EventPage = ({ source, frontmatter, author }: EventProps) => {
                 <p>
                   {getEventDate(
                     new Date(frontmatter.startDate),
-                    new Date(frontmatter.endDate)
+                    new Date(frontmatter.endDate),
                   )}
                 </p>
                 <p>{frontmatter.location}</p>

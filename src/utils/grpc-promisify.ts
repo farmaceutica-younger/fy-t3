@@ -4,13 +4,13 @@ type CbFun<Req, Res> = (
   req: Req,
   metadata: grpc.Metadata,
   options: Partial<grpc.CallOptions>,
-  callback: (error: any, response: Res) => void
+  callback: (error: any, response: Res) => void,
 ) => void;
 
 type AsyncFun<Req, Res> = (
   req: Req,
   metadata?: grpc.Metadata,
-  options?: Partial<grpc.CallOptions>
+  options?: Partial<grpc.CallOptions>,
 ) => Promise<Res>;
 
 type promisify<CB> = CB extends CbFun<infer Req, infer Res>
@@ -25,7 +25,7 @@ function promisify<Req, Res>(cb: CbFun<Req, Res>): promisify<CbFun<Req, Res>> {
   return (
     req: Req,
     metadata: grpc.Metadata = new grpc.Metadata(),
-    options: Partial<grpc.CallOptions> = {}
+    options: Partial<grpc.CallOptions> = {},
   ) =>
     new Promise<Res>((resolve, reject) => {
       cb(req, metadata, options, (err, res) => {
@@ -38,7 +38,7 @@ function promisify<Req, Res>(cb: CbFun<Req, Res>): promisify<CbFun<Req, Res>> {
 }
 
 export function promisifyAll<TClient extends grpc.Client>(
-  client: TClient
+  client: TClient,
 ): promisifyAll<TClient> {
   const methods = Object.getPrototypeOf(client);
 
@@ -51,7 +51,7 @@ export function promisifyAll<TClient extends grpc.Client>(
 }
 
 export function CreateClientContructor<TClient extends grpc.Client>(
-  Cli: ITCli<TClient>
+  Cli: ITCli<TClient>,
 ) {
   return (conf: GrpcClientConfig) => {
     const credentials = conf.skipTLS
@@ -67,7 +67,7 @@ interface ITCli<TClient extends grpc.Client> {
   new (
     address: string,
     credentials: grpc.ChannelCredentials,
-    options?: Partial<grpc.ChannelOptions>
+    options?: Partial<grpc.ChannelOptions>,
   ): TClient;
 }
 

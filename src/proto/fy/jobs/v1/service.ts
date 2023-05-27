@@ -126,7 +126,7 @@ function createBaseGetJobsReq(): GetJobsReq {
 export const GetJobsReq = {
   encode(
     message: GetJobsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.companyIds) {
       writer.uint32(10).string(v!);
@@ -205,7 +205,7 @@ export const GetJobsReq = {
   },
 
   fromPartial<I extends Exact<DeepPartial<GetJobsReq>, I>>(
-    object: I
+    object: I,
   ): GetJobsReq {
     const message = createBaseGetJobsReq();
     message.companyIds = object.companyIds?.map((e) => e) || [];
@@ -223,7 +223,7 @@ function createBaseGetJobsRes(): GetJobsRes {
 export const GetJobsRes = {
   encode(
     message: GetJobsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.jobs) {
       Job.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -272,7 +272,7 @@ export const GetJobsRes = {
   },
 
   fromPartial<I extends Exact<DeepPartial<GetJobsRes>, I>>(
-    object: I
+    object: I,
   ): GetJobsRes {
     const message = createBaseGetJobsRes();
     message.jobs = object.jobs?.map((e) => Job.fromPartial(e)) || [];
@@ -287,7 +287,7 @@ function createBaseCountJobsReq(): CountJobsReq {
 export const CountJobsReq = {
   encode(
     message: CountJobsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.companyIds) {
       writer.uint32(10).string(v!);
@@ -346,13 +346,13 @@ export const CountJobsReq = {
   },
 
   create<I extends Exact<DeepPartial<CountJobsReq>, I>>(
-    base?: I
+    base?: I,
   ): CountJobsReq {
     return CountJobsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CountJobsReq>, I>>(
-    object: I
+    object: I,
   ): CountJobsReq {
     const message = createBaseCountJobsReq();
     message.companyIds = object.companyIds?.map((e) => e) || [];
@@ -368,7 +368,7 @@ function createBaseCountJobsRes(): CountJobsRes {
 export const CountJobsRes = {
   encode(
     message: CountJobsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.total !== 0) {
       writer.uint32(8).uint32(message.total);
@@ -405,13 +405,13 @@ export const CountJobsRes = {
   },
 
   create<I extends Exact<DeepPartial<CountJobsRes>, I>>(
-    base?: I
+    base?: I,
   ): CountJobsRes {
     return CountJobsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CountJobsRes>, I>>(
-    object: I
+    object: I,
   ): CountJobsRes {
     const message = createBaseCountJobsRes();
     message.total = object.total ?? 0;
@@ -426,7 +426,7 @@ function createBaseCreateJobsReq(): CreateJobsReq {
 export const CreateJobsReq = {
   encode(
     message: CreateJobsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.jobs) {
       CreateJobData.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -464,7 +464,7 @@ export const CreateJobsReq = {
     const obj: any = {};
     if (message.jobs) {
       obj.jobs = message.jobs.map((e) =>
-        e ? CreateJobData.toJSON(e) : undefined
+        e ? CreateJobData.toJSON(e) : undefined,
       );
     } else {
       obj.jobs = [];
@@ -473,13 +473,13 @@ export const CreateJobsReq = {
   },
 
   create<I extends Exact<DeepPartial<CreateJobsReq>, I>>(
-    base?: I
+    base?: I,
   ): CreateJobsReq {
     return CreateJobsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateJobsReq>, I>>(
-    object: I
+    object: I,
   ): CreateJobsReq {
     const message = createBaseCreateJobsReq();
     message.jobs = object.jobs?.map((e) => CreateJobData.fromPartial(e)) || [];
@@ -501,7 +501,7 @@ function createBaseCreateJobData(): CreateJobData {
 export const CreateJobData = {
   encode(
     message: CreateJobData,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.title !== "") {
       writer.uint32(10).string(message.title);
@@ -521,7 +521,7 @@ export const CreateJobData = {
     if (message.postedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.postedAt),
-        writer.uint32(50).fork()
+        writer.uint32(50).fork(),
       ).ldelim();
     }
     return writer;
@@ -551,7 +551,7 @@ export const CreateJobData = {
           break;
         case 6:
           message.postedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -589,13 +589,13 @@ export const CreateJobData = {
   },
 
   create<I extends Exact<DeepPartial<CreateJobData>, I>>(
-    base?: I
+    base?: I,
   ): CreateJobData {
     return CreateJobData.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateJobData>, I>>(
-    object: I
+    object: I,
   ): CreateJobData {
     const message = createBaseCreateJobData();
     message.title = object.title ?? "";
@@ -615,7 +615,7 @@ function createBaseCreateJobsRes(): CreateJobsRes {
 export const CreateJobsRes = {
   encode(
     _: CreateJobsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     return writer;
   },
@@ -645,13 +645,13 @@ export const CreateJobsRes = {
   },
 
   create<I extends Exact<DeepPartial<CreateJobsRes>, I>>(
-    base?: I
+    base?: I,
   ): CreateJobsRes {
     return CreateJobsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateJobsRes>, I>>(
-    _: I
+    _: I,
   ): CreateJobsRes {
     const message = createBaseCreateJobsRes();
     return message;
@@ -665,7 +665,7 @@ function createBaseGetSponsoredJobsReq(): GetSponsoredJobsReq {
 export const GetSponsoredJobsReq = {
   encode(
     message: GetSponsoredJobsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.skip !== 0) {
       writer.uint32(8).uint32(message.skip);
@@ -720,13 +720,13 @@ export const GetSponsoredJobsReq = {
   },
 
   create<I extends Exact<DeepPartial<GetSponsoredJobsReq>, I>>(
-    base?: I
+    base?: I,
   ): GetSponsoredJobsReq {
     return GetSponsoredJobsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetSponsoredJobsReq>, I>>(
-    object: I
+    object: I,
   ): GetSponsoredJobsReq {
     const message = createBaseGetSponsoredJobsReq();
     message.skip = object.skip ?? 0;
@@ -743,7 +743,7 @@ function createBaseGetSponsoredJobsRes(): GetSponsoredJobsRes {
 export const GetSponsoredJobsRes = {
   encode(
     message: GetSponsoredJobsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.jobs) {
       SponsoredJob.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -788,7 +788,7 @@ export const GetSponsoredJobsRes = {
     const obj: any = {};
     if (message.jobs) {
       obj.jobs = message.jobs.map((e) =>
-        e ? SponsoredJob.toJSON(e) : undefined
+        e ? SponsoredJob.toJSON(e) : undefined,
       );
     } else {
       obj.jobs = [];
@@ -798,13 +798,13 @@ export const GetSponsoredJobsRes = {
   },
 
   create<I extends Exact<DeepPartial<GetSponsoredJobsRes>, I>>(
-    base?: I
+    base?: I,
   ): GetSponsoredJobsRes {
     return GetSponsoredJobsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetSponsoredJobsRes>, I>>(
-    object: I
+    object: I,
   ): GetSponsoredJobsRes {
     const message = createBaseGetSponsoredJobsRes();
     message.jobs = object.jobs?.map((e) => SponsoredJob.fromPartial(e)) || [];
@@ -820,7 +820,7 @@ function createBaseGetSponsoredJobReq(): GetSponsoredJobReq {
 export const GetSponsoredJobReq = {
   encode(
     message: GetSponsoredJobReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.jobId !== "") {
       writer.uint32(10).string(message.jobId);
@@ -857,13 +857,13 @@ export const GetSponsoredJobReq = {
   },
 
   create<I extends Exact<DeepPartial<GetSponsoredJobReq>, I>>(
-    base?: I
+    base?: I,
   ): GetSponsoredJobReq {
     return GetSponsoredJobReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetSponsoredJobReq>, I>>(
-    object: I
+    object: I,
   ): GetSponsoredJobReq {
     const message = createBaseGetSponsoredJobReq();
     message.jobId = object.jobId ?? "";
@@ -878,7 +878,7 @@ function createBaseGetSponsoredJobRes(): GetSponsoredJobRes {
 export const GetSponsoredJobRes = {
   encode(
     message: GetSponsoredJobRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.job !== undefined) {
       SponsoredJob.encode(message.job, writer.uint32(10).fork()).ldelim();
@@ -918,13 +918,13 @@ export const GetSponsoredJobRes = {
   },
 
   create<I extends Exact<DeepPartial<GetSponsoredJobRes>, I>>(
-    base?: I
+    base?: I,
   ): GetSponsoredJobRes {
     return GetSponsoredJobRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetSponsoredJobRes>, I>>(
-    object: I
+    object: I,
   ): GetSponsoredJobRes {
     const message = createBaseGetSponsoredJobRes();
     message.job =
@@ -955,7 +955,7 @@ function createBaseCreateSponsoredJobReq(): CreateSponsoredJobReq {
 export const CreateSponsoredJobReq = {
   encode(
     message: CreateSponsoredJobReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.title !== "") {
       writer.uint32(18).string(message.title);
@@ -990,13 +990,13 @@ export const CreateSponsoredJobReq = {
     if (message.publicStartDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.publicStartDate),
-        writer.uint32(98).fork()
+        writer.uint32(98).fork(),
       ).ldelim();
     }
     if (message.publicEndDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.publicEndDate),
-        writer.uint32(106).fork()
+        writer.uint32(106).fork(),
       ).ldelim();
     }
     return writer;
@@ -1004,7 +1004,7 @@ export const CreateSponsoredJobReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): CreateSponsoredJobReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1044,12 +1044,12 @@ export const CreateSponsoredJobReq = {
           break;
         case 12:
           message.publicStartDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 13:
           message.publicEndDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -1110,13 +1110,13 @@ export const CreateSponsoredJobReq = {
   },
 
   create<I extends Exact<DeepPartial<CreateSponsoredJobReq>, I>>(
-    base?: I
+    base?: I,
   ): CreateSponsoredJobReq {
     return CreateSponsoredJobReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateSponsoredJobReq>, I>>(
-    object: I
+    object: I,
   ): CreateSponsoredJobReq {
     const message = createBaseCreateSponsoredJobReq();
     message.title = object.title ?? "";
@@ -1142,7 +1142,7 @@ function createBaseCreateSponsoredJobRes(): CreateSponsoredJobRes {
 export const CreateSponsoredJobRes = {
   encode(
     message: CreateSponsoredJobRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.job !== undefined) {
       SponsoredJob.encode(message.job, writer.uint32(10).fork()).ldelim();
@@ -1152,7 +1152,7 @@ export const CreateSponsoredJobRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): CreateSponsoredJobRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1185,13 +1185,13 @@ export const CreateSponsoredJobRes = {
   },
 
   create<I extends Exact<DeepPartial<CreateSponsoredJobRes>, I>>(
-    base?: I
+    base?: I,
   ): CreateSponsoredJobRes {
     return CreateSponsoredJobRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateSponsoredJobRes>, I>>(
-    object: I
+    object: I,
   ): CreateSponsoredJobRes {
     const message = createBaseCreateSponsoredJobRes();
     message.job =
@@ -1224,7 +1224,7 @@ function createBaseUpdateSponsoredJobReq(): UpdateSponsoredJobReq {
 export const UpdateSponsoredJobReq = {
   encode(
     message: UpdateSponsoredJobReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.jobId !== "") {
       writer.uint32(10).string(message.jobId);
@@ -1262,13 +1262,13 @@ export const UpdateSponsoredJobReq = {
     if (message.publicStartDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.publicStartDate),
-        writer.uint32(98).fork()
+        writer.uint32(98).fork(),
       ).ldelim();
     }
     if (message.publicEndDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.publicEndDate),
-        writer.uint32(106).fork()
+        writer.uint32(106).fork(),
       ).ldelim();
     }
     if (message.draft !== undefined) {
@@ -1279,7 +1279,7 @@ export const UpdateSponsoredJobReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): UpdateSponsoredJobReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1322,12 +1322,12 @@ export const UpdateSponsoredJobReq = {
           break;
         case 12:
           message.publicStartDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 13:
           message.publicEndDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 18:
@@ -1403,13 +1403,13 @@ export const UpdateSponsoredJobReq = {
   },
 
   create<I extends Exact<DeepPartial<UpdateSponsoredJobReq>, I>>(
-    base?: I
+    base?: I,
   ): UpdateSponsoredJobReq {
     return UpdateSponsoredJobReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<UpdateSponsoredJobReq>, I>>(
-    object: I
+    object: I,
   ): UpdateSponsoredJobReq {
     const message = createBaseUpdateSponsoredJobReq();
     message.jobId = object.jobId ?? "";
@@ -1437,7 +1437,7 @@ function createBaseUpdateSponsoredJobRes(): UpdateSponsoredJobRes {
 export const UpdateSponsoredJobRes = {
   encode(
     message: UpdateSponsoredJobRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.job !== undefined) {
       SponsoredJob.encode(message.job, writer.uint32(10).fork()).ldelim();
@@ -1447,7 +1447,7 @@ export const UpdateSponsoredJobRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): UpdateSponsoredJobRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1480,13 +1480,13 @@ export const UpdateSponsoredJobRes = {
   },
 
   create<I extends Exact<DeepPartial<UpdateSponsoredJobRes>, I>>(
-    base?: I
+    base?: I,
   ): UpdateSponsoredJobRes {
     return UpdateSponsoredJobRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<UpdateSponsoredJobRes>, I>>(
-    object: I
+    object: I,
   ): UpdateSponsoredJobRes {
     const message = createBaseUpdateSponsoredJobRes();
     message.job =
@@ -1504,7 +1504,7 @@ function createBaseDeleteSponsoredJobReq(): DeleteSponsoredJobReq {
 export const DeleteSponsoredJobReq = {
   encode(
     message: DeleteSponsoredJobReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.jobId !== "") {
       writer.uint32(10).string(message.jobId);
@@ -1514,7 +1514,7 @@ export const DeleteSponsoredJobReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): DeleteSponsoredJobReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1544,13 +1544,13 @@ export const DeleteSponsoredJobReq = {
   },
 
   create<I extends Exact<DeepPartial<DeleteSponsoredJobReq>, I>>(
-    base?: I
+    base?: I,
   ): DeleteSponsoredJobReq {
     return DeleteSponsoredJobReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<DeleteSponsoredJobReq>, I>>(
-    object: I
+    object: I,
   ): DeleteSponsoredJobReq {
     const message = createBaseDeleteSponsoredJobReq();
     message.jobId = object.jobId ?? "";
@@ -1565,7 +1565,7 @@ function createBaseDeleteSponsoredJobRes(): DeleteSponsoredJobRes {
 export const DeleteSponsoredJobRes = {
   encode(
     message: DeleteSponsoredJobRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.job !== undefined) {
       SponsoredJob.encode(message.job, writer.uint32(10).fork()).ldelim();
@@ -1575,7 +1575,7 @@ export const DeleteSponsoredJobRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): DeleteSponsoredJobRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1608,13 +1608,13 @@ export const DeleteSponsoredJobRes = {
   },
 
   create<I extends Exact<DeepPartial<DeleteSponsoredJobRes>, I>>(
-    base?: I
+    base?: I,
   ): DeleteSponsoredJobRes {
     return DeleteSponsoredJobRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<DeleteSponsoredJobRes>, I>>(
-    object: I
+    object: I,
   ): DeleteSponsoredJobRes {
     const message = createBaseDeleteSponsoredJobRes();
     message.job =
@@ -1740,63 +1740,63 @@ export interface JobsSrvServer extends UntypedServiceImplementation {
 export interface JobsSrvClient extends Client {
   getJobs(
     request: GetJobsReq,
-    callback: (error: ServiceError | null, response: GetJobsRes) => void
+    callback: (error: ServiceError | null, response: GetJobsRes) => void,
   ): ClientUnaryCall;
   getJobs(
     request: GetJobsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetJobsRes) => void
+    callback: (error: ServiceError | null, response: GetJobsRes) => void,
   ): ClientUnaryCall;
   getJobs(
     request: GetJobsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetJobsRes) => void
+    callback: (error: ServiceError | null, response: GetJobsRes) => void,
   ): ClientUnaryCall;
   countJobs(
     request: CountJobsReq,
-    callback: (error: ServiceError | null, response: CountJobsRes) => void
+    callback: (error: ServiceError | null, response: CountJobsRes) => void,
   ): ClientUnaryCall;
   countJobs(
     request: CountJobsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: CountJobsRes) => void
+    callback: (error: ServiceError | null, response: CountJobsRes) => void,
   ): ClientUnaryCall;
   countJobs(
     request: CountJobsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: CountJobsRes) => void
+    callback: (error: ServiceError | null, response: CountJobsRes) => void,
   ): ClientUnaryCall;
   createJobs(
     request: CreateJobsReq,
-    callback: (error: ServiceError | null, response: CreateJobsRes) => void
+    callback: (error: ServiceError | null, response: CreateJobsRes) => void,
   ): ClientUnaryCall;
   createJobs(
     request: CreateJobsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: CreateJobsRes) => void
+    callback: (error: ServiceError | null, response: CreateJobsRes) => void,
   ): ClientUnaryCall;
   createJobs(
     request: CreateJobsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: CreateJobsRes) => void
+    callback: (error: ServiceError | null, response: CreateJobsRes) => void,
   ): ClientUnaryCall;
   getSponsoredJobs(
     request: GetSponsoredJobsReq,
     callback: (
       error: ServiceError | null,
-      response: GetSponsoredJobsRes
-    ) => void
+      response: GetSponsoredJobsRes,
+    ) => void,
   ): ClientUnaryCall;
   getSponsoredJobs(
     request: GetSponsoredJobsReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: GetSponsoredJobsRes
-    ) => void
+      response: GetSponsoredJobsRes,
+    ) => void,
   ): ClientUnaryCall;
   getSponsoredJobs(
     request: GetSponsoredJobsReq,
@@ -1804,38 +1804,47 @@ export interface JobsSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: GetSponsoredJobsRes
-    ) => void
+      response: GetSponsoredJobsRes,
+    ) => void,
   ): ClientUnaryCall;
   getSponsoredJob(
     request: GetSponsoredJobReq,
-    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   getSponsoredJob(
     request: GetSponsoredJobReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   getSponsoredJob(
     request: GetSponsoredJobReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetSponsoredJobRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   createSponsoredJob(
     request: CreateSponsoredJobReq,
     callback: (
       error: ServiceError | null,
-      response: CreateSponsoredJobRes
-    ) => void
+      response: CreateSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   createSponsoredJob(
     request: CreateSponsoredJobReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: CreateSponsoredJobRes
-    ) => void
+      response: CreateSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   createSponsoredJob(
     request: CreateSponsoredJobReq,
@@ -1843,23 +1852,23 @@ export interface JobsSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: CreateSponsoredJobRes
-    ) => void
+      response: CreateSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   updateSponsoredJob(
     request: UpdateSponsoredJobReq,
     callback: (
       error: ServiceError | null,
-      response: UpdateSponsoredJobRes
-    ) => void
+      response: UpdateSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   updateSponsoredJob(
     request: UpdateSponsoredJobReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: UpdateSponsoredJobRes
-    ) => void
+      response: UpdateSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   updateSponsoredJob(
     request: UpdateSponsoredJobReq,
@@ -1867,23 +1876,23 @@ export interface JobsSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: UpdateSponsoredJobRes
-    ) => void
+      response: UpdateSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   deleteSponsoredJob(
     request: DeleteSponsoredJobReq,
     callback: (
       error: ServiceError | null,
-      response: DeleteSponsoredJobRes
-    ) => void
+      response: DeleteSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   deleteSponsoredJob(
     request: DeleteSponsoredJobReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: DeleteSponsoredJobRes
-    ) => void
+      response: DeleteSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
   deleteSponsoredJob(
     request: DeleteSponsoredJobReq,
@@ -1891,19 +1900,19 @@ export interface JobsSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: DeleteSponsoredJobRes
-    ) => void
+      response: DeleteSponsoredJobRes,
+    ) => void,
   ): ClientUnaryCall;
 }
 
 export const JobsSrvClient = makeGenericClientConstructor(
   JobsSrvService,
-  "fy.jobs.v1.JobsSrv"
+  "fy.jobs.v1.JobsSrv",
 ) as unknown as {
   new (
     address: string,
     credentials: ChannelCredentials,
-    options?: Partial<ClientOptions>
+    options?: Partial<ClientOptions>,
   ): JobsSrvClient;
   service: typeof JobsSrvService;
 };

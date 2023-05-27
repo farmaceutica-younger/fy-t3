@@ -34,7 +34,7 @@ type GetCloundinaryDataFunc = () => Promise<{
 export const cloudinaryUploadImage = async (
   file: Blob,
   getData: GetCloundinaryDataFunc,
-  onUploadProgress?: (progressEvent: AxiosProgressEvent) => void
+  onUploadProgress?: (progressEvent: AxiosProgressEvent) => void,
 ): Promise<string> => {
   const uploadInfo = await getData();
   const formData = new FormData();

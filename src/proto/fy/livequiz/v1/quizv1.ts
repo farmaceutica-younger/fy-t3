@@ -121,7 +121,7 @@ function createBaseGetLiveQuizReq(): GetLiveQuizReq {
 export const GetLiveQuizReq = {
   encode(
     message: GetLiveQuizReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -158,13 +158,13 @@ export const GetLiveQuizReq = {
   },
 
   create<I extends Exact<DeepPartial<GetLiveQuizReq>, I>>(
-    base?: I
+    base?: I,
   ): GetLiveQuizReq {
     return GetLiveQuizReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetLiveQuizReq>, I>>(
-    object: I
+    object: I,
   ): GetLiveQuizReq {
     const message = createBaseGetLiveQuizReq();
     message.quizId = object.quizId ?? "";
@@ -179,7 +179,7 @@ function createBaseGetLiveQuizRes(): GetLiveQuizRes {
 export const GetLiveQuizRes = {
   encode(
     message: GetLiveQuizRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quiz !== undefined) {
       LiveQuiz.encode(message.quiz, writer.uint32(10).fork()).ldelim();
@@ -219,13 +219,13 @@ export const GetLiveQuizRes = {
   },
 
   create<I extends Exact<DeepPartial<GetLiveQuizRes>, I>>(
-    base?: I
+    base?: I,
   ): GetLiveQuizRes {
     return GetLiveQuizRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetLiveQuizRes>, I>>(
-    object: I
+    object: I,
   ): GetLiveQuizRes {
     const message = createBaseGetLiveQuizRes();
     message.quiz =
@@ -243,7 +243,7 @@ function createBaseGetLiveQuizQuestionReq(): GetLiveQuizQuestionReq {
 export const GetLiveQuizQuestionReq = {
   encode(
     message: GetLiveQuizQuestionReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -256,7 +256,7 @@ export const GetLiveQuizQuestionReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetLiveQuizQuestionReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -293,13 +293,13 @@ export const GetLiveQuizQuestionReq = {
   },
 
   create<I extends Exact<DeepPartial<GetLiveQuizQuestionReq>, I>>(
-    base?: I
+    base?: I,
   ): GetLiveQuizQuestionReq {
     return GetLiveQuizQuestionReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetLiveQuizQuestionReq>, I>>(
-    object: I
+    object: I,
   ): GetLiveQuizQuestionReq {
     const message = createBaseGetLiveQuizQuestionReq();
     message.quizId = object.quizId ?? "";
@@ -315,7 +315,7 @@ function createBaseGetLiveQuizQuestionRes(): GetLiveQuizQuestionRes {
 export const GetLiveQuizQuestionRes = {
   encode(
     message: GetLiveQuizQuestionRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.question !== undefined) {
       Question.encode(message.question, writer.uint32(10).fork()).ldelim();
@@ -325,7 +325,7 @@ export const GetLiveQuizQuestionRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetLiveQuizQuestionRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -362,13 +362,13 @@ export const GetLiveQuizQuestionRes = {
   },
 
   create<I extends Exact<DeepPartial<GetLiveQuizQuestionRes>, I>>(
-    base?: I
+    base?: I,
   ): GetLiveQuizQuestionRes {
     return GetLiveQuizQuestionRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetLiveQuizQuestionRes>, I>>(
-    object: I
+    object: I,
   ): GetLiveQuizQuestionRes {
     const message = createBaseGetLiveQuizQuestionRes();
     message.question =
@@ -386,7 +386,7 @@ function createBaseGetLiveQuizQuestionsReq(): GetLiveQuizQuestionsReq {
 export const GetLiveQuizQuestionsReq = {
   encode(
     message: GetLiveQuizQuestionsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -396,7 +396,7 @@ export const GetLiveQuizQuestionsReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetLiveQuizQuestionsReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -426,13 +426,13 @@ export const GetLiveQuizQuestionsReq = {
   },
 
   create<I extends Exact<DeepPartial<GetLiveQuizQuestionsReq>, I>>(
-    base?: I
+    base?: I,
   ): GetLiveQuizQuestionsReq {
     return GetLiveQuizQuestionsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetLiveQuizQuestionsReq>, I>>(
-    object: I
+    object: I,
   ): GetLiveQuizQuestionsReq {
     const message = createBaseGetLiveQuizQuestionsReq();
     message.quizId = object.quizId ?? "";
@@ -447,7 +447,7 @@ function createBaseGetLiveQuizQuestionsRes(): GetLiveQuizQuestionsRes {
 export const GetLiveQuizQuestionsRes = {
   encode(
     message: GetLiveQuizQuestionsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.questions) {
       Question.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -460,7 +460,7 @@ export const GetLiveQuizQuestionsRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetLiveQuizQuestionsRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -495,7 +495,7 @@ export const GetLiveQuizQuestionsRes = {
     const obj: any = {};
     if (message.questions) {
       obj.questions = message.questions.map((e) =>
-        e ? Question.toJSON(e) : undefined
+        e ? Question.toJSON(e) : undefined,
       );
     } else {
       obj.questions = [];
@@ -505,13 +505,13 @@ export const GetLiveQuizQuestionsRes = {
   },
 
   create<I extends Exact<DeepPartial<GetLiveQuizQuestionsRes>, I>>(
-    base?: I
+    base?: I,
   ): GetLiveQuizQuestionsRes {
     return GetLiveQuizQuestionsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetLiveQuizQuestionsRes>, I>>(
-    object: I
+    object: I,
   ): GetLiveQuizQuestionsRes {
     const message = createBaseGetLiveQuizQuestionsRes();
     message.questions =
@@ -528,7 +528,7 @@ function createBaseSetQuizStatusEmptyReq(): SetQuizStatusEmptyReq {
 export const SetQuizStatusEmptyReq = {
   encode(
     message: SetQuizStatusEmptyReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -538,7 +538,7 @@ export const SetQuizStatusEmptyReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): SetQuizStatusEmptyReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -568,13 +568,13 @@ export const SetQuizStatusEmptyReq = {
   },
 
   create<I extends Exact<DeepPartial<SetQuizStatusEmptyReq>, I>>(
-    base?: I
+    base?: I,
   ): SetQuizStatusEmptyReq {
     return SetQuizStatusEmptyReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SetQuizStatusEmptyReq>, I>>(
-    object: I
+    object: I,
   ): SetQuizStatusEmptyReq {
     const message = createBaseSetQuizStatusEmptyReq();
     message.quizId = object.quizId ?? "";
@@ -589,7 +589,7 @@ function createBaseSetQuizStatusEmptyRes(): SetQuizStatusEmptyRes {
 export const SetQuizStatusEmptyRes = {
   encode(
     message: SetQuizStatusEmptyRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quiz !== undefined) {
       LiveQuiz.encode(message.quiz, writer.uint32(10).fork()).ldelim();
@@ -599,7 +599,7 @@ export const SetQuizStatusEmptyRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): SetQuizStatusEmptyRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -632,13 +632,13 @@ export const SetQuizStatusEmptyRes = {
   },
 
   create<I extends Exact<DeepPartial<SetQuizStatusEmptyRes>, I>>(
-    base?: I
+    base?: I,
   ): SetQuizStatusEmptyRes {
     return SetQuizStatusEmptyRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SetQuizStatusEmptyRes>, I>>(
-    object: I
+    object: I,
   ): SetQuizStatusEmptyRes {
     const message = createBaseSetQuizStatusEmptyRes();
     message.quiz =
@@ -656,7 +656,7 @@ function createBaseSetQuizStatusRankReq(): SetQuizStatusRankReq {
 export const SetQuizStatusRankReq = {
   encode(
     message: SetQuizStatusRankReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -666,7 +666,7 @@ export const SetQuizStatusRankReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): SetQuizStatusRankReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -696,13 +696,13 @@ export const SetQuizStatusRankReq = {
   },
 
   create<I extends Exact<DeepPartial<SetQuizStatusRankReq>, I>>(
-    base?: I
+    base?: I,
   ): SetQuizStatusRankReq {
     return SetQuizStatusRankReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SetQuizStatusRankReq>, I>>(
-    object: I
+    object: I,
   ): SetQuizStatusRankReq {
     const message = createBaseSetQuizStatusRankReq();
     message.quizId = object.quizId ?? "";
@@ -717,7 +717,7 @@ function createBaseSetQuizStatusRankRes(): SetQuizStatusRankRes {
 export const SetQuizStatusRankRes = {
   encode(
     message: SetQuizStatusRankRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quiz !== undefined) {
       LiveQuiz.encode(message.quiz, writer.uint32(10).fork()).ldelim();
@@ -727,7 +727,7 @@ export const SetQuizStatusRankRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): SetQuizStatusRankRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -760,13 +760,13 @@ export const SetQuizStatusRankRes = {
   },
 
   create<I extends Exact<DeepPartial<SetQuizStatusRankRes>, I>>(
-    base?: I
+    base?: I,
   ): SetQuizStatusRankRes {
     return SetQuizStatusRankRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SetQuizStatusRankRes>, I>>(
-    object: I
+    object: I,
   ): SetQuizStatusRankRes {
     const message = createBaseSetQuizStatusRankRes();
     message.quiz =
@@ -784,7 +784,7 @@ function createBaseSetQuizStatusQuestionReq(): SetQuizStatusQuestionReq {
 export const SetQuizStatusQuestionReq = {
   encode(
     message: SetQuizStatusQuestionReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -797,7 +797,7 @@ export const SetQuizStatusQuestionReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): SetQuizStatusQuestionReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -834,13 +834,13 @@ export const SetQuizStatusQuestionReq = {
   },
 
   create<I extends Exact<DeepPartial<SetQuizStatusQuestionReq>, I>>(
-    base?: I
+    base?: I,
   ): SetQuizStatusQuestionReq {
     return SetQuizStatusQuestionReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SetQuizStatusQuestionReq>, I>>(
-    object: I
+    object: I,
   ): SetQuizStatusQuestionReq {
     const message = createBaseSetQuizStatusQuestionReq();
     message.quizId = object.quizId ?? "";
@@ -856,7 +856,7 @@ function createBaseSetQuizStatusQuestionRes(): SetQuizStatusQuestionRes {
 export const SetQuizStatusQuestionRes = {
   encode(
     message: SetQuizStatusQuestionRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quiz !== undefined) {
       LiveQuiz.encode(message.quiz, writer.uint32(10).fork()).ldelim();
@@ -866,7 +866,7 @@ export const SetQuizStatusQuestionRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): SetQuizStatusQuestionRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -899,13 +899,13 @@ export const SetQuizStatusQuestionRes = {
   },
 
   create<I extends Exact<DeepPartial<SetQuizStatusQuestionRes>, I>>(
-    base?: I
+    base?: I,
   ): SetQuizStatusQuestionRes {
     return SetQuizStatusQuestionRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SetQuizStatusQuestionRes>, I>>(
-    object: I
+    object: I,
   ): SetQuizStatusQuestionRes {
     const message = createBaseSetQuizStatusQuestionRes();
     message.quiz =
@@ -923,7 +923,7 @@ function createBaseRegisterParticipantReq(): RegisterParticipantReq {
 export const RegisterParticipantReq = {
   encode(
     message: RegisterParticipantReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -939,7 +939,7 @@ export const RegisterParticipantReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): RegisterParticipantReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -981,13 +981,13 @@ export const RegisterParticipantReq = {
   },
 
   create<I extends Exact<DeepPartial<RegisterParticipantReq>, I>>(
-    base?: I
+    base?: I,
   ): RegisterParticipantReq {
     return RegisterParticipantReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<RegisterParticipantReq>, I>>(
-    object: I
+    object: I,
   ): RegisterParticipantReq {
     const message = createBaseRegisterParticipantReq();
     message.quizId = object.quizId ?? "";
@@ -1004,12 +1004,12 @@ function createBaseRegisterParticipantRes(): RegisterParticipantRes {
 export const RegisterParticipantRes = {
   encode(
     message: RegisterParticipantRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.participant !== undefined) {
       Participant.encode(
         message.participant,
-        writer.uint32(10).fork()
+        writer.uint32(10).fork(),
       ).ldelim();
     }
     return writer;
@@ -1017,7 +1017,7 @@ export const RegisterParticipantRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): RegisterParticipantRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1054,13 +1054,13 @@ export const RegisterParticipantRes = {
   },
 
   create<I extends Exact<DeepPartial<RegisterParticipantRes>, I>>(
-    base?: I
+    base?: I,
   ): RegisterParticipantRes {
     return RegisterParticipantRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<RegisterParticipantRes>, I>>(
-    object: I
+    object: I,
   ): RegisterParticipantRes {
     const message = createBaseRegisterParticipantRes();
     message.participant =
@@ -1078,7 +1078,7 @@ function createBaseGetParticipantsReq(): GetParticipantsReq {
 export const GetParticipantsReq = {
   encode(
     message: GetParticipantsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -1133,13 +1133,13 @@ export const GetParticipantsReq = {
   },
 
   create<I extends Exact<DeepPartial<GetParticipantsReq>, I>>(
-    base?: I
+    base?: I,
   ): GetParticipantsReq {
     return GetParticipantsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetParticipantsReq>, I>>(
-    object: I
+    object: I,
   ): GetParticipantsReq {
     const message = createBaseGetParticipantsReq();
     message.quizId = object.quizId ?? "";
@@ -1156,7 +1156,7 @@ function createBaseGetParticipantsRes(): GetParticipantsRes {
 export const GetParticipantsRes = {
   encode(
     message: GetParticipantsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.participants) {
       Participant.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -1176,7 +1176,7 @@ export const GetParticipantsRes = {
       switch (tag >>> 3) {
         case 1:
           message.participants.push(
-            Participant.decode(reader, reader.uint32())
+            Participant.decode(reader, reader.uint32()),
           );
           break;
         case 2:
@@ -1203,7 +1203,7 @@ export const GetParticipantsRes = {
     const obj: any = {};
     if (message.participants) {
       obj.participants = message.participants.map((e) =>
-        e ? Participant.toJSON(e) : undefined
+        e ? Participant.toJSON(e) : undefined,
       );
     } else {
       obj.participants = [];
@@ -1213,13 +1213,13 @@ export const GetParticipantsRes = {
   },
 
   create<I extends Exact<DeepPartial<GetParticipantsRes>, I>>(
-    base?: I
+    base?: I,
   ): GetParticipantsRes {
     return GetParticipantsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetParticipantsRes>, I>>(
-    object: I
+    object: I,
   ): GetParticipantsRes {
     const message = createBaseGetParticipantsRes();
     message.participants =
@@ -1236,7 +1236,7 @@ function createBaseGetParticipantReq(): GetParticipantReq {
 export const GetParticipantReq = {
   encode(
     message: GetParticipantReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -1286,13 +1286,13 @@ export const GetParticipantReq = {
   },
 
   create<I extends Exact<DeepPartial<GetParticipantReq>, I>>(
-    base?: I
+    base?: I,
   ): GetParticipantReq {
     return GetParticipantReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetParticipantReq>, I>>(
-    object: I
+    object: I,
   ): GetParticipantReq {
     const message = createBaseGetParticipantReq();
     message.quizId = object.quizId ?? "";
@@ -1308,12 +1308,12 @@ function createBaseGetParticipantRes(): GetParticipantRes {
 export const GetParticipantRes = {
   encode(
     message: GetParticipantRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.participant !== undefined) {
       Participant.encode(
         message.participant,
-        writer.uint32(10).fork()
+        writer.uint32(10).fork(),
       ).ldelim();
     }
     return writer;
@@ -1355,13 +1355,13 @@ export const GetParticipantRes = {
   },
 
   create<I extends Exact<DeepPartial<GetParticipantRes>, I>>(
-    base?: I
+    base?: I,
   ): GetParticipantRes {
     return GetParticipantRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetParticipantRes>, I>>(
-    object: I
+    object: I,
   ): GetParticipantRes {
     const message = createBaseGetParticipantRes();
     message.participant =
@@ -1379,7 +1379,7 @@ function createBaseSetParticipantAnswerReq(): SetParticipantAnswerReq {
 export const SetParticipantAnswerReq = {
   encode(
     message: SetParticipantAnswerReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -1398,7 +1398,7 @@ export const SetParticipantAnswerReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): SetParticipantAnswerReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1449,13 +1449,13 @@ export const SetParticipantAnswerReq = {
   },
 
   create<I extends Exact<DeepPartial<SetParticipantAnswerReq>, I>>(
-    base?: I
+    base?: I,
   ): SetParticipantAnswerReq {
     return SetParticipantAnswerReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SetParticipantAnswerReq>, I>>(
-    object: I
+    object: I,
   ): SetParticipantAnswerReq {
     const message = createBaseSetParticipantAnswerReq();
     message.quizId = object.quizId ?? "";
@@ -1473,14 +1473,14 @@ function createBaseSetParticipantAnswerRes(): SetParticipantAnswerRes {
 export const SetParticipantAnswerRes = {
   encode(
     _: SetParticipantAnswerRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     return writer;
   },
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): SetParticipantAnswerRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1506,13 +1506,13 @@ export const SetParticipantAnswerRes = {
   },
 
   create<I extends Exact<DeepPartial<SetParticipantAnswerRes>, I>>(
-    base?: I
+    base?: I,
   ): SetParticipantAnswerRes {
     return SetParticipantAnswerRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<SetParticipantAnswerRes>, I>>(
-    _: I
+    _: I,
   ): SetParticipantAnswerRes {
     const message = createBaseSetParticipantAnswerRes();
     return message;
@@ -1526,7 +1526,7 @@ function createBaseGetRancReq(): GetRancReq {
 export const GetRancReq = {
   encode(
     message: GetRancReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.quizId !== "") {
       writer.uint32(10).string(message.quizId);
@@ -1567,7 +1567,7 @@ export const GetRancReq = {
   },
 
   fromPartial<I extends Exact<DeepPartial<GetRancReq>, I>>(
-    object: I
+    object: I,
   ): GetRancReq {
     const message = createBaseGetRancReq();
     message.quizId = object.quizId ?? "";
@@ -1582,7 +1582,7 @@ function createBaseGetRankRes(): GetRankRes {
 export const GetRankRes = {
   encode(
     message: GetRankRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.rank) {
       ParticipantRank.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -1620,7 +1620,7 @@ export const GetRankRes = {
     const obj: any = {};
     if (message.rank) {
       obj.rank = message.rank.map((e) =>
-        e ? ParticipantRank.toJSON(e) : undefined
+        e ? ParticipantRank.toJSON(e) : undefined,
       );
     } else {
       obj.rank = [];
@@ -1633,7 +1633,7 @@ export const GetRankRes = {
   },
 
   fromPartial<I extends Exact<DeepPartial<GetRankRes>, I>>(
-    object: I
+    object: I,
   ): GetRankRes {
     const message = createBaseGetRankRes();
     message.rank =
@@ -1813,33 +1813,33 @@ export interface LiveQuizV1SrvServer extends UntypedServiceImplementation {
 export interface LiveQuizV1SrvClient extends Client {
   getLiveQuiz(
     request: GetLiveQuizReq,
-    callback: (error: ServiceError | null, response: GetLiveQuizRes) => void
+    callback: (error: ServiceError | null, response: GetLiveQuizRes) => void,
   ): ClientUnaryCall;
   getLiveQuiz(
     request: GetLiveQuizReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetLiveQuizRes) => void
+    callback: (error: ServiceError | null, response: GetLiveQuizRes) => void,
   ): ClientUnaryCall;
   getLiveQuiz(
     request: GetLiveQuizReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetLiveQuizRes) => void
+    callback: (error: ServiceError | null, response: GetLiveQuizRes) => void,
   ): ClientUnaryCall;
   getLiveQuizQuestions(
     request: GetLiveQuizQuestionsReq,
     callback: (
       error: ServiceError | null,
-      response: GetLiveQuizQuestionsRes
-    ) => void
+      response: GetLiveQuizQuestionsRes,
+    ) => void,
   ): ClientUnaryCall;
   getLiveQuizQuestions(
     request: GetLiveQuizQuestionsReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: GetLiveQuizQuestionsRes
-    ) => void
+      response: GetLiveQuizQuestionsRes,
+    ) => void,
   ): ClientUnaryCall;
   getLiveQuizQuestions(
     request: GetLiveQuizQuestionsReq,
@@ -1847,23 +1847,23 @@ export interface LiveQuizV1SrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: GetLiveQuizQuestionsRes
-    ) => void
+      response: GetLiveQuizQuestionsRes,
+    ) => void,
   ): ClientUnaryCall;
   getLiveQuizQuestion(
     request: GetLiveQuizQuestionReq,
     callback: (
       error: ServiceError | null,
-      response: GetLiveQuizQuestionRes
-    ) => void
+      response: GetLiveQuizQuestionRes,
+    ) => void,
   ): ClientUnaryCall;
   getLiveQuizQuestion(
     request: GetLiveQuizQuestionReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: GetLiveQuizQuestionRes
-    ) => void
+      response: GetLiveQuizQuestionRes,
+    ) => void,
   ): ClientUnaryCall;
   getLiveQuizQuestion(
     request: GetLiveQuizQuestionReq,
@@ -1871,23 +1871,23 @@ export interface LiveQuizV1SrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: GetLiveQuizQuestionRes
-    ) => void
+      response: GetLiveQuizQuestionRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusEmpty(
     request: SetQuizStatusEmptyReq,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusEmptyRes
-    ) => void
+      response: SetQuizStatusEmptyRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusEmpty(
     request: SetQuizStatusEmptyReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusEmptyRes
-    ) => void
+      response: SetQuizStatusEmptyRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusEmpty(
     request: SetQuizStatusEmptyReq,
@@ -1895,23 +1895,23 @@ export interface LiveQuizV1SrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusEmptyRes
-    ) => void
+      response: SetQuizStatusEmptyRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusRank(
     request: SetQuizStatusRankReq,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusRankRes
-    ) => void
+      response: SetQuizStatusRankRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusRank(
     request: SetQuizStatusRankReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusRankRes
-    ) => void
+      response: SetQuizStatusRankRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusRank(
     request: SetQuizStatusRankReq,
@@ -1919,23 +1919,23 @@ export interface LiveQuizV1SrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusRankRes
-    ) => void
+      response: SetQuizStatusRankRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusQuestion(
     request: SetQuizStatusQuestionReq,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusQuestionRes
-    ) => void
+      response: SetQuizStatusQuestionRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusQuestion(
     request: SetQuizStatusQuestionReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusQuestionRes
-    ) => void
+      response: SetQuizStatusQuestionRes,
+    ) => void,
   ): ClientUnaryCall;
   setQuizStatusQuestion(
     request: SetQuizStatusQuestionReq,
@@ -1943,23 +1943,23 @@ export interface LiveQuizV1SrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: SetQuizStatusQuestionRes
-    ) => void
+      response: SetQuizStatusQuestionRes,
+    ) => void,
   ): ClientUnaryCall;
   registerParticipant(
     request: RegisterParticipantReq,
     callback: (
       error: ServiceError | null,
-      response: RegisterParticipantRes
-    ) => void
+      response: RegisterParticipantRes,
+    ) => void,
   ): ClientUnaryCall;
   registerParticipant(
     request: RegisterParticipantReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: RegisterParticipantRes
-    ) => void
+      response: RegisterParticipantRes,
+    ) => void,
   ): ClientUnaryCall;
   registerParticipant(
     request: RegisterParticipantReq,
@@ -1967,53 +1967,62 @@ export interface LiveQuizV1SrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: RegisterParticipantRes
-    ) => void
+      response: RegisterParticipantRes,
+    ) => void,
   ): ClientUnaryCall;
   getParticipants(
     request: GetParticipantsReq,
-    callback: (error: ServiceError | null, response: GetParticipantsRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetParticipantsRes,
+    ) => void,
   ): ClientUnaryCall;
   getParticipants(
     request: GetParticipantsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetParticipantsRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetParticipantsRes,
+    ) => void,
   ): ClientUnaryCall;
   getParticipants(
     request: GetParticipantsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetParticipantsRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetParticipantsRes,
+    ) => void,
   ): ClientUnaryCall;
   getParticipant(
     request: GetParticipantReq,
-    callback: (error: ServiceError | null, response: GetParticipantRes) => void
+    callback: (error: ServiceError | null, response: GetParticipantRes) => void,
   ): ClientUnaryCall;
   getParticipant(
     request: GetParticipantReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetParticipantRes) => void
+    callback: (error: ServiceError | null, response: GetParticipantRes) => void,
   ): ClientUnaryCall;
   getParticipant(
     request: GetParticipantReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetParticipantRes) => void
+    callback: (error: ServiceError | null, response: GetParticipantRes) => void,
   ): ClientUnaryCall;
   setParticipantAnswer(
     request: SetParticipantAnswerReq,
     callback: (
       error: ServiceError | null,
-      response: SetParticipantAnswerRes
-    ) => void
+      response: SetParticipantAnswerRes,
+    ) => void,
   ): ClientUnaryCall;
   setParticipantAnswer(
     request: SetParticipantAnswerReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: SetParticipantAnswerRes
-    ) => void
+      response: SetParticipantAnswerRes,
+    ) => void,
   ): ClientUnaryCall;
   setParticipantAnswer(
     request: SetParticipantAnswerReq,
@@ -2021,34 +2030,34 @@ export interface LiveQuizV1SrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: SetParticipantAnswerRes
-    ) => void
+      response: SetParticipantAnswerRes,
+    ) => void,
   ): ClientUnaryCall;
   getRank(
     request: GetRancReq,
-    callback: (error: ServiceError | null, response: GetRankRes) => void
+    callback: (error: ServiceError | null, response: GetRankRes) => void,
   ): ClientUnaryCall;
   getRank(
     request: GetRancReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetRankRes) => void
+    callback: (error: ServiceError | null, response: GetRankRes) => void,
   ): ClientUnaryCall;
   getRank(
     request: GetRancReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetRankRes) => void
+    callback: (error: ServiceError | null, response: GetRankRes) => void,
   ): ClientUnaryCall;
 }
 
 export const LiveQuizV1SrvClient = makeGenericClientConstructor(
   LiveQuizV1SrvService,
-  "fy.livequiz.v1.LiveQuizV1Srv"
+  "fy.livequiz.v1.LiveQuizV1Srv",
 ) as unknown as {
   new (
     address: string,
     credentials: ChannelCredentials,
-    options?: Partial<ClientOptions>
+    options?: Partial<ClientOptions>,
   ): LiveQuizV1SrvClient;
   service: typeof LiveQuizV1SrvService;
 };

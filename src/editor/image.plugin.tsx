@@ -71,14 +71,12 @@ export const Image = Node.create<ImageOptions>({
 
   addCommands() {
     return {
-      setImage:
-        (options) =>
-        ({ commands }) => {
-          return commands.insertContent({
-            type: this.name,
-            attrs: options,
-          });
-        },
+      setImage: (options) => ({ commands }) => {
+        return commands.insertContent({
+          type: this.name,
+          attrs: options,
+        });
+      },
     };
   },
 

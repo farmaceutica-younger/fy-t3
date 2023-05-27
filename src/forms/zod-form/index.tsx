@@ -7,18 +7,18 @@ import { zodValidate } from "./zod-validate";
 export type ZodFormProps<
   Schema extends z.ZodObject<any, any, any>,
   FormValues = z.TypeOf<Schema>,
-  InitialFormValues = Partial<FormValues>
+  InitialFormValues = Partial<FormValues>,
 > = FormProps<FormValues, InitialFormValues> & {
   schema: Schema;
   children: (
-    props: FormRenderProps<FormValues, InitialFormValues>
+    props: FormRenderProps<FormValues, InitialFormValues>,
   ) => ReactNode;
 };
 
 export function ZodForm<
   Schema extends z.ZodObject<any, any, any>,
   FormValues = z.TypeOf<Schema>,
-  InitialFormValues = Partial<FormValues>
+  InitialFormValues = Partial<FormValues>,
 >({
   schema,
   onSubmit,

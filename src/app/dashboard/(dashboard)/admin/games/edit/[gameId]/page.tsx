@@ -1,23 +1,19 @@
 "use client";
 
+import { EyeIcon, PencilIcon, QrCodeIcon } from "@heroicons/react/20/solid";
 import { ColumnDef } from "@tanstack/react-table";
-import cuid from "cuid";
-import { GameQRCode } from "~/app/dashboard/(dashboard)/afi/qrcode";
-import { TextField } from "~/forms/fields/text-field";
-import { ZodForm } from "~/forms/zod-form";
-import { useCloseDialog, useOpenDialog } from "~/hooks/dialog/dialog";
-import {
-  Question,
-  QuestionSchema,
-  Questions,
-} from "~/models/peapletrasure/schema";
-import { QuizGame } from "~/models/peapletrasure/types";
+import Link from "next/link";
+import { GameQRCode } from "./qrcode";
+import { openDialog } from "~/hooks/dialog/dialog";
+import { Question } from "~/models/peapletrasure/schema";
+import { type QuizGame } from "~/models/peapletrasure/types";
 import { Loading } from "~/ui/loading";
 import { DataTable } from "~/ui/table/data";
 import { reactApi } from "~/utils/api";
+import { AddQuestionDialog, UpdateQuestionDialog } from "./dialogs";
 
 const questionsTableColumns: ColumnDef<
-  Question & { id: string; gameId: string }
+  Question & { id: string; game: QuizGame }
 >[] = [
   {
     accessorKey: "id",
@@ -27,29 +23,52 @@ const questionsTableColumns: ColumnDef<
     },
   },
   {
+    accessorKey: "person",
+    header: "Persona",
+    cell: ({ row }) => {
+      return <span>{row.original.personName}</span>;
+    },
+  },
+  {
     accessorKey: "question",
     header: "Domanda",
     cell: ({ row }) => {
-      return <span>{row.original.question}</span>;
+      return <p className="w-96">{row.original.question}</p>;
     },
   },
   {
     accessorKey: "actions",
     header: "Azioni",
     cell: ({ row }) => {
-      const openDialog = useOpenDialog();
-      const { id, gameId } = row.original;
-      const url = `https://www.farmaceuticayounger.science/games/${gameId}?question=${id}`;
+      const { id, game } = row.original;
+      const url = `https://www.farmaceuticayounger.science/games/${game.id}?question=${id}`;
       return (
         <div>
           <button
             type="button"
-            className="btn btn-primary btn-sm"
+            className="btn btn-circle btn-ghost btn-sm"
+            onClick={() => {
+              openDialog(<UpdateQuestionDialog questionId={id} game={game} />);
+            }}
+          >
+            <PencilIcon className="h-4" />
+          </button>
+          <Link
+            className="btn btn-circle btn-ghost btn-sm"
+            target="_blank"
+            rel="noreferrer"
+            href={`/games/${game.id}?questionId=${id}`}
+          >
+            <EyeIcon className="h-4" />
+          </Link>
+          <button
+            type="button"
+            className="btn btn-circle btn-ghost btn-sm"
             onClick={() => {
               openDialog(<GameQRCode url={url} />);
             }}
           >
-            Genera QR
+            <QrCodeIcon className="h-4" />
           </button>
         </div>
       );
@@ -62,8 +81,6 @@ export default function EditGamePage({ params }: PageProps) {
     gameId: params.gameId,
   });
 
-  const openDialog = useOpenDialog();
-
   if (q.isLoading) {
     return <Loading />;
   }
@@ -73,15 +90,21 @@ export default function EditGamePage({ params }: PageProps) {
   }
 
   return (
-    <div>
-      <button
-        type="button"
-        onClick={() => {
-          openDialog(<QuestionForm game={q.data} />);
-        }}
-      >
-        Add
-      </button>
+    <div className="p-4">
+      <div className="h-20 flex justify-end items-center space-x-2">
+        <Link href={`/games/${params.gameId}`} className="btn btn-ghost btn-sm">
+          View
+        </Link>
+        <button
+          type="button"
+          onClick={() => {
+            openDialog(<AddQuestionDialog game={q.data} />);
+          }}
+          className="btn btn-primary btn-sm btn-outline"
+        >
+          Aggiungi Domanda
+        </button>
+      </div>
 
       <div>
         <DataTable
@@ -89,11 +112,10 @@ export default function EditGamePage({ params }: PageProps) {
           data={Object.entries(q.data.questions).map(([id, qq]) => ({
             ...qq,
             id,
-            gameId: q.data.id,
+            game: q.data,
           }))}
         />
       </div>
-      {/* <pre>{JSON.stringify(q, null, 2)}</pre>; */}
     </div>
   );
 }
@@ -103,61 +125,3 @@ type PageProps = {
     gameId: string;
   };
 };
-
-function QuestionForm({ game }: { game: Pick<QuizGame, "id" | "questions"> }) {
-  const setQuestions = useSetQuestions();
-  const closeDialog = useCloseDialog();
-  return (
-    <div className="w-96">
-      <ZodForm
-        schema={QuestionSchema}
-        onSubmit={async (q) => {
-          await setQuestions(game.id, {
-            ...game.questions,
-            [cuid()]: q,
-          });
-          closeDialog();
-        }}
-        initialValues={{
-          question: "",
-          options: ["", "", "", ""],
-        }}
-      >
-        {({ handleSubmit }) => {
-          return (
-            <form onSubmit={handleSubmit}>
-              <TextField name="question" label="La tua domanda" type="text" />
-
-              <TextField name="options[0]" label="Risposta 1" type="text" />
-              <TextField name="options[1]" label="Risposta 2" type="text" />
-              <TextField name="options[2]" label="Risposta 3" type="text" />
-              <TextField name="options[3]" label="Risposta 3" type="text" />
-
-              <TextField
-                name="correctOption"
-                label="Risposta Corretta"
-                type="text"
-              />
-              <button type="submit" className="btn btn-sm btn-primary">
-                Salva
-              </button>
-            </form>
-          );
-        }}
-      </ZodForm>
-    </div>
-  );
-}
-
-function useSetQuestions() {
-  const utils = reactApi.useContext();
-  const m = reactApi.game.admin.setGameQuestions.useMutation({
-    onSuccess: async () => {
-      await utils.game.admin.invalidate();
-    },
-  });
-
-  return async (gameId: string, questions: Questions) => {
-    return await m.mutateAsync({ gameId, questions });
-  };
-}

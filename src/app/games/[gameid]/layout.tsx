@@ -3,7 +3,7 @@
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider, useSession } from "next-auth/react";
 import { usePathname, useRouter } from "next/navigation";
-import { useEffect, useMemo, type ReactNode } from "react";
+import { useMemo, type ReactNode } from "react";
 import { ToastContainer } from "react-toastify";
 import { DialogContainer } from "~/hooks/dialog/dialog";
 import { Loading } from "~/ui/loading";
@@ -17,11 +17,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const path = usePathname();
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push(`/auth/signin?callbackUrl=${path}`);
-    }
-  }, [status, router, path]);
+  if (status === "unauthenticated") {
+    router.push(`/auth/signin?callbackUrl=${path}`);
+  }
 
   if (status !== "authenticated") {
     return <Loading />;
@@ -30,7 +28,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
   return (
     <reactApi.Provider client={trpcClient} queryClient={queryClient}>
       <QueryClientProvider client={queryClient}>
-        {children}
+        <div className="flex justify-center h-screen w-screen p-4 bg-gradient-to-tr from-indigo-500 via-purple-500 to-pink-500">
+          {children}
+        </div>
         <DialogContainer />
         <ToastContainer />
       </QueryClientProvider>
@@ -41,7 +41,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 const BaseLayout = (props: { children: ReactNode }) => {
   return (
     <SessionProvider>
-      <Layout {...props}></Layout>
+      <Layout {...props} />
     </SessionProvider>
   );
 };

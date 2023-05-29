@@ -1,8 +1,9 @@
+import { ReactNode } from "react";
 import { Field } from "react-final-form";
 
 interface TextFieldProps {
   name: string;
-  label: string;
+  label: ReactNode;
   max?: number;
   numRows?: number;
   type?: "text" | "password";

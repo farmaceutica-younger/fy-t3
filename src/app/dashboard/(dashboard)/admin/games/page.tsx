@@ -80,7 +80,7 @@ function CreateGame() {
             <TextField label="nome del gioco" name="name" />
             <TextField label="description" name="description" numRows={4} />
             <button
-              type="button"
+              type="submit"
               className={clsx("btn-primary btn", {
                 loading: submitting,
               })}

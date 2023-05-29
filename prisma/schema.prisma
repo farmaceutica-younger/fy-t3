@@ -249,7 +249,9 @@ model QuizGameParticipant {
   responses     Json      @default("{}")
   user          User      @relation(fields: [userId], references: [id])
   privacySigned DateTime?
+  username      String
   points        Int       @default(0)
+  lastResponse  DateTime  @default(now())
 
   @@id([userId, gameId])
 }

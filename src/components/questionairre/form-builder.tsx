@@ -10,8 +10,9 @@ import cuid from "cuid";
 import deepEqual from "fast-deep-equal";
 import arrayMutators from "final-form-arrays";
 import { Fragment, SVGProps } from "react";
-import { Field, Form } from "react-final-form";
+import { Field } from "react-final-form";
 import { FieldArray } from "react-final-form-arrays";
+import { ZodForm } from "~/forms/zod-form";
 import {
   CheckedMultipleChoiseIcon,
   CheckedSingleChoiseIcon,
@@ -19,7 +20,6 @@ import {
   SingleChoiseIcon,
 } from "./icons";
 import { Question, Questionairre, QuestionairreSchema } from "./schema";
-import { ZodForm } from "~/forms/zod-form";
 
 interface QuestionairreBuilderProps {
   questionairre: Questionairre;
@@ -52,7 +52,7 @@ export const QuestionairreBuilder = ({
                         <QuestionView
                           formKey={name}
                           onRemove={() => fields.remove(index)}
-                        ></QuestionView>
+                        />
                       </div>
                     ))}
                     <button
@@ -276,7 +276,7 @@ const SelectPicker = <T,>({
                     className={({ active }) =>
                       classNames(
                         active ? "bg-indigo-600 text-white" : "text-gray-900",
-                        "relative cursor-default select-none py-2 pl-3 pr-9"
+                        "relative cursor-default select-none py-2 pl-3 pr-9",
                       )
                     }
                     value={v}
@@ -286,7 +286,7 @@ const SelectPicker = <T,>({
                         <span
                           className={classNames(
                             selected ? "font-semibold" : "font-normal",
-                            "block truncate"
+                            "block truncate",
                           )}
                         >
                           {v.label}
@@ -296,7 +296,7 @@ const SelectPicker = <T,>({
                           <span
                             className={classNames(
                               active ? "text-white" : "text-indigo-600",
-                              "absolute inset-y-0 right-0 flex items-center pr-4"
+                              "absolute inset-y-0 right-0 flex items-center pr-4",
                             )}
                           >
                             <CheckIcon className="h-5 w-5" aria-hidden="true" />

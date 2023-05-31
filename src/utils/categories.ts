@@ -37,7 +37,7 @@ export const categories: {
 export async function getPageProps(
   page: number,
   category: string,
-  take: number
+  take: number,
 ) {
   const posts = await getPublishedPostsPreview(take * (page - 1), take, [
     category,

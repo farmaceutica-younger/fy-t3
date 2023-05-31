@@ -138,7 +138,7 @@ const enforceUserIsAuthor = enforceUserIsAuthed.unstable_pipe(
       throw new TRPCError({ code: "UNAUTHORIZED" });
     }
     return next({ ctx: { ...ctx, authorId: ctx.user.authorId } });
-  }
+  },
 );
 
 const enforceUserIsAdmin = enforceUserIsAuthed.unstable_pipe(
@@ -147,7 +147,7 @@ const enforceUserIsAdmin = enforceUserIsAuthed.unstable_pipe(
       throw new TRPCError({ code: "UNAUTHORIZED" });
     }
     return next({ ctx: { ...ctx } });
-  }
+  },
 );
 
 export const authordProcedure = t.procedure.use(enforceUserIsAuthor);

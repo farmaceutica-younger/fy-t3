@@ -198,7 +198,7 @@ const CreatePostDialog = () => {
               pending: "Creating Post",
               success: "Post Created",
               error: "Error Creating Post",
-            }
+            },
           );
         }}
         schema={CreatePostSchema}

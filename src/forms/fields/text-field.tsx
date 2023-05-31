@@ -1,8 +1,9 @@
+import { ReactNode } from "react";
 import { Field } from "react-final-form";
 
 interface TextFieldProps {
   name: string;
-  label: string;
+  label: ReactNode;
   max?: number;
   numRows?: number;
   type?: "text" | "password";
@@ -37,7 +38,7 @@ export const TextField = ({
               className="textarea-primary textarea h-24 w-full"
               placeholder={placeholder}
               rows={numRows}
-            ></textarea>
+            />
           ) : (
             <input
               {...input}

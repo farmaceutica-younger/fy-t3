@@ -7,7 +7,7 @@ export class Cloudinary {
     private readonly secret: string,
     private readonly baseFolder: string,
     private readonly apiKey: string,
-    private readonly cloudName: string
+    private readonly cloudName: string,
   ) {}
 
   async getUploadSignature(...folderPath: string[]) {
@@ -34,5 +34,5 @@ export const cloudinary = new Cloudinary(
   env.CLOUDINARY_SECRET,
   env.CLOUDINARY_BASE_FOLDER,
   env.CLOUDINARY_KEY,
-  env.CLOUDINARY_CLOUD_NAME
+  env.CLOUDINARY_CLOUD_NAME,
 );

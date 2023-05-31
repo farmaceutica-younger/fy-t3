@@ -7,7 +7,7 @@ export const sponsoredJobsRouter = createTRPCRouter({
       z.object({
         skip: z.number().int(),
         take: z.number().int(),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       const jobs = await ctx.prisma.sponsoredJob.findMany({

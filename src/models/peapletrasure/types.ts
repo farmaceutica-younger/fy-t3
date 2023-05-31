@@ -1,15 +1,30 @@
-import { type QuizGame as PrismaQuizGame } from "@prisma/client";
-import { QuestionSchema, type Question } from "./schema";
+import {
+  type QuizGame as PrismaQuizGame,
+  type QuizGameParticipant as PrismaQuizGameParticipant,
+} from "@prisma/client";
+import {
+  QuestionsSchema,
+  type Question,
+  type QuestionResponse,
+  QuestionResponsesSchema,
+} from "./schema";
 
-export type { Question };
+export type { Question, QuestionResponse };
 
-export function parsePrismaGame(game: PrismaQuizGame): QuizGame {
+export function parsePrismaGame(game: PrismaQuizGame) {
+  const q = QuestionsSchema.parse(game.questions);
   return {
     ...game,
-    questions: QuestionSchema.array().parse(game.questions),
+    questions: q,
   };
 }
 
-export type QuizGame = PrismaQuizGame & {
-  questions: Question[];
-};
+export function parsePrismaParticipant(participant: PrismaQuizGameParticipant) {
+  return {
+    ...participant,
+    responses: QuestionResponsesSchema.parse(participant.responses),
+  };
+}
+
+export type QuizGame = ReturnType<typeof parsePrismaGame>;
+export type QuizGameParticipant = ReturnType<typeof parsePrismaParticipant>;

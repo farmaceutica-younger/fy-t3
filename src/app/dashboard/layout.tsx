@@ -17,11 +17,9 @@ const Layout = ({ children }: { children: ReactNode }) => {
   const router = useRouter();
   const path = usePathname();
 
-  useEffect(() => {
-    if (status === "unauthenticated") {
-      router.push(`/auth/signin?callbackUrl=${path}`);
-    }
-  }, [status, router, path]);
+  if (status === "unauthenticated") {
+    router.push(`/auth/signin?callbackUrl=${path}`);
+  }
 
   if (status !== "authenticated") {
     return <Loading />;
@@ -41,7 +39,7 @@ const Layout = ({ children }: { children: ReactNode }) => {
 const BaseLayout = (props: { children: ReactNode }) => {
   return (
     <SessionProvider>
-      <Layout {...props}></Layout>
+      <Layout {...props} />
     </SessionProvider>
   );
 };

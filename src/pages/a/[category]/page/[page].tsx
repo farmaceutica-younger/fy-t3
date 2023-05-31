@@ -53,7 +53,7 @@ export const getStaticPaths = async () => {
         throw new Error("err");
       }
       return { category: c.category, total };
-    })
+    }),
   );
 
   let paths: { params: { category: string; page: string } }[] = [];

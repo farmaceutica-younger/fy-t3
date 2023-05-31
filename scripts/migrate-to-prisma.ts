@@ -14,7 +14,6 @@ async function main() {
   await prisma.blogPost.deleteMany({});
   await prisma.author.deleteMany({});
   for (const author of authors) {
-    console.log("author", author.id);
     await prisma.author.create({
       data: {
         id: author.id,

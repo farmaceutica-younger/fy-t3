@@ -125,7 +125,7 @@ function createBaseGetBlogPostsReq(): GetBlogPostsReq {
 export const GetBlogPostsReq = {
   encode(
     message: GetBlogPostsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.published !== undefined) {
       writer.uint32(8).bool(message.published);
@@ -196,13 +196,13 @@ export const GetBlogPostsReq = {
   },
 
   create<I extends Exact<DeepPartial<GetBlogPostsReq>, I>>(
-    base?: I
+    base?: I,
   ): GetBlogPostsReq {
     return GetBlogPostsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetBlogPostsReq>, I>>(
-    object: I
+    object: I,
   ): GetBlogPostsReq {
     const message = createBaseGetBlogPostsReq();
     message.published = object.published ?? undefined;
@@ -220,7 +220,7 @@ function createBaseGetBlogPostsRes(): GetBlogPostsRes {
 export const GetBlogPostsRes = {
   encode(
     message: GetBlogPostsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.posts) {
       BlogPost.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -265,7 +265,7 @@ export const GetBlogPostsRes = {
     const obj: any = {};
     if (message.posts) {
       obj.posts = message.posts.map((e) =>
-        e ? BlogPost.toJSON(e) : undefined
+        e ? BlogPost.toJSON(e) : undefined,
       );
     } else {
       obj.posts = [];
@@ -275,13 +275,13 @@ export const GetBlogPostsRes = {
   },
 
   create<I extends Exact<DeepPartial<GetBlogPostsRes>, I>>(
-    base?: I
+    base?: I,
   ): GetBlogPostsRes {
     return GetBlogPostsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetBlogPostsRes>, I>>(
-    object: I
+    object: I,
   ): GetBlogPostsRes {
     const message = createBaseGetBlogPostsRes();
     message.posts = object.posts?.map((e) => BlogPost.fromPartial(e)) || [];
@@ -297,7 +297,7 @@ function createBaseGetPublishedBlogPostsReq(): GetPublishedBlogPostsReq {
 export const GetPublishedBlogPostsReq = {
   encode(
     message: GetPublishedBlogPostsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.skip !== 0) {
       writer.uint32(16).uint32(message.skip);
@@ -313,7 +313,7 @@ export const GetPublishedBlogPostsReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetPublishedBlogPostsReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -361,13 +361,13 @@ export const GetPublishedBlogPostsReq = {
   },
 
   create<I extends Exact<DeepPartial<GetPublishedBlogPostsReq>, I>>(
-    base?: I
+    base?: I,
   ): GetPublishedBlogPostsReq {
     return GetPublishedBlogPostsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetPublishedBlogPostsReq>, I>>(
-    object: I
+    object: I,
   ): GetPublishedBlogPostsReq {
     const message = createBaseGetPublishedBlogPostsReq();
     message.skip = object.skip ?? 0;
@@ -384,7 +384,7 @@ function createBaseGetPublishedBlogPostsRes(): GetPublishedBlogPostsRes {
 export const GetPublishedBlogPostsRes = {
   encode(
     message: GetPublishedBlogPostsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.posts) {
       BlogPost.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -397,7 +397,7 @@ export const GetPublishedBlogPostsRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetPublishedBlogPostsRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -432,7 +432,7 @@ export const GetPublishedBlogPostsRes = {
     const obj: any = {};
     if (message.posts) {
       obj.posts = message.posts.map((e) =>
-        e ? BlogPost.toJSON(e) : undefined
+        e ? BlogPost.toJSON(e) : undefined,
       );
     } else {
       obj.posts = [];
@@ -442,13 +442,13 @@ export const GetPublishedBlogPostsRes = {
   },
 
   create<I extends Exact<DeepPartial<GetPublishedBlogPostsRes>, I>>(
-    base?: I
+    base?: I,
   ): GetPublishedBlogPostsRes {
     return GetPublishedBlogPostsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetPublishedBlogPostsRes>, I>>(
-    object: I
+    object: I,
   ): GetPublishedBlogPostsRes {
     const message = createBaseGetPublishedBlogPostsRes();
     message.posts = object.posts?.map((e) => BlogPost.fromPartial(e)) || [];
@@ -464,7 +464,7 @@ function createBaseGetBlogPostReq(): GetBlogPostReq {
 export const GetBlogPostReq = {
   encode(
     message: GetBlogPostReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.postId !== "") {
       writer.uint32(10).string(message.postId);
@@ -501,13 +501,13 @@ export const GetBlogPostReq = {
   },
 
   create<I extends Exact<DeepPartial<GetBlogPostReq>, I>>(
-    base?: I
+    base?: I,
   ): GetBlogPostReq {
     return GetBlogPostReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetBlogPostReq>, I>>(
-    object: I
+    object: I,
   ): GetBlogPostReq {
     const message = createBaseGetBlogPostReq();
     message.postId = object.postId ?? "";
@@ -522,7 +522,7 @@ function createBaseGetBlogPostRes(): GetBlogPostRes {
 export const GetBlogPostRes = {
   encode(
     message: GetBlogPostRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.post !== undefined) {
       BlogPost.encode(message.post, writer.uint32(10).fork()).ldelim();
@@ -562,13 +562,13 @@ export const GetBlogPostRes = {
   },
 
   create<I extends Exact<DeepPartial<GetBlogPostRes>, I>>(
-    base?: I
+    base?: I,
   ): GetBlogPostRes {
     return GetBlogPostRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetBlogPostRes>, I>>(
-    object: I
+    object: I,
   ): GetBlogPostRes {
     const message = createBaseGetBlogPostRes();
     message.post =
@@ -586,7 +586,7 @@ function createBaseGetBlogPostByPathReq(): GetBlogPostByPathReq {
 export const GetBlogPostByPathReq = {
   encode(
     message: GetBlogPostByPathReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.path !== "") {
       writer.uint32(10).string(message.path);
@@ -596,7 +596,7 @@ export const GetBlogPostByPathReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetBlogPostByPathReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -626,13 +626,13 @@ export const GetBlogPostByPathReq = {
   },
 
   create<I extends Exact<DeepPartial<GetBlogPostByPathReq>, I>>(
-    base?: I
+    base?: I,
   ): GetBlogPostByPathReq {
     return GetBlogPostByPathReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetBlogPostByPathReq>, I>>(
-    object: I
+    object: I,
   ): GetBlogPostByPathReq {
     const message = createBaseGetBlogPostByPathReq();
     message.path = object.path ?? "";
@@ -647,7 +647,7 @@ function createBaseGetBlogPostByPathRes(): GetBlogPostByPathRes {
 export const GetBlogPostByPathRes = {
   encode(
     message: GetBlogPostByPathRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.post !== undefined) {
       BlogPost.encode(message.post, writer.uint32(10).fork()).ldelim();
@@ -657,7 +657,7 @@ export const GetBlogPostByPathRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetBlogPostByPathRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -690,13 +690,13 @@ export const GetBlogPostByPathRes = {
   },
 
   create<I extends Exact<DeepPartial<GetBlogPostByPathRes>, I>>(
-    base?: I
+    base?: I,
   ): GetBlogPostByPathRes {
     return GetBlogPostByPathRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetBlogPostByPathRes>, I>>(
-    object: I
+    object: I,
   ): GetBlogPostByPathRes {
     const message = createBaseGetBlogPostByPathRes();
     message.post =
@@ -721,7 +721,7 @@ function createBaseCreateBlogPostReq(): CreateBlogPostReq {
 export const CreateBlogPostReq = {
   encode(
     message: CreateBlogPostReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.authorId !== "") {
       writer.uint32(10).string(message.authorId);
@@ -810,13 +810,13 @@ export const CreateBlogPostReq = {
   },
 
   create<I extends Exact<DeepPartial<CreateBlogPostReq>, I>>(
-    base?: I
+    base?: I,
   ): CreateBlogPostReq {
     return CreateBlogPostReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateBlogPostReq>, I>>(
-    object: I
+    object: I,
   ): CreateBlogPostReq {
     const message = createBaseCreateBlogPostReq();
     message.authorId = object.authorId ?? "";
@@ -836,7 +836,7 @@ function createBaseCreateBlogPostRes(): CreateBlogPostRes {
 export const CreateBlogPostRes = {
   encode(
     message: CreateBlogPostRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.post !== undefined) {
       BlogPost.encode(message.post, writer.uint32(10).fork()).ldelim();
@@ -876,13 +876,13 @@ export const CreateBlogPostRes = {
   },
 
   create<I extends Exact<DeepPartial<CreateBlogPostRes>, I>>(
-    base?: I
+    base?: I,
   ): CreateBlogPostRes {
     return CreateBlogPostRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateBlogPostRes>, I>>(
-    object: I
+    object: I,
   ): CreateBlogPostRes {
     const message = createBaseCreateBlogPostRes();
     message.post =
@@ -909,7 +909,7 @@ function createBaseUpdateBlogPostReq(): UpdateBlogPostReq {
 export const UpdateBlogPostReq = {
   encode(
     message: UpdateBlogPostReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.postId !== "") {
       writer.uint32(10).string(message.postId);
@@ -935,7 +935,7 @@ export const UpdateBlogPostReq = {
     if (message.publishedTime !== undefined) {
       Timestamp.encode(
         toTimestamp(message.publishedTime),
-        writer.uint32(66).fork()
+        writer.uint32(66).fork(),
       ).ldelim();
     }
     return writer;
@@ -971,7 +971,7 @@ export const UpdateBlogPostReq = {
           break;
         case 8:
           message.publishedTime = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -1027,13 +1027,13 @@ export const UpdateBlogPostReq = {
   },
 
   create<I extends Exact<DeepPartial<UpdateBlogPostReq>, I>>(
-    base?: I
+    base?: I,
   ): UpdateBlogPostReq {
     return UpdateBlogPostReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<UpdateBlogPostReq>, I>>(
-    object: I
+    object: I,
   ): UpdateBlogPostReq {
     const message = createBaseUpdateBlogPostReq();
     message.postId = object.postId ?? "";
@@ -1055,7 +1055,7 @@ function createBaseUpdateBlogPostRes(): UpdateBlogPostRes {
 export const UpdateBlogPostRes = {
   encode(
     message: UpdateBlogPostRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.post !== undefined) {
       BlogPost.encode(message.post, writer.uint32(10).fork()).ldelim();
@@ -1095,13 +1095,13 @@ export const UpdateBlogPostRes = {
   },
 
   create<I extends Exact<DeepPartial<UpdateBlogPostRes>, I>>(
-    base?: I
+    base?: I,
   ): UpdateBlogPostRes {
     return UpdateBlogPostRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<UpdateBlogPostRes>, I>>(
-    object: I
+    object: I,
   ): UpdateBlogPostRes {
     const message = createBaseUpdateBlogPostRes();
     message.post =
@@ -1119,7 +1119,7 @@ function createBasePublishBlogPostReq(): PublishBlogPostReq {
 export const PublishBlogPostReq = {
   encode(
     message: PublishBlogPostReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.postId !== "") {
       writer.uint32(10).string(message.postId);
@@ -1156,13 +1156,13 @@ export const PublishBlogPostReq = {
   },
 
   create<I extends Exact<DeepPartial<PublishBlogPostReq>, I>>(
-    base?: I
+    base?: I,
   ): PublishBlogPostReq {
     return PublishBlogPostReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<PublishBlogPostReq>, I>>(
-    object: I
+    object: I,
   ): PublishBlogPostReq {
     const message = createBasePublishBlogPostReq();
     message.postId = object.postId ?? "";
@@ -1177,7 +1177,7 @@ function createBasePublishBlogPostRes(): PublishBlogPostRes {
 export const PublishBlogPostRes = {
   encode(
     message: PublishBlogPostRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.post !== undefined) {
       BlogPost.encode(message.post, writer.uint32(10).fork()).ldelim();
@@ -1217,13 +1217,13 @@ export const PublishBlogPostRes = {
   },
 
   create<I extends Exact<DeepPartial<PublishBlogPostRes>, I>>(
-    base?: I
+    base?: I,
   ): PublishBlogPostRes {
     return PublishBlogPostRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<PublishBlogPostRes>, I>>(
-    object: I
+    object: I,
   ): PublishBlogPostRes {
     const message = createBasePublishBlogPostRes();
     message.post =
@@ -1241,7 +1241,7 @@ function createBaseDeleteBlogPostReq(): DeleteBlogPostReq {
 export const DeleteBlogPostReq = {
   encode(
     message: DeleteBlogPostReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.postId !== "") {
       writer.uint32(10).string(message.postId);
@@ -1278,13 +1278,13 @@ export const DeleteBlogPostReq = {
   },
 
   create<I extends Exact<DeepPartial<DeleteBlogPostReq>, I>>(
-    base?: I
+    base?: I,
   ): DeleteBlogPostReq {
     return DeleteBlogPostReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<DeleteBlogPostReq>, I>>(
-    object: I
+    object: I,
   ): DeleteBlogPostReq {
     const message = createBaseDeleteBlogPostReq();
     message.postId = object.postId ?? "";
@@ -1299,7 +1299,7 @@ function createBaseDeleteBlogPostRes(): DeleteBlogPostRes {
 export const DeleteBlogPostRes = {
   encode(
     message: DeleteBlogPostRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.post !== undefined) {
       BlogPost.encode(message.post, writer.uint32(10).fork()).ldelim();
@@ -1339,13 +1339,13 @@ export const DeleteBlogPostRes = {
   },
 
   create<I extends Exact<DeepPartial<DeleteBlogPostRes>, I>>(
-    base?: I
+    base?: I,
   ): DeleteBlogPostRes {
     return DeleteBlogPostRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<DeleteBlogPostRes>, I>>(
-    object: I
+    object: I,
   ): DeleteBlogPostRes {
     const message = createBaseDeleteBlogPostRes();
     message.post =
@@ -1363,7 +1363,7 @@ function createBaseGetAuthorsReq(): GetAuthorsReq {
 export const GetAuthorsReq = {
   encode(
     message: GetAuthorsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.skip !== 0) {
       writer.uint32(8).uint32(message.skip);
@@ -1410,13 +1410,13 @@ export const GetAuthorsReq = {
   },
 
   create<I extends Exact<DeepPartial<GetAuthorsReq>, I>>(
-    base?: I
+    base?: I,
   ): GetAuthorsReq {
     return GetAuthorsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetAuthorsReq>, I>>(
-    object: I
+    object: I,
   ): GetAuthorsReq {
     const message = createBaseGetAuthorsReq();
     message.skip = object.skip ?? 0;
@@ -1432,7 +1432,7 @@ function createBaseGetAuthorsRes(): GetAuthorsRes {
 export const GetAuthorsRes = {
   encode(
     message: GetAuthorsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.authors) {
       Author.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -1477,7 +1477,7 @@ export const GetAuthorsRes = {
     const obj: any = {};
     if (message.authors) {
       obj.authors = message.authors.map((e) =>
-        e ? Author.toJSON(e) : undefined
+        e ? Author.toJSON(e) : undefined,
       );
     } else {
       obj.authors = [];
@@ -1487,13 +1487,13 @@ export const GetAuthorsRes = {
   },
 
   create<I extends Exact<DeepPartial<GetAuthorsRes>, I>>(
-    base?: I
+    base?: I,
   ): GetAuthorsRes {
     return GetAuthorsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetAuthorsRes>, I>>(
-    object: I
+    object: I,
   ): GetAuthorsRes {
     const message = createBaseGetAuthorsRes();
     message.authors = object.authors?.map((e) => Author.fromPartial(e)) || [];
@@ -1509,7 +1509,7 @@ function createBaseGetAuthorReq(): GetAuthorReq {
 export const GetAuthorReq = {
   encode(
     message: GetAuthorReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.authorId !== "") {
       writer.uint32(10).string(message.authorId);
@@ -1546,13 +1546,13 @@ export const GetAuthorReq = {
   },
 
   create<I extends Exact<DeepPartial<GetAuthorReq>, I>>(
-    base?: I
+    base?: I,
   ): GetAuthorReq {
     return GetAuthorReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetAuthorReq>, I>>(
-    object: I
+    object: I,
   ): GetAuthorReq {
     const message = createBaseGetAuthorReq();
     message.authorId = object.authorId ?? "";
@@ -1567,7 +1567,7 @@ function createBaseGetAuthorRes(): GetAuthorRes {
 export const GetAuthorRes = {
   encode(
     message: GetAuthorRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.author !== undefined) {
       Author.encode(message.author, writer.uint32(10).fork()).ldelim();
@@ -1607,13 +1607,13 @@ export const GetAuthorRes = {
   },
 
   create<I extends Exact<DeepPartial<GetAuthorRes>, I>>(
-    base?: I
+    base?: I,
   ): GetAuthorRes {
     return GetAuthorRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetAuthorRes>, I>>(
-    object: I
+    object: I,
   ): GetAuthorRes {
     const message = createBaseGetAuthorRes();
     message.author =
@@ -1762,33 +1762,33 @@ export interface BlogSrvServer extends UntypedServiceImplementation {
 export interface BlogSrvClient extends Client {
   getBlogPosts(
     request: GetBlogPostsReq,
-    callback: (error: ServiceError | null, response: GetBlogPostsRes) => void
+    callback: (error: ServiceError | null, response: GetBlogPostsRes) => void,
   ): ClientUnaryCall;
   getBlogPosts(
     request: GetBlogPostsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetBlogPostsRes) => void
+    callback: (error: ServiceError | null, response: GetBlogPostsRes) => void,
   ): ClientUnaryCall;
   getBlogPosts(
     request: GetBlogPostsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetBlogPostsRes) => void
+    callback: (error: ServiceError | null, response: GetBlogPostsRes) => void,
   ): ClientUnaryCall;
   getPublishedBlogPosts(
     request: GetPublishedBlogPostsReq,
     callback: (
       error: ServiceError | null,
-      response: GetPublishedBlogPostsRes
-    ) => void
+      response: GetPublishedBlogPostsRes,
+    ) => void,
   ): ClientUnaryCall;
   getPublishedBlogPosts(
     request: GetPublishedBlogPostsReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: GetPublishedBlogPostsRes
-    ) => void
+      response: GetPublishedBlogPostsRes,
+    ) => void,
   ): ClientUnaryCall;
   getPublishedBlogPosts(
     request: GetPublishedBlogPostsReq,
@@ -1796,38 +1796,38 @@ export interface BlogSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: GetPublishedBlogPostsRes
-    ) => void
+      response: GetPublishedBlogPostsRes,
+    ) => void,
   ): ClientUnaryCall;
   getBlogPost(
     request: GetBlogPostReq,
-    callback: (error: ServiceError | null, response: GetBlogPostRes) => void
+    callback: (error: ServiceError | null, response: GetBlogPostRes) => void,
   ): ClientUnaryCall;
   getBlogPost(
     request: GetBlogPostReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetBlogPostRes) => void
+    callback: (error: ServiceError | null, response: GetBlogPostRes) => void,
   ): ClientUnaryCall;
   getBlogPost(
     request: GetBlogPostReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetBlogPostRes) => void
+    callback: (error: ServiceError | null, response: GetBlogPostRes) => void,
   ): ClientUnaryCall;
   getBlogPostByPath(
     request: GetBlogPostByPathReq,
     callback: (
       error: ServiceError | null,
-      response: GetBlogPostByPathRes
-    ) => void
+      response: GetBlogPostByPathRes,
+    ) => void,
   ): ClientUnaryCall;
   getBlogPostByPath(
     request: GetBlogPostByPathReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: GetBlogPostByPathRes
-    ) => void
+      response: GetBlogPostByPathRes,
+    ) => void,
   ): ClientUnaryCall;
   getBlogPostByPath(
     request: GetBlogPostByPathReq,
@@ -1835,109 +1835,118 @@ export interface BlogSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: GetBlogPostByPathRes
-    ) => void
+      response: GetBlogPostByPathRes,
+    ) => void,
   ): ClientUnaryCall;
   createBlogPost(
     request: CreateBlogPostReq,
-    callback: (error: ServiceError | null, response: CreateBlogPostRes) => void
-  ): ClientUnaryCall;
-  createBlogPost(
-    request: CreateBlogPostReq,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: CreateBlogPostRes) => void
+    callback: (error: ServiceError | null, response: CreateBlogPostRes) => void,
   ): ClientUnaryCall;
   createBlogPost(
     request: CreateBlogPostReq,
     metadata: Metadata,
+    callback: (error: ServiceError | null, response: CreateBlogPostRes) => void,
+  ): ClientUnaryCall;
+  createBlogPost(
+    request: CreateBlogPostReq,
+    metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: CreateBlogPostRes) => void
+    callback: (error: ServiceError | null, response: CreateBlogPostRes) => void,
   ): ClientUnaryCall;
   publishBlogPost(
     request: PublishBlogPostReq,
-    callback: (error: ServiceError | null, response: PublishBlogPostRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: PublishBlogPostRes,
+    ) => void,
   ): ClientUnaryCall;
   publishBlogPost(
     request: PublishBlogPostReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: PublishBlogPostRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: PublishBlogPostRes,
+    ) => void,
   ): ClientUnaryCall;
   publishBlogPost(
     request: PublishBlogPostReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: PublishBlogPostRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: PublishBlogPostRes,
+    ) => void,
   ): ClientUnaryCall;
   updateBlogPost(
     request: UpdateBlogPostReq,
-    callback: (error: ServiceError | null, response: UpdateBlogPostRes) => void
+    callback: (error: ServiceError | null, response: UpdateBlogPostRes) => void,
   ): ClientUnaryCall;
   updateBlogPost(
     request: UpdateBlogPostReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: UpdateBlogPostRes) => void
+    callback: (error: ServiceError | null, response: UpdateBlogPostRes) => void,
   ): ClientUnaryCall;
   updateBlogPost(
     request: UpdateBlogPostReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: UpdateBlogPostRes) => void
+    callback: (error: ServiceError | null, response: UpdateBlogPostRes) => void,
   ): ClientUnaryCall;
   deleteBlogPost(
     request: DeleteBlogPostReq,
-    callback: (error: ServiceError | null, response: DeleteBlogPostRes) => void
+    callback: (error: ServiceError | null, response: DeleteBlogPostRes) => void,
   ): ClientUnaryCall;
   deleteBlogPost(
     request: DeleteBlogPostReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: DeleteBlogPostRes) => void
+    callback: (error: ServiceError | null, response: DeleteBlogPostRes) => void,
   ): ClientUnaryCall;
   deleteBlogPost(
     request: DeleteBlogPostReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: DeleteBlogPostRes) => void
+    callback: (error: ServiceError | null, response: DeleteBlogPostRes) => void,
   ): ClientUnaryCall;
   getAuthors(
     request: GetAuthorsReq,
-    callback: (error: ServiceError | null, response: GetAuthorsRes) => void
+    callback: (error: ServiceError | null, response: GetAuthorsRes) => void,
   ): ClientUnaryCall;
   getAuthors(
     request: GetAuthorsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetAuthorsRes) => void
+    callback: (error: ServiceError | null, response: GetAuthorsRes) => void,
   ): ClientUnaryCall;
   getAuthors(
     request: GetAuthorsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetAuthorsRes) => void
+    callback: (error: ServiceError | null, response: GetAuthorsRes) => void,
   ): ClientUnaryCall;
   getAuthor(
     request: GetAuthorReq,
-    callback: (error: ServiceError | null, response: GetAuthorRes) => void
+    callback: (error: ServiceError | null, response: GetAuthorRes) => void,
   ): ClientUnaryCall;
   getAuthor(
     request: GetAuthorReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetAuthorRes) => void
+    callback: (error: ServiceError | null, response: GetAuthorRes) => void,
   ): ClientUnaryCall;
   getAuthor(
     request: GetAuthorReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetAuthorRes) => void
+    callback: (error: ServiceError | null, response: GetAuthorRes) => void,
   ): ClientUnaryCall;
 }
 
 export const BlogSrvClient = makeGenericClientConstructor(
   BlogSrvService,
-  "fy.blog.v1.BlogSrv"
+  "fy.blog.v1.BlogSrv",
 ) as unknown as {
   new (
     address: string,
     credentials: ChannelCredentials,
-    options?: Partial<ClientOptions>
+    options?: Partial<ClientOptions>,
   ): BlogSrvClient;
   service: typeof BlogSrvService;
 };

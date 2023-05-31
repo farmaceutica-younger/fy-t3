@@ -17,7 +17,7 @@ const EditorField = dynamic(
   () => import("~/forms/fields/editor").then((m) => m.EditorField),
   {
     ssr: false,
-  }
+  },
 );
 
 type Author = {

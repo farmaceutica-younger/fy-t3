@@ -20,7 +20,7 @@ const adminAssociationRouter = createTRPCRouter({
       z.object({
         skip: z.number().int().default(0),
         take: z.number().int().default(100),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       const res = await ctx.prisma.associationMembership.findMany({
@@ -38,7 +38,7 @@ const adminAssociationRouter = createTRPCRouter({
       z.object({
         skip: z.number().int().default(0),
         take: z.number().int().default(100),
-      })
+      }),
     )
     .query(async ({ ctx, input }) => {
       const res = await ctx.prisma.associationMembership.findMany({
@@ -63,7 +63,7 @@ const adminAssociationRouter = createTRPCRouter({
     .input(
       z.object({
         memberId: z.string(),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
       const res = await ctx.prisma.associationMembership.findUnique({
@@ -101,7 +101,7 @@ const adminAssociationRouter = createTRPCRouter({
       await ctx.kannon.sendMembershipApproved(
         res.user.email,
         res.profile.firstName,
-        getUrl("/dashboard/association/register")
+        getUrl("/dashboard/association/register"),
       );
     }),
   registerMemberPayment: adminProcedure
@@ -112,7 +112,7 @@ const adminAssociationRouter = createTRPCRouter({
         method: z.string(),
         note: z.string(),
         date: z.date().default(new Date()),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       return ctx.prisma.associationMembershipPayment.create({
@@ -136,7 +136,7 @@ const adminAssociationRouter = createTRPCRouter({
           data: {},
           method: "FREE",
           note: "Free membership",
-        }
+        },
       );
 
       if (!member) {
@@ -148,7 +148,7 @@ const adminAssociationRouter = createTRPCRouter({
     .input(
       z.object({
         memberId: z.string(),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
       const member = await ctx.prisma.associationMembership.findUnique({
@@ -181,7 +181,7 @@ const adminAssociationRouter = createTRPCRouter({
     .input(
       z.object({
         memberId: z.string(),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
       const member = await ctx.prisma.associationMembership.findUnique({
@@ -215,7 +215,7 @@ const adminAssociationRouter = createTRPCRouter({
         content: z.string(),
         preview: z.string(),
         isTest: z.boolean(),
-      })
+      }),
     )
     .mutation(async ({ input, ctx }) => {
       const testEmails = [
@@ -249,7 +249,7 @@ const adminAssociationRouter = createTRPCRouter({
       const res = await ctx.kannon.sendMail(
         fields,
         `${input.isTest ? "[TEST] " : ""}${input.subject}`,
-        input.content
+        input.content,
       );
       return {};
     }),
@@ -260,7 +260,7 @@ const loggedRouter = createTRPCRouter({
     .input(
       z.object({
         form: z.any(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const quest = await getCurrentQuestionairre(ctx);
@@ -291,7 +291,7 @@ const loggedRouter = createTRPCRouter({
         ctx.bot.notifyMembershipRequest(member.profile),
         ctx.kannon.sendMembershipRequest(
           member.user.email,
-          member.profile.firstName
+          member.profile.firstName,
         ),
       ]);
       return {};
@@ -314,7 +314,7 @@ const DefaultQuestionairre = {
 };
 
 const parseQuestionairre = (
-  q: AssociationQuestionairre | null = DefaultQuestionairre
+  q: AssociationQuestionairre | null = DefaultQuestionairre,
 ) => {
   if (!q) {
     q = DefaultQuestionairre;

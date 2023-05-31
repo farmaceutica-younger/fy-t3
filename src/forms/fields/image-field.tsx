@@ -15,7 +15,7 @@ export const FeatureImageField = ({
 }: FeatureImageFieldProps) => {
   const upload = async (
     e: ChangeEvent<HTMLInputElement>,
-    onChange: (i: string) => void
+    onChange: (i: string) => void,
   ) => {
     e.preventDefault();
     const file = e.target.files?.item(0);

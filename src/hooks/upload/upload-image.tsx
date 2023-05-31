@@ -14,10 +14,10 @@ export const useUserUpload = () => {
           pending: "Caricamento in corso",
           success: "Immagine Caricata",
           error: "Errore nel caricamento",
-        }
+        },
       );
     },
-    [getUploadSignatureMut]
+    [getUploadSignatureMut],
   );
 };
 
@@ -33,9 +33,9 @@ export const useAuthorUpload = () => {
           pending: "Caricamento in corso",
           success: "Immagine Caricata",
           error: "Errore nel caricamento",
-        }
+        },
       );
     },
-    [getUploadSignatureMut]
+    [getUploadSignatureMut],
   );
 };

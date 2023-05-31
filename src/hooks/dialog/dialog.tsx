@@ -1,6 +1,7 @@
 import { Dialog, Transition } from "@headlessui/react";
 import { Fragment, type ReactNode } from "react";
 import { create } from "zustand";
+import { createStore } from "zustand/vanilla";
 
 export const DialogContainer = () => {
   const { dialog, closeDialog, isOpen: open } = useDialogStore();
@@ -51,12 +52,16 @@ type DialogState = {
   closeDialog: () => void;
 };
 
-const useDialogStore = create<DialogState>((set) => ({
-  dialog: null,
-  isOpen: false,
-  closeDialog: () => set({ isOpen: false }),
-  openDialog: (dialog) => set({ dialog, isOpen: true }),
-}));
+const store = createStore<DialogState>((set) => {
+  return {
+    dialog: null,
+    isOpen: false,
+    closeDialog: () => set({ isOpen: false }),
+    openDialog: (dialog) => set({ dialog, isOpen: true }),
+  };
+});
+
+const useDialogStore = create(store);
 
 export const useOpenDialog = () => {
   return useDialogStore((s) => s.openDialog);
@@ -65,3 +70,5 @@ export const useOpenDialog = () => {
 export const useCloseDialog = () => {
   return useDialogStore((s) => s.closeDialog);
 };
+
+export const { openDialog, closeDialog } = store.getState();

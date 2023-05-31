@@ -40,7 +40,7 @@ export const MemberStatusBadge = ({
       <span
         className={clsx(
           baseClass,
-          "text-red-700 ring-1 ring-inset ring-red-600/20"
+          "text-red-700 ring-1 ring-inset ring-red-600/20",
         )}
       >
         Sconosciuto

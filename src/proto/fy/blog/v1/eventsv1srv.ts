@@ -187,7 +187,7 @@ function createBaseGetEventsReq(): GetEventsReq {
 export const GetEventsReq = {
   encode(
     message: GetEventsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.published !== undefined) {
       writer.uint32(8).bool(message.published);
@@ -204,7 +204,7 @@ export const GetEventsReq = {
     if (message.startFrom !== undefined) {
       Timestamp.encode(
         toTimestamp(message.startFrom),
-        writer.uint32(42).fork()
+        writer.uint32(42).fork(),
       ).ldelim();
     }
     return writer;
@@ -231,7 +231,7 @@ export const GetEventsReq = {
           break;
         case 5:
           message.startFrom = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -274,13 +274,13 @@ export const GetEventsReq = {
   },
 
   create<I extends Exact<DeepPartial<GetEventsReq>, I>>(
-    base?: I
+    base?: I,
   ): GetEventsReq {
     return GetEventsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventsReq>, I>>(
-    object: I
+    object: I,
   ): GetEventsReq {
     const message = createBaseGetEventsReq();
     message.published = object.published ?? undefined;
@@ -299,7 +299,7 @@ function createBaseGetEventsRes(): GetEventsRes {
 export const GetEventsRes = {
   encode(
     message: GetEventsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.events) {
       Event.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -352,13 +352,13 @@ export const GetEventsRes = {
   },
 
   create<I extends Exact<DeepPartial<GetEventsRes>, I>>(
-    base?: I
+    base?: I,
   ): GetEventsRes {
     return GetEventsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventsRes>, I>>(
-    object: I
+    object: I,
   ): GetEventsRes {
     const message = createBaseGetEventsRes();
     message.events = object.events?.map((e) => Event.fromPartial(e)) || [];
@@ -374,7 +374,7 @@ function createBaseGetEventReq(): GetEventReq {
 export const GetEventReq = {
   encode(
     message: GetEventReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -415,7 +415,7 @@ export const GetEventReq = {
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventReq>, I>>(
-    object: I
+    object: I,
   ): GetEventReq {
     const message = createBaseGetEventReq();
     message.eventId = object.eventId ?? "";
@@ -430,7 +430,7 @@ function createBaseGetEventRes(): GetEventRes {
 export const GetEventRes = {
   encode(
     message: GetEventRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.event !== undefined) {
       Event.encode(message.event, writer.uint32(10).fork()).ldelim();
@@ -474,7 +474,7 @@ export const GetEventRes = {
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventRes>, I>>(
-    object: I
+    object: I,
   ): GetEventRes {
     const message = createBaseGetEventRes();
     message.event =
@@ -492,7 +492,7 @@ function createBaseGetEventBySlugReq(): GetEventBySlugReq {
 export const GetEventBySlugReq = {
   encode(
     message: GetEventBySlugReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.slug !== "") {
       writer.uint32(10).string(message.slug);
@@ -529,13 +529,13 @@ export const GetEventBySlugReq = {
   },
 
   create<I extends Exact<DeepPartial<GetEventBySlugReq>, I>>(
-    base?: I
+    base?: I,
   ): GetEventBySlugReq {
     return GetEventBySlugReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventBySlugReq>, I>>(
-    object: I
+    object: I,
   ): GetEventBySlugReq {
     const message = createBaseGetEventBySlugReq();
     message.slug = object.slug ?? "";
@@ -550,7 +550,7 @@ function createBaseGetEventBySlugRes(): GetEventBySlugRes {
 export const GetEventBySlugRes = {
   encode(
     message: GetEventBySlugRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.event !== undefined) {
       Event.encode(message.event, writer.uint32(10).fork()).ldelim();
@@ -590,13 +590,13 @@ export const GetEventBySlugRes = {
   },
 
   create<I extends Exact<DeepPartial<GetEventBySlugRes>, I>>(
-    base?: I
+    base?: I,
   ): GetEventBySlugRes {
     return GetEventBySlugRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventBySlugRes>, I>>(
-    object: I
+    object: I,
   ): GetEventBySlugRes {
     const message = createBaseGetEventBySlugRes();
     message.event =
@@ -628,7 +628,7 @@ function createBaseCreateEventReq(): CreateEventReq {
 export const CreateEventReq = {
   encode(
     message: CreateEventReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.authorId !== "") {
       writer.uint32(10).string(message.authorId);
@@ -651,13 +651,13 @@ export const CreateEventReq = {
     if (message.startDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.startDate),
-        writer.uint32(58).fork()
+        writer.uint32(58).fork(),
       ).ldelim();
     }
     if (message.endDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.endDate),
-        writer.uint32(66).fork()
+        writer.uint32(66).fork(),
       ).ldelim();
     }
     if (message.location !== "") {
@@ -705,12 +705,12 @@ export const CreateEventReq = {
           break;
         case 7:
           message.startDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 8:
           message.endDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 9:
@@ -804,13 +804,13 @@ export const CreateEventReq = {
   },
 
   create<I extends Exact<DeepPartial<CreateEventReq>, I>>(
-    base?: I
+    base?: I,
   ): CreateEventReq {
     return CreateEventReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateEventReq>, I>>(
-    object: I
+    object: I,
   ): CreateEventReq {
     const message = createBaseCreateEventReq();
     message.authorId = object.authorId ?? "";
@@ -837,7 +837,7 @@ function createBaseCreateEventRes(): CreateEventRes {
 export const CreateEventRes = {
   encode(
     message: CreateEventRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.event !== undefined) {
       Event.encode(message.event, writer.uint32(10).fork()).ldelim();
@@ -877,13 +877,13 @@ export const CreateEventRes = {
   },
 
   create<I extends Exact<DeepPartial<CreateEventRes>, I>>(
-    base?: I
+    base?: I,
   ): CreateEventRes {
     return CreateEventRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<CreateEventRes>, I>>(
-    object: I
+    object: I,
   ): CreateEventRes {
     const message = createBaseCreateEventRes();
     message.event =
@@ -917,7 +917,7 @@ function createBaseUpdateEventReq(): UpdateEventReq {
 export const UpdateEventReq = {
   encode(
     message: UpdateEventReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -937,13 +937,13 @@ export const UpdateEventReq = {
     if (message.startDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.startDate),
-        writer.uint32(58).fork()
+        writer.uint32(58).fork(),
       ).ldelim();
     }
     if (message.endDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.endDate),
-        writer.uint32(66).fork()
+        writer.uint32(66).fork(),
       ).ldelim();
     }
     if (message.location !== undefined) {
@@ -952,7 +952,7 @@ export const UpdateEventReq = {
     if (message.questionairre !== undefined) {
       Questionairre.encode(
         message.questionairre,
-        writer.uint32(82).fork()
+        writer.uint32(82).fork(),
       ).ldelim();
     }
     if (message.maxSubscriptions !== undefined) {
@@ -970,7 +970,7 @@ export const UpdateEventReq = {
     if (message.invitationCodes !== undefined) {
       StringArray.encode(
         message.invitationCodes,
-        writer.uint32(162).fork()
+        writer.uint32(162).fork(),
       ).ldelim();
     }
     if (message.tags !== undefined) {
@@ -1003,12 +1003,12 @@ export const UpdateEventReq = {
           break;
         case 7:
           message.startDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 8:
           message.endDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 9:
@@ -1119,13 +1119,13 @@ export const UpdateEventReq = {
   },
 
   create<I extends Exact<DeepPartial<UpdateEventReq>, I>>(
-    base?: I
+    base?: I,
   ): UpdateEventReq {
     return UpdateEventReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<UpdateEventReq>, I>>(
-    object: I
+    object: I,
   ): UpdateEventReq {
     const message = createBaseUpdateEventReq();
     message.eventId = object.eventId ?? "";
@@ -1164,7 +1164,7 @@ function createBaseUpdateEventRes(): UpdateEventRes {
 export const UpdateEventRes = {
   encode(
     message: UpdateEventRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.event !== undefined) {
       Event.encode(message.event, writer.uint32(10).fork()).ldelim();
@@ -1204,13 +1204,13 @@ export const UpdateEventRes = {
   },
 
   create<I extends Exact<DeepPartial<UpdateEventRes>, I>>(
-    base?: I
+    base?: I,
   ): UpdateEventRes {
     return UpdateEventRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<UpdateEventRes>, I>>(
-    object: I
+    object: I,
   ): UpdateEventRes {
     const message = createBaseUpdateEventRes();
     message.event =
@@ -1228,7 +1228,7 @@ function createBasePublishEventReq(): PublishEventReq {
 export const PublishEventReq = {
   encode(
     message: PublishEventReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -1265,13 +1265,13 @@ export const PublishEventReq = {
   },
 
   create<I extends Exact<DeepPartial<PublishEventReq>, I>>(
-    base?: I
+    base?: I,
   ): PublishEventReq {
     return PublishEventReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<PublishEventReq>, I>>(
-    object: I
+    object: I,
   ): PublishEventReq {
     const message = createBasePublishEventReq();
     message.eventId = object.eventId ?? "";
@@ -1286,7 +1286,7 @@ function createBasePublishEventRes(): PublishEventRes {
 export const PublishEventRes = {
   encode(
     message: PublishEventRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.event !== undefined) {
       Event.encode(message.event, writer.uint32(10).fork()).ldelim();
@@ -1326,13 +1326,13 @@ export const PublishEventRes = {
   },
 
   create<I extends Exact<DeepPartial<PublishEventRes>, I>>(
-    base?: I
+    base?: I,
   ): PublishEventRes {
     return PublishEventRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<PublishEventRes>, I>>(
-    object: I
+    object: I,
   ): PublishEventRes {
     const message = createBasePublishEventRes();
     message.event =
@@ -1350,7 +1350,7 @@ function createBaseDeleteEventReq(): DeleteEventReq {
 export const DeleteEventReq = {
   encode(
     message: DeleteEventReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -1387,13 +1387,13 @@ export const DeleteEventReq = {
   },
 
   create<I extends Exact<DeepPartial<DeleteEventReq>, I>>(
-    base?: I
+    base?: I,
   ): DeleteEventReq {
     return DeleteEventReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<DeleteEventReq>, I>>(
-    object: I
+    object: I,
   ): DeleteEventReq {
     const message = createBaseDeleteEventReq();
     message.eventId = object.eventId ?? "";
@@ -1408,7 +1408,7 @@ function createBaseDeleteEventRes(): DeleteEventRes {
 export const DeleteEventRes = {
   encode(
     message: DeleteEventRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.event !== undefined) {
       Event.encode(message.event, writer.uint32(10).fork()).ldelim();
@@ -1448,13 +1448,13 @@ export const DeleteEventRes = {
   },
 
   create<I extends Exact<DeepPartial<DeleteEventRes>, I>>(
-    base?: I
+    base?: I,
   ): DeleteEventRes {
     return DeleteEventRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<DeleteEventRes>, I>>(
-    object: I
+    object: I,
   ): DeleteEventRes {
     const message = createBaseDeleteEventRes();
     message.event =
@@ -1472,7 +1472,7 @@ function createBaseGetEventTicketsReq(): GetEventTicketsReq {
 export const GetEventTicketsReq = {
   encode(
     message: GetEventTicketsReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -1527,13 +1527,13 @@ export const GetEventTicketsReq = {
   },
 
   create<I extends Exact<DeepPartial<GetEventTicketsReq>, I>>(
-    base?: I
+    base?: I,
   ): GetEventTicketsReq {
     return GetEventTicketsReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventTicketsReq>, I>>(
-    object: I
+    object: I,
   ): GetEventTicketsReq {
     const message = createBaseGetEventTicketsReq();
     message.eventId = object.eventId ?? "";
@@ -1550,7 +1550,7 @@ function createBaseGetEventTicketsRes(): GetEventTicketsRes {
 export const GetEventTicketsRes = {
   encode(
     message: GetEventTicketsRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.tickets) {
       EventTicket.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -1595,7 +1595,7 @@ export const GetEventTicketsRes = {
     const obj: any = {};
     if (message.tickets) {
       obj.tickets = message.tickets.map((e) =>
-        e ? EventTicket.toJSON(e) : undefined
+        e ? EventTicket.toJSON(e) : undefined,
       );
     } else {
       obj.tickets = [];
@@ -1605,13 +1605,13 @@ export const GetEventTicketsRes = {
   },
 
   create<I extends Exact<DeepPartial<GetEventTicketsRes>, I>>(
-    base?: I
+    base?: I,
   ): GetEventTicketsRes {
     return GetEventTicketsRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventTicketsRes>, I>>(
-    object: I
+    object: I,
   ): GetEventTicketsRes {
     const message = createBaseGetEventTicketsRes();
     message.tickets =
@@ -1628,7 +1628,7 @@ function createBaseGetEventTicketReq(): GetEventTicketReq {
 export const GetEventTicketReq = {
   encode(
     message: GetEventTicketReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -1675,13 +1675,13 @@ export const GetEventTicketReq = {
   },
 
   create<I extends Exact<DeepPartial<GetEventTicketReq>, I>>(
-    base?: I
+    base?: I,
   ): GetEventTicketReq {
     return GetEventTicketReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventTicketReq>, I>>(
-    object: I
+    object: I,
   ): GetEventTicketReq {
     const message = createBaseGetEventTicketReq();
     message.eventId = object.eventId ?? "";
@@ -1697,7 +1697,7 @@ function createBaseGetEventTicketRes(): GetEventTicketRes {
 export const GetEventTicketRes = {
   encode(
     message: GetEventTicketRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.ticket !== undefined) {
       EventTicket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
@@ -1741,13 +1741,13 @@ export const GetEventTicketRes = {
   },
 
   create<I extends Exact<DeepPartial<GetEventTicketRes>, I>>(
-    base?: I
+    base?: I,
   ): GetEventTicketRes {
     return GetEventTicketRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventTicketRes>, I>>(
-    object: I
+    object: I,
   ): GetEventTicketRes {
     const message = createBaseGetEventTicketRes();
     message.ticket =
@@ -1765,7 +1765,7 @@ function createBaseGetEventTicketByTokenReq(): GetEventTicketByTokenReq {
 export const GetEventTicketByTokenReq = {
   encode(
     message: GetEventTicketByTokenReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -1778,7 +1778,7 @@ export const GetEventTicketByTokenReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetEventTicketByTokenReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1815,13 +1815,13 @@ export const GetEventTicketByTokenReq = {
   },
 
   create<I extends Exact<DeepPartial<GetEventTicketByTokenReq>, I>>(
-    base?: I
+    base?: I,
   ): GetEventTicketByTokenReq {
     return GetEventTicketByTokenReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventTicketByTokenReq>, I>>(
-    object: I
+    object: I,
   ): GetEventTicketByTokenReq {
     const message = createBaseGetEventTicketByTokenReq();
     message.eventId = object.eventId ?? "";
@@ -1837,7 +1837,7 @@ function createBaseGetEventTicketByTokenRes(): GetEventTicketByTokenRes {
 export const GetEventTicketByTokenRes = {
   encode(
     message: GetEventTicketByTokenRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.ticket !== undefined) {
       EventTicket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
@@ -1847,7 +1847,7 @@ export const GetEventTicketByTokenRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): GetEventTicketByTokenRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1884,13 +1884,13 @@ export const GetEventTicketByTokenRes = {
   },
 
   create<I extends Exact<DeepPartial<GetEventTicketByTokenRes>, I>>(
-    base?: I
+    base?: I,
   ): GetEventTicketByTokenRes {
     return GetEventTicketByTokenRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<GetEventTicketByTokenRes>, I>>(
-    object: I
+    object: I,
   ): GetEventTicketByTokenRes {
     const message = createBaseGetEventTicketByTokenRes();
     message.ticket =
@@ -1917,7 +1917,7 @@ function createBaseUpsertEventTicketReq(): UpsertEventTicketReq {
 export const UpsertEventTicketReq = {
   encode(
     message: UpsertEventTicketReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -1937,7 +1937,7 @@ export const UpsertEventTicketReq = {
     Object.entries(message.answers).forEach(([key, value]) => {
       UpsertEventTicketReq_AnswersEntry.encode(
         { key: key as any, value },
-        writer.uint32(50).fork()
+        writer.uint32(50).fork(),
       ).ldelim();
     });
     if (message.privacy === true) {
@@ -1951,7 +1951,7 @@ export const UpsertEventTicketReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): UpsertEventTicketReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1977,7 +1977,7 @@ export const UpsertEventTicketReq = {
         case 6:
           const entry6 = UpsertEventTicketReq_AnswersEntry.decode(
             reader,
-            reader.uint32()
+            reader.uint32(),
           );
           if (entry6.value !== undefined) {
             message.answers[entry6.key] = entry6.value;
@@ -2010,7 +2010,7 @@ export const UpsertEventTicketReq = {
               acc[key] = String(value);
               return acc;
             },
-            {}
+            {},
           )
         : {},
       privacy: isSet(object.privacy) ? Boolean(object.privacy) : false,
@@ -2040,13 +2040,13 @@ export const UpsertEventTicketReq = {
   },
 
   create<I extends Exact<DeepPartial<UpsertEventTicketReq>, I>>(
-    base?: I
+    base?: I,
   ): UpsertEventTicketReq {
     return UpsertEventTicketReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<UpsertEventTicketReq>, I>>(
-    object: I
+    object: I,
   ): UpsertEventTicketReq {
     const message = createBaseUpsertEventTicketReq();
     message.eventId = object.eventId ?? "";
@@ -2075,7 +2075,7 @@ function createBaseUpsertEventTicketReq_AnswersEntry(): UpsertEventTicketReq_Ans
 export const UpsertEventTicketReq_AnswersEntry = {
   encode(
     message: UpsertEventTicketReq_AnswersEntry,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
@@ -2088,7 +2088,7 @@ export const UpsertEventTicketReq_AnswersEntry = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): UpsertEventTicketReq_AnswersEntry {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2125,13 +2125,13 @@ export const UpsertEventTicketReq_AnswersEntry = {
   },
 
   create<I extends Exact<DeepPartial<UpsertEventTicketReq_AnswersEntry>, I>>(
-    base?: I
+    base?: I,
   ): UpsertEventTicketReq_AnswersEntry {
     return UpsertEventTicketReq_AnswersEntry.fromPartial(base ?? {});
   },
 
   fromPartial<
-    I extends Exact<DeepPartial<UpsertEventTicketReq_AnswersEntry>, I>
+    I extends Exact<DeepPartial<UpsertEventTicketReq_AnswersEntry>, I>,
   >(object: I): UpsertEventTicketReq_AnswersEntry {
     const message = createBaseUpsertEventTicketReq_AnswersEntry();
     message.key = object.key ?? "";
@@ -2147,7 +2147,7 @@ function createBaseUpsertEventTicketRes(): UpsertEventTicketRes {
 export const UpsertEventTicketRes = {
   encode(
     message: UpsertEventTicketRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.ticket !== undefined) {
       EventTicket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
@@ -2157,7 +2157,7 @@ export const UpsertEventTicketRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): UpsertEventTicketRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2194,13 +2194,13 @@ export const UpsertEventTicketRes = {
   },
 
   create<I extends Exact<DeepPartial<UpsertEventTicketRes>, I>>(
-    base?: I
+    base?: I,
   ): UpsertEventTicketRes {
     return UpsertEventTicketRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<UpsertEventTicketRes>, I>>(
-    object: I
+    object: I,
   ): UpsertEventTicketRes {
     const message = createBaseUpsertEventTicketRes();
     message.ticket =
@@ -2218,7 +2218,7 @@ function createBaseConfirmEventTicketReq(): ConfirmEventTicketReq {
 export const ConfirmEventTicketReq = {
   encode(
     message: ConfirmEventTicketReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -2231,7 +2231,7 @@ export const ConfirmEventTicketReq = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): ConfirmEventTicketReq {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2268,13 +2268,13 @@ export const ConfirmEventTicketReq = {
   },
 
   create<I extends Exact<DeepPartial<ConfirmEventTicketReq>, I>>(
-    base?: I
+    base?: I,
   ): ConfirmEventTicketReq {
     return ConfirmEventTicketReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<ConfirmEventTicketReq>, I>>(
-    object: I
+    object: I,
   ): ConfirmEventTicketReq {
     const message = createBaseConfirmEventTicketReq();
     message.eventId = object.eventId ?? "";
@@ -2290,7 +2290,7 @@ function createBaseConfirmEventTicketRes(): ConfirmEventTicketRes {
 export const ConfirmEventTicketRes = {
   encode(
     message: ConfirmEventTicketRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.ticket !== undefined) {
       EventTicket.encode(message.ticket, writer.uint32(10).fork()).ldelim();
@@ -2300,7 +2300,7 @@ export const ConfirmEventTicketRes = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): ConfirmEventTicketRes {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -2337,13 +2337,13 @@ export const ConfirmEventTicketRes = {
   },
 
   create<I extends Exact<DeepPartial<ConfirmEventTicketRes>, I>>(
-    base?: I
+    base?: I,
   ): ConfirmEventTicketRes {
     return ConfirmEventTicketRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<ConfirmEventTicketRes>, I>>(
-    object: I
+    object: I,
   ): ConfirmEventTicketRes {
     const message = createBaseConfirmEventTicketRes();
     message.ticket =
@@ -2361,7 +2361,7 @@ function createBaseEventIsOpenReq(): EventIsOpenReq {
 export const EventIsOpenReq = {
   encode(
     message: EventIsOpenReq,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.eventId !== "") {
       writer.uint32(10).string(message.eventId);
@@ -2398,13 +2398,13 @@ export const EventIsOpenReq = {
   },
 
   create<I extends Exact<DeepPartial<EventIsOpenReq>, I>>(
-    base?: I
+    base?: I,
   ): EventIsOpenReq {
     return EventIsOpenReq.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<EventIsOpenReq>, I>>(
-    object: I
+    object: I,
   ): EventIsOpenReq {
     const message = createBaseEventIsOpenReq();
     message.eventId = object.eventId ?? "";
@@ -2419,7 +2419,7 @@ function createBaseEventIsOpenRes(): EventIsOpenRes {
 export const EventIsOpenRes = {
   encode(
     message: EventIsOpenRes,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.isOpen === true) {
       writer.uint32(8).bool(message.isOpen);
@@ -2456,13 +2456,13 @@ export const EventIsOpenRes = {
   },
 
   create<I extends Exact<DeepPartial<EventIsOpenRes>, I>>(
-    base?: I
+    base?: I,
   ): EventIsOpenRes {
     return EventIsOpenRes.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<EventIsOpenRes>, I>>(
-    object: I
+    object: I,
   ): EventIsOpenRes {
     const message = createBaseEventIsOpenRes();
     message.isOpen = object.isOpen ?? false;
@@ -2477,7 +2477,7 @@ function createBaseStringArray(): StringArray {
 export const StringArray = {
   encode(
     message: StringArray,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.values) {
       writer.uint32(10).string(v!);
@@ -2526,7 +2526,7 @@ export const StringArray = {
   },
 
   fromPartial<I extends Exact<DeepPartial<StringArray>, I>>(
-    object: I
+    object: I,
   ): StringArray {
     const message = createBaseStringArray();
     message.values = object.values?.map((e) => e) || [];
@@ -2711,168 +2711,177 @@ export interface EventsSrvServer extends UntypedServiceImplementation {
 export interface EventsSrvClient extends Client {
   getEvents(
     request: GetEventsReq,
-    callback: (error: ServiceError | null, response: GetEventsRes) => void
+    callback: (error: ServiceError | null, response: GetEventsRes) => void,
   ): ClientUnaryCall;
   getEvents(
     request: GetEventsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetEventsRes) => void
+    callback: (error: ServiceError | null, response: GetEventsRes) => void,
   ): ClientUnaryCall;
   getEvents(
     request: GetEventsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetEventsRes) => void
+    callback: (error: ServiceError | null, response: GetEventsRes) => void,
   ): ClientUnaryCall;
   getEvent(
     request: GetEventReq,
-    callback: (error: ServiceError | null, response: GetEventRes) => void
-  ): ClientUnaryCall;
-  getEvent(
-    request: GetEventReq,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetEventRes) => void
+    callback: (error: ServiceError | null, response: GetEventRes) => void,
   ): ClientUnaryCall;
   getEvent(
     request: GetEventReq,
     metadata: Metadata,
+    callback: (error: ServiceError | null, response: GetEventRes) => void,
+  ): ClientUnaryCall;
+  getEvent(
+    request: GetEventReq,
+    metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetEventRes) => void
+    callback: (error: ServiceError | null, response: GetEventRes) => void,
   ): ClientUnaryCall;
   getEventBySlug(
     request: GetEventBySlugReq,
-    callback: (error: ServiceError | null, response: GetEventBySlugRes) => void
+    callback: (error: ServiceError | null, response: GetEventBySlugRes) => void,
   ): ClientUnaryCall;
   getEventBySlug(
     request: GetEventBySlugReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetEventBySlugRes) => void
+    callback: (error: ServiceError | null, response: GetEventBySlugRes) => void,
   ): ClientUnaryCall;
   getEventBySlug(
     request: GetEventBySlugReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetEventBySlugRes) => void
+    callback: (error: ServiceError | null, response: GetEventBySlugRes) => void,
   ): ClientUnaryCall;
   createEvent(
     request: CreateEventReq,
-    callback: (error: ServiceError | null, response: CreateEventRes) => void
-  ): ClientUnaryCall;
-  createEvent(
-    request: CreateEventReq,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: CreateEventRes) => void
+    callback: (error: ServiceError | null, response: CreateEventRes) => void,
   ): ClientUnaryCall;
   createEvent(
     request: CreateEventReq,
     metadata: Metadata,
+    callback: (error: ServiceError | null, response: CreateEventRes) => void,
+  ): ClientUnaryCall;
+  createEvent(
+    request: CreateEventReq,
+    metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: CreateEventRes) => void
+    callback: (error: ServiceError | null, response: CreateEventRes) => void,
   ): ClientUnaryCall;
   publishEvent(
     request: PublishEventReq,
-    callback: (error: ServiceError | null, response: PublishEventRes) => void
+    callback: (error: ServiceError | null, response: PublishEventRes) => void,
   ): ClientUnaryCall;
   publishEvent(
     request: PublishEventReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: PublishEventRes) => void
+    callback: (error: ServiceError | null, response: PublishEventRes) => void,
   ): ClientUnaryCall;
   publishEvent(
     request: PublishEventReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: PublishEventRes) => void
+    callback: (error: ServiceError | null, response: PublishEventRes) => void,
   ): ClientUnaryCall;
   updateEvent(
     request: UpdateEventReq,
-    callback: (error: ServiceError | null, response: UpdateEventRes) => void
-  ): ClientUnaryCall;
-  updateEvent(
-    request: UpdateEventReq,
-    metadata: Metadata,
-    callback: (error: ServiceError | null, response: UpdateEventRes) => void
+    callback: (error: ServiceError | null, response: UpdateEventRes) => void,
   ): ClientUnaryCall;
   updateEvent(
     request: UpdateEventReq,
     metadata: Metadata,
+    callback: (error: ServiceError | null, response: UpdateEventRes) => void,
+  ): ClientUnaryCall;
+  updateEvent(
+    request: UpdateEventReq,
+    metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: UpdateEventRes) => void
+    callback: (error: ServiceError | null, response: UpdateEventRes) => void,
   ): ClientUnaryCall;
   deleteEvent(
     request: DeleteEventReq,
-    callback: (error: ServiceError | null, response: DeleteEventRes) => void
+    callback: (error: ServiceError | null, response: DeleteEventRes) => void,
   ): ClientUnaryCall;
   deleteEvent(
     request: DeleteEventReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: DeleteEventRes) => void
+    callback: (error: ServiceError | null, response: DeleteEventRes) => void,
   ): ClientUnaryCall;
   deleteEvent(
     request: DeleteEventReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: DeleteEventRes) => void
+    callback: (error: ServiceError | null, response: DeleteEventRes) => void,
   ): ClientUnaryCall;
   eventIsOpen(
     request: EventIsOpenReq,
-    callback: (error: ServiceError | null, response: EventIsOpenRes) => void
+    callback: (error: ServiceError | null, response: EventIsOpenRes) => void,
   ): ClientUnaryCall;
   eventIsOpen(
     request: EventIsOpenReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: EventIsOpenRes) => void
+    callback: (error: ServiceError | null, response: EventIsOpenRes) => void,
   ): ClientUnaryCall;
   eventIsOpen(
     request: EventIsOpenReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: EventIsOpenRes) => void
+    callback: (error: ServiceError | null, response: EventIsOpenRes) => void,
   ): ClientUnaryCall;
   getEventTickets(
     request: GetEventTicketsReq,
-    callback: (error: ServiceError | null, response: GetEventTicketsRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetEventTicketsRes,
+    ) => void,
   ): ClientUnaryCall;
   getEventTickets(
     request: GetEventTicketsReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetEventTicketsRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetEventTicketsRes,
+    ) => void,
   ): ClientUnaryCall;
   getEventTickets(
     request: GetEventTicketsReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetEventTicketsRes) => void
+    callback: (
+      error: ServiceError | null,
+      response: GetEventTicketsRes,
+    ) => void,
   ): ClientUnaryCall;
   getEventTicket(
     request: GetEventTicketReq,
-    callback: (error: ServiceError | null, response: GetEventTicketRes) => void
+    callback: (error: ServiceError | null, response: GetEventTicketRes) => void,
   ): ClientUnaryCall;
   getEventTicket(
     request: GetEventTicketReq,
     metadata: Metadata,
-    callback: (error: ServiceError | null, response: GetEventTicketRes) => void
+    callback: (error: ServiceError | null, response: GetEventTicketRes) => void,
   ): ClientUnaryCall;
   getEventTicket(
     request: GetEventTicketReq,
     metadata: Metadata,
     options: Partial<CallOptions>,
-    callback: (error: ServiceError | null, response: GetEventTicketRes) => void
+    callback: (error: ServiceError | null, response: GetEventTicketRes) => void,
   ): ClientUnaryCall;
   getEventTicketByToken(
     request: GetEventTicketByTokenReq,
     callback: (
       error: ServiceError | null,
-      response: GetEventTicketByTokenRes
-    ) => void
+      response: GetEventTicketByTokenRes,
+    ) => void,
   ): ClientUnaryCall;
   getEventTicketByToken(
     request: GetEventTicketByTokenReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: GetEventTicketByTokenRes
-    ) => void
+      response: GetEventTicketByTokenRes,
+    ) => void,
   ): ClientUnaryCall;
   getEventTicketByToken(
     request: GetEventTicketByTokenReq,
@@ -2880,23 +2889,23 @@ export interface EventsSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: GetEventTicketByTokenRes
-    ) => void
+      response: GetEventTicketByTokenRes,
+    ) => void,
   ): ClientUnaryCall;
   upsertEventTicket(
     request: UpsertEventTicketReq,
     callback: (
       error: ServiceError | null,
-      response: UpsertEventTicketRes
-    ) => void
+      response: UpsertEventTicketRes,
+    ) => void,
   ): ClientUnaryCall;
   upsertEventTicket(
     request: UpsertEventTicketReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: UpsertEventTicketRes
-    ) => void
+      response: UpsertEventTicketRes,
+    ) => void,
   ): ClientUnaryCall;
   upsertEventTicket(
     request: UpsertEventTicketReq,
@@ -2904,23 +2913,23 @@ export interface EventsSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: UpsertEventTicketRes
-    ) => void
+      response: UpsertEventTicketRes,
+    ) => void,
   ): ClientUnaryCall;
   confirmEventTicket(
     request: ConfirmEventTicketReq,
     callback: (
       error: ServiceError | null,
-      response: ConfirmEventTicketRes
-    ) => void
+      response: ConfirmEventTicketRes,
+    ) => void,
   ): ClientUnaryCall;
   confirmEventTicket(
     request: ConfirmEventTicketReq,
     metadata: Metadata,
     callback: (
       error: ServiceError | null,
-      response: ConfirmEventTicketRes
-    ) => void
+      response: ConfirmEventTicketRes,
+    ) => void,
   ): ClientUnaryCall;
   confirmEventTicket(
     request: ConfirmEventTicketReq,
@@ -2928,19 +2937,19 @@ export interface EventsSrvClient extends Client {
     options: Partial<CallOptions>,
     callback: (
       error: ServiceError | null,
-      response: ConfirmEventTicketRes
-    ) => void
+      response: ConfirmEventTicketRes,
+    ) => void,
   ): ClientUnaryCall;
 }
 
 export const EventsSrvClient = makeGenericClientConstructor(
   EventsSrvService,
-  "fy.blog.v1.EventsSrv"
+  "fy.blog.v1.EventsSrv",
 ) as unknown as {
   new (
     address: string,
     credentials: ChannelCredentials,
-    options?: Partial<ClientOptions>
+    options?: Partial<ClientOptions>,
   ): EventsSrvClient;
   service: typeof EventsSrvService;
 };

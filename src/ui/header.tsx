@@ -73,7 +73,7 @@ const BlogMenu = () => (
         <Popover.Button
           className={classNames(
             open ? "text-pink-800" : "text-white ",
-            "group inline-flex items-center rounded-md px-4 py-2 text-base font-medium text-white hover:bg-white hover:text-pink-800 focus:bg-white focus:text-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2"
+            "group inline-flex items-center rounded-md px-4 py-2 text-base font-medium text-white hover:bg-white hover:text-pink-800 focus:bg-white focus:text-pink-300 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:ring-offset-2",
           )}
         >
           <span>Blog</span>
@@ -153,7 +153,7 @@ const MobileMenu = () => (
         <Popover.Button
           className={classNames(
             open ? "text-white" : "text-white",
-            "group inline-flex items-center rounded-md p-2 text-base font-medium hover:bg-white hover:text-pink-800"
+            "group inline-flex items-center rounded-md p-2 text-base font-medium hover:bg-white hover:text-pink-800",
           )}
         >
           {open ? (

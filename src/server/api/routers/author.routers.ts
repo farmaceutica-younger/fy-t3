@@ -16,7 +16,7 @@ export const authorRouter = createTRPCRouter({
       z.object({
         data: PostFormSchema,
         id: z.string(),
-      })
+      }),
     )
     .mutation(async ({ input, ctx }) => {
       const res = await ctx.prisma.blogPost.update({
@@ -53,7 +53,7 @@ export const authorRouter = createTRPCRouter({
     .input(
       z.object({
         id: z.string(),
-      })
+      }),
     )
     .mutation(async ({ ctx, input }) => {
       const post = await ctx.prisma.blogPost.findUnique({
@@ -82,7 +82,7 @@ export const authorRouter = createTRPCRouter({
     .input(
       z.object({
         id: z.string(),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
       const post = await ctx.prisma.blogPost.findUnique({
@@ -101,7 +101,7 @@ export const authorRouter = createTRPCRouter({
       z.object({
         skip: z.number().int().default(0),
         take: z.number().int().default(20),
-      })
+      }),
     )
     .query(async ({ input, ctx }) => {
       const posts = await ctx.prisma.blogPost.findMany({

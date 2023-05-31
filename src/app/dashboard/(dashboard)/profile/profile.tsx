@@ -58,7 +58,7 @@ const ProfileDialog = ({
         error: "Errore nel salvataggio del profilo",
       });
     },
-    [setProfile]
+    [setProfile],
   );
 
   return <ProfileForm submit={submitProfile} initialValues={profile} />;

@@ -101,7 +101,7 @@ function createBaseAuthor(): Author {
 export const Author = {
   encode(
     message: Author,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.authorId !== "") {
       writer.uint32(10).string(message.authorId);
@@ -118,13 +118,13 @@ export const Author = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(42).fork()
+        writer.uint32(42).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(50).fork()
+        writer.uint32(50).fork(),
       ).ldelim();
     }
     return writer;
@@ -151,12 +151,12 @@ export const Author = {
           break;
         case 5:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 6:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -235,7 +235,7 @@ function createBaseBlogPost(): BlogPost {
 export const BlogPost = {
   encode(
     message: BlogPost,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.postId !== "") {
       writer.uint32(10).string(message.postId);
@@ -264,19 +264,19 @@ export const BlogPost = {
     if (message.publishedTime !== undefined) {
       Timestamp.encode(
         toTimestamp(message.publishedTime),
-        writer.uint32(74).fork()
+        writer.uint32(74).fork(),
       ).ldelim();
     }
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(82).fork()
+        writer.uint32(82).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(90).fork()
+        writer.uint32(90).fork(),
       ).ldelim();
     }
     if (message.showFeaturedImage === true) {
@@ -321,17 +321,17 @@ export const BlogPost = {
           break;
         case 9:
           message.publishedTime = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 10:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 11:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 12:
@@ -483,13 +483,13 @@ export const Event = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(74).fork()
+        writer.uint32(74).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(82).fork()
+        writer.uint32(82).fork(),
       ).ldelim();
     }
     if (message.published === true) {
@@ -498,13 +498,13 @@ export const Event = {
     if (message.startDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.startDate),
-        writer.uint32(98).fork()
+        writer.uint32(98).fork(),
       ).ldelim();
     }
     if (message.endDate !== undefined) {
       Timestamp.encode(
         toTimestamp(message.endDate),
-        writer.uint32(106).fork()
+        writer.uint32(106).fork(),
       ).ldelim();
     }
     if (message.location !== "") {
@@ -513,7 +513,7 @@ export const Event = {
     if (message.questionairre !== undefined) {
       Questionairre.encode(
         message.questionairre,
-        writer.uint32(122).fork()
+        writer.uint32(122).fork(),
       ).ldelim();
     }
     if (message.maxSubscriptions !== 0) {
@@ -567,12 +567,12 @@ export const Event = {
           break;
         case 9:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 10:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 11:
@@ -580,12 +580,12 @@ export const Event = {
           break;
         case 12:
           message.startDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 13:
           message.endDate = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 14:
@@ -752,7 +752,7 @@ function createBaseQuestionairre(): Questionairre {
 export const Questionairre = {
   encode(
     message: Questionairre,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     for (const v of message.questions) {
       Question.encode(v!, writer.uint32(10).fork()).ldelim();
@@ -790,7 +790,7 @@ export const Questionairre = {
     const obj: any = {};
     if (message.questions) {
       obj.questions = message.questions.map((e) =>
-        e ? Question.toJSON(e) : undefined
+        e ? Question.toJSON(e) : undefined,
       );
     } else {
       obj.questions = [];
@@ -799,13 +799,13 @@ export const Questionairre = {
   },
 
   create<I extends Exact<DeepPartial<Questionairre>, I>>(
-    base?: I
+    base?: I,
   ): Questionairre {
     return Questionairre.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<Questionairre>, I>>(
-    object: I
+    object: I,
   ): Questionairre {
     const message = createBaseQuestionairre();
     message.questions =
@@ -821,7 +821,7 @@ function createBaseQuestion(): Question {
 export const Question = {
   encode(
     message: Question,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.cuid !== "") {
       writer.uint32(10).string(message.cuid);
@@ -936,7 +936,7 @@ function createBaseEventTicket(): EventTicket {
 export const EventTicket = {
   encode(
     message: EventTicket,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.ticketId !== "") {
       writer.uint32(10).string(message.ticketId);
@@ -968,37 +968,37 @@ export const EventTicket = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(82).fork()
+        writer.uint32(82).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(90).fork()
+        writer.uint32(90).fork(),
       ).ldelim();
     }
     Object.entries(message.answers).forEach(([key, value]) => {
       EventTicket_AnswersEntry.encode(
         { key: key as any, value },
-        writer.uint32(98).fork()
+        writer.uint32(98).fork(),
       ).ldelim();
     });
     if (message.privacySigned !== undefined) {
       Timestamp.encode(
         toTimestamp(message.privacySigned),
-        writer.uint32(106).fork()
+        writer.uint32(106).fork(),
       ).ldelim();
     }
     if (message.confirmed !== undefined) {
       Timestamp.encode(
         toTimestamp(message.confirmed),
-        writer.uint32(114).fork()
+        writer.uint32(114).fork(),
       ).ldelim();
     }
     if (message.recordingConsensus !== undefined) {
       Timestamp.encode(
         toTimestamp(message.recordingConsensus),
-        writer.uint32(122).fork()
+        writer.uint32(122).fork(),
       ).ldelim();
     }
     return writer;
@@ -1040,18 +1040,18 @@ export const EventTicket = {
           break;
         case 10:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 11:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 12:
           const entry12 = EventTicket_AnswersEntry.decode(
             reader,
-            reader.uint32()
+            reader.uint32(),
           );
           if (entry12.value !== undefined) {
             message.answers[entry12.key] = entry12.value;
@@ -1059,17 +1059,17 @@ export const EventTicket = {
           break;
         case 13:
           message.privacySigned = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 14:
           message.confirmed = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 15:
           message.recordingConsensus = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -1103,7 +1103,7 @@ export const EventTicket = {
               acc[key] = String(value);
               return acc;
             },
-            {}
+            {},
           )
         : {},
       privacySigned: isSet(object.privacySigned)
@@ -1154,7 +1154,7 @@ export const EventTicket = {
   },
 
   fromPartial<I extends Exact<DeepPartial<EventTicket>, I>>(
-    object: I
+    object: I,
   ): EventTicket {
     const message = createBaseEventTicket();
     message.ticketId = object.ticketId ?? "";
@@ -1190,7 +1190,7 @@ function createBaseEventTicket_AnswersEntry(): EventTicket_AnswersEntry {
 export const EventTicket_AnswersEntry = {
   encode(
     message: EventTicket_AnswersEntry,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.key !== "") {
       writer.uint32(10).string(message.key);
@@ -1203,7 +1203,7 @@ export const EventTicket_AnswersEntry = {
 
   decode(
     input: _m0.Reader | Uint8Array,
-    length?: number
+    length?: number,
   ): EventTicket_AnswersEntry {
     const reader = input instanceof _m0.Reader ? input : new _m0.Reader(input);
     let end = length === undefined ? reader.len : reader.pos + length;
@@ -1240,13 +1240,13 @@ export const EventTicket_AnswersEntry = {
   },
 
   create<I extends Exact<DeepPartial<EventTicket_AnswersEntry>, I>>(
-    base?: I
+    base?: I,
   ): EventTicket_AnswersEntry {
     return EventTicket_AnswersEntry.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<EventTicket_AnswersEntry>, I>>(
-    object: I
+    object: I,
   ): EventTicket_AnswersEntry {
     const message = createBaseEventTicket_AnswersEntry();
     message.key = object.key ?? "";

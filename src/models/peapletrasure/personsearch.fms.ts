@@ -1,74 +1,143 @@
-import { createMachine } from "xstate";
+import { assign, createMachine } from "xstate";
+import { Question, QuizGame, QuizGameParticipant } from "./types";
 
+type QuestionWithId = Question & { id: string };
 export const personSearchMachine = createMachine({
-  /** @xstate-layout N4IgpgJg5mDOIC5QAcwCdYHsB2BlMAhmgMYAWAdLAC5FUCW2UAxBDmOQwG6YDW7ZYYjwCSsAEpgodaukgBtAAwBdRCkyw69HKpAAPRAGYA7OQCcRgBwBGBQDYArDYP2ATABYFbgDQgAnogBaG3tyFwNbCzcLUzc3FyMjBwBfJJ9UDBx8IjJKGjR6RhY2DmxuPnIBIVEJKRk0eSsVJBBkdU06bWb9BDDyaNNTW1sXR3tbAwNvP0DJ8g8LIzCYuIShlLT0LDxCEgp62qp0BmYxAFEAcWFcABVTs4ARRSa1DS1sHW77Iytye0n-qwuKxDRY+fwIALOMwKBZLWLxRL2NzrFqbTI7HIQMCHNAAWwYxyYVwA+gBFACqwgAWk8dK1Xh13l1EIsDHMIkZ7GDEFYrCYDNZ7AorKYwkM7FYUektllduQsTj8dhCSSADKnACC9zuACEAPIasSPZR0tpvD6IeyucgiyIKMZAkEubk9KwhCYWP4GPnhWx2ZGpVEZbbZCgARwArnQAF5MAjYWAAd3QtOa9PanVA3UGJntbmGnlMFgcXxdvP5guFot9EpSgewmCx8DTaJDu1NDMzekCTjMMSM3ucizcVhdkJGcwmtjcRcWYQMLilrdlOWotGOHYzTKzgStfbcA6sQ-cCgGU3BATCJlMU5nsPnLkXgel6ND5H20hxG7TZsZFoQI4KHMcSmAoCQWOEbiltMEJQqBsIGMsCIOAGGzBiuFAKugSrfi8W7-mMPzTpExhcjB5bkAKbpVmKfq2JKz7Lhi4ZRtGm7msyCALERQIKN6Z58kYZZ8pRlYirRtaMehzHkAANoQWJoDqmBEBA7F-pxvK8ja3zRMKI6DFBwkVtR4k1rYdZJEAA */
-  initial: "starting",
+  /** @xstate-layout N4IgpgJg5mDOIC5QAcwCdYHsB2BlMAhmgMYAWAdADaYEQCW2UAxBDmOQwG6YDW71tAOIEAtmADaABgC6iFJlh0ALnRxyQAD0QBmAEwA2cvsnbJAFj3aA7AE4LARgCsAGhABPRFYAc5G-t029laSXlb2ko7aZgC+0a6oGDj4RGRUNPSMTOhomGjkyJQESgBmuSJpQqISMurICsqq2OpaCFFm5BH6+vY2dpKSVl2uHq1m7QG6Xmb2ZgH9+o6x8ehYeIQkFAIQAKJoOWhMAK6w6ORoYEpoblKySCB1iipqdy3a-uTTxub+CwvDiLp7D5HI4xpFfv4QV4lvcVkl1qktpAmDdavUnk0Xoh9FNyECrI4FrpvF5uvZ-q1zORHH5tKCQvpbCYrDCEqtkhsKhBkeJ7Ld5I9Gs1sbj8YTHMSvKT7OT3Ih7MZyKSbF5vjYrASrLNWXC1ikKOcoHRYEp0AxmMdTobjabzhBUXcHg1nqAWuErLpfAErKZjD0wvoKU57ORtDY9LNQfoxj0YnFYYk9ZzubaRAxzSw2BxsNw+FyAIqHOAYh0C52Y13ykHaciA0JTAbWYJmIORcgehaDbRTcW6HWJjmpFPoNPYDOsbDsLi8fjpQvFxq8-n3dFCrEIJxtuveMyNjXmCmmdrBbT2XT9CL2KJ9+Ns+H68gAR0OdAAXkcTnliNQTqWV4KXU0eVw0MfQ7DAyYvHCcIXDlBADBDLxHAJMwFiBSIFUWW9dUHChnzfD9TgIbBYAAd3QSA-ydDFhQ3LUfH8JwUJVYk9ApAIjCBMDHEkXRzzMD0on7dkETwl930tPJkByYo6Eoapl2otdK3gyQcSMXQ6SvD0PUcJx2JDTS6XAkErwMNTYnjbBMG5eBHRw0S0QAisgIQABaQM4I8wwDGjSQVRpSQgQE4T705LZzSc8taNmINVQ+GVUObEF1TjZYB1Erldn2KKaPXQka20YzGRmHi9JsdjulDVC3hsTTAiBexQqTRF0kgXLlNc5CawMLwAnKuwz1gkZGtrUkBKCsM1LqrD0pEh9rRNM1GA6wCWj6DpNLMQJ+lBPxhvlLUlTA2xvF0ASdNmhN5uTC4R3TFbHVXNb5XOwxeKiQZ-N3OxtCDLoPgwvRVVjEJmtwp9xNWly3S8OqlRsNTHCgsMeIquCgU9GwgZxCIfRpcHMvk2h0AAIRoNAIGh2jzyKvF-KCfyWJmP6Mb63wMPOvi3lBIrCYfaTMFk+TqfXPj-I6XcoMvBUfiDOl2x9WYw1QvqBhZSygA */
+  initial: "loading",
   schema: {} as {
     events: PersonSearchMachineEvents;
     services: {
-      checkIsRegistered: {
-        data: boolean;
+      loadGame: {
+        data: {
+          game: QuizGame;
+          participant: QuizGameParticipant | null;
+        };
       };
+      loadQuestion: {
+        data: QuestionWithId | undefined;
+      };
+    };
+    context: {
+      game: QuizGame;
+      currentQuestion?: QuestionWithId;
+      selectedReponse: string;
+      participant?: QuizGameParticipant;
     };
   },
   tsTypes: {} as import("./personsearch.fms.typegen").Typegen0,
   id: "personSearch",
   states: {
-    starting: {
+    loading: {
       invoke: {
-        id: "checkIsRegistered",
-        src: "checkIsRegistered",
+        id: "loadGame",
+        src: "loadGame",
         onDone: [
           {
-            id: "is registered",
-            cond: (_, evt) => evt.data,
+            id: "loadgame",
+            cond: (_, evt) => !!evt.data,
+            target: "loaded",
+            actions: assign((_, evt) => {
+              return {
+                game: evt.data.game,
+                participant: evt.data.participant,
+              };
+            }),
+          },
+        ],
+        onError: {
+          target: "loadError",
+        },
+      },
+    },
+    loadError: {
+      on: {
+        "user.retry": {
+          target: "loading",
+        },
+      },
+    },
+    loaded: {
+      on: {
+        "": [
+          {
             target: "determining",
+            cond: (ctx) => !!ctx.participant,
+            description: "participant is already registered",
           },
           {
             target: "registering",
+            description: "participant is not registered",
           },
         ],
       },
     },
     registering: {
       on: {
-        REGISTERED: "determining",
+        "user.registered": {
+          target: "determining",
+          actions: assign((_, evt) => {
+            return {
+              participant: evt.data,
+            };
+          }),
+        },
       },
     },
     determining: {
-      on: {
-        IS_QUIZ: {
-          target: "quiz",
-        },
-        IS_LEADERBOARD: {
-          target: "leaderBoard",
-        },
+      invoke: {
+        id: "loadQuestion",
+        src: "loadQuestion",
+        description: "Loading question",
+        onDone: [
+          {
+            id: "quesiton loaded",
+            cond: (_, evt) => !!evt.data,
+            target: "quiz",
+            actions: assign((_, evt) => {
+              return {
+                currentQuestion: evt.data,
+              };
+            }),
+          },
+          "profile",
+        ],
       },
     },
     quiz: {
       on: {
-        answer: {
-          target: "leaderBoard",
+        "user.answered": {
+          actions: assign((_, evt) => {
+            return {
+              participant: evt.result,
+            };
+          }),
+        },
+
+        "user.profile": {
+          target: "profile",
         },
       },
     },
-    leaderBoard: {},
+    profile: {},
   },
 });
 
 type PersonSearchMachineEvents =
   | {
-      type: "LOGIN";
+      type: "user.registered";
+      data: QuizGameParticipant;
     }
   | {
-      type: "REGISTERED";
+      type: "user.close";
     }
   | {
-      type: "IS_QUIZ";
+      type: "user.retry";
     }
   | {
-      type: "IS_LEADERBOARD";
+      type: "user.answered";
+      result: QuizGameParticipant;
     }
   | {
-      type: "answer";
+      type: "user.profile";
     };

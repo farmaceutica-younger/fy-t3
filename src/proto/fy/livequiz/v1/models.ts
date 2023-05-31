@@ -66,7 +66,7 @@ function createBaseLiveQuiz(): LiveQuiz {
 export const LiveQuiz = {
   encode(
     message: LiveQuiz,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
@@ -83,13 +83,13 @@ export const LiveQuiz = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(82).fork()
+        writer.uint32(82).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(90).fork()
+        writer.uint32(90).fork(),
       ).ldelim();
     }
     return writer;
@@ -116,12 +116,12 @@ export const LiveQuiz = {
           break;
         case 10:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 11:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -202,7 +202,7 @@ function createBaseQuestion(): Question {
 export const Question = {
   encode(
     message: Question,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
@@ -222,25 +222,25 @@ export const Question = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(82).fork()
+        writer.uint32(82).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(90).fork()
+        writer.uint32(90).fork(),
       ).ldelim();
     }
     if (message.startTime !== undefined) {
       Timestamp.encode(
         toTimestamp(message.startTime),
-        writer.uint32(98).fork()
+        writer.uint32(98).fork(),
       ).ldelim();
     }
     if (message.endTime !== undefined) {
       Timestamp.encode(
         toTimestamp(message.endTime),
-        writer.uint32(106).fork()
+        writer.uint32(106).fork(),
       ).ldelim();
     }
     return writer;
@@ -270,22 +270,22 @@ export const Question = {
           break;
         case 10:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 11:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 12:
           message.startTime = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 13:
           message.endTime = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -376,7 +376,7 @@ function createBaseParticipant(): Participant {
 export const Participant = {
   encode(
     message: Participant,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.id !== "") {
       writer.uint32(10).string(message.id);
@@ -393,13 +393,13 @@ export const Participant = {
     if (message.createdAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.createdAt),
-        writer.uint32(82).fork()
+        writer.uint32(82).fork(),
       ).ldelim();
     }
     if (message.updatedAt !== undefined) {
       Timestamp.encode(
         toTimestamp(message.updatedAt),
-        writer.uint32(90).fork()
+        writer.uint32(90).fork(),
       ).ldelim();
     }
     return writer;
@@ -426,12 +426,12 @@ export const Participant = {
           break;
         case 10:
           message.createdAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         case 11:
           message.updatedAt = fromTimestamp(
-            Timestamp.decode(reader, reader.uint32())
+            Timestamp.decode(reader, reader.uint32()),
           );
           break;
         default:
@@ -475,7 +475,7 @@ export const Participant = {
   },
 
   fromPartial<I extends Exact<DeepPartial<Participant>, I>>(
-    object: I
+    object: I,
   ): Participant {
     const message = createBaseParticipant();
     message.id = object.id ?? "";
@@ -495,7 +495,7 @@ function createBaseQuizStatus(): QuizStatus {
 export const QuizStatus = {
   encode(
     message: QuizStatus,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.empty !== undefined) {
       QuizStatus_Empty.encode(message.empty, writer.uint32(10).fork()).ldelim();
@@ -569,7 +569,7 @@ export const QuizStatus = {
   },
 
   fromPartial<I extends Exact<DeepPartial<QuizStatus>, I>>(
-    object: I
+    object: I,
   ): QuizStatus {
     const message = createBaseQuizStatus();
     message.empty =
@@ -595,7 +595,7 @@ function createBaseQuizStatus_Empty(): QuizStatus_Empty {
 export const QuizStatus_Empty = {
   encode(
     _: QuizStatus_Empty,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     return writer;
   },
@@ -625,13 +625,13 @@ export const QuizStatus_Empty = {
   },
 
   create<I extends Exact<DeepPartial<QuizStatus_Empty>, I>>(
-    base?: I
+    base?: I,
   ): QuizStatus_Empty {
     return QuizStatus_Empty.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<QuizStatus_Empty>, I>>(
-    _: I
+    _: I,
   ): QuizStatus_Empty {
     const message = createBaseQuizStatus_Empty();
     return message;
@@ -645,7 +645,7 @@ function createBaseQuizStatus_Rank(): QuizStatus_Rank {
 export const QuizStatus_Rank = {
   encode(
     _: QuizStatus_Rank,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     return writer;
   },
@@ -675,13 +675,13 @@ export const QuizStatus_Rank = {
   },
 
   create<I extends Exact<DeepPartial<QuizStatus_Rank>, I>>(
-    base?: I
+    base?: I,
   ): QuizStatus_Rank {
     return QuizStatus_Rank.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<QuizStatus_Rank>, I>>(
-    _: I
+    _: I,
   ): QuizStatus_Rank {
     const message = createBaseQuizStatus_Rank();
     return message;
@@ -695,7 +695,7 @@ function createBaseParticipantRank(): ParticipantRank {
 export const ParticipantRank = {
   encode(
     message: ParticipantRank,
-    writer: _m0.Writer = _m0.Writer.create()
+    writer: _m0.Writer = _m0.Writer.create(),
   ): _m0.Writer {
     if (message.participantId !== "") {
       writer.uint32(10).string(message.participantId);
@@ -770,13 +770,13 @@ export const ParticipantRank = {
   },
 
   create<I extends Exact<DeepPartial<ParticipantRank>, I>>(
-    base?: I
+    base?: I,
   ): ParticipantRank {
     return ParticipantRank.fromPartial(base ?? {});
   },
 
   fromPartial<I extends Exact<DeepPartial<ParticipantRank>, I>>(
-    object: I
+    object: I,
   ): ParticipantRank {
     const message = createBaseParticipantRank();
     message.participantId = object.participantId ?? "";

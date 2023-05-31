@@ -13,3 +13,10 @@ pg.select("*")
     console.log(authors);
     fs.writeFileSync("authors.json", JSON.stringify(authors));
   });
+
+pg.select("*")
+  .from("blog_posts")
+  .then((posts) => {
+    console.log(posts);
+    fs.writeFileSync("posts2.json", JSON.stringify(posts));
+  });

@@ -8,13 +8,12 @@ export const UserAvatar: FC<{ src: string; size?: number; name: string }> = ({
   return (
     // eslint-disable-next-line @next/next/no-img-element
     <img
-      className="mx-auto h-20 w-20 rounded-full lg:h-24 lg:w-24"
+      className="mx-auto h-6 w-6 rounded-full lg:h-8 lg:w-8"
       src={squaredCloudinaryImage(src, size)}
       alt={name}
       onError={(e) => {
         e.currentTarget.onerror = null;
-        e.currentTarget.src =
-          "https://ui-avatars.com/api/?background=random&name=" + name;
+        e.currentTarget.src = `https://ui-avatars.com/api/?background=random&name=${name}`;
       }}
     />
   );

@@ -1,11 +1,11 @@
-import { BlogIcon } from "components/icon";
+import { BlogLogo } from "~/ui/logo";
 
 const SpeakerPage = () => {
   return (
     <div className="print:fixed print:inset-0 print:z-[10000000000] print:grid print:h-full print:w-full print:place-content-center print:bg-white print:p-2">
       <div className="flex flex-wrap gap-5">
-        {speakers.map((s, idx) => (
-          <SpeakerCard {...s} key={idx} />
+        {speakers.map((s) => (
+          <SpeakerCard {...s} key={s.name} />
         ))}
       </div>
     </div>
@@ -20,7 +20,7 @@ const SpeakerCard = (speaker: Speaker) => {
       <div className="flex items-center justify-center gap-4">
         <h3 className="text-2xl text-sky-500">Speaker</h3>
         <div className="flex items-center text-sky-400">
-          <BlogIcon className="h-10 w-10" />
+          <BlogLogo className="h-10 w-10" />
           <div className="ml-3 flex flex-col text-xs">
             <span className="font-bold">Farmaceutica</span> <span>
               Younger

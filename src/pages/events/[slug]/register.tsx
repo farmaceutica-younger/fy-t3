@@ -60,7 +60,7 @@ const RegisterPage = ({
         )}
         <div className="mt-2 flex">
           <Link
-            href={"/events/" + event.slug + "/create-ticket"}
+            href={`/events/${event.slug}/create-ticket`}
             className="btn-primary btn m-auto"
           >
             Ottieni il tuo Ticket
@@ -77,7 +77,12 @@ export default RegisterPage;
 export async function getServerSideProps({
   params,
 }: GetServerSidePropsContext<{ slug: string }>) {
-  const slug = params?.slug!;
+  const slug = params?.slug;
+  if (!slug) {
+    return {
+      notFound: true,
+    };
+  }
 
   const { event } = await events.getEventBySlug({
     slug,

@@ -1,7 +1,5 @@
 import { RadioGroup } from "@headlessui/react";
 import clsx from "clsx";
-import { ZodForm } from "components/form/form";
-import { SwitchField } from "components/form/switch-field";
 import Link from "next/link";
 import { Field } from "react-final-form";
 import { z } from "zod";
@@ -20,6 +18,8 @@ import {
   ShortQuestion,
   SingleChoice,
 } from "./schema";
+import { ZodForm } from "~/forms/zod-form";
+import { SwitchField } from "~/forms/fields/switch-field";
 
 interface QuestionairreFormProps {
   questionairre: Questionairre;

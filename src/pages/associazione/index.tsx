@@ -17,6 +17,7 @@ const Hero = () => (
   <div className="z-1 relative overflow-hidden bg-white">
     <div className="mx-auto max-w-screen-xl">
       <div className="relative z-0 bg-white pb-8 sm:pb-16 md:z-10 md:pb-20 lg:w-full lg:max-w-2xl lg:pb-28 xl:pb-32">
+        {/* rome-ignore lint/a11y/noSvgWithoutTitle: <explanation> */}
         <svg
           className="absolute inset-y-0 right-0 hidden h-full w-48 translate-x-1/2 transform text-white lg:block"
           fill="currentColor"
@@ -26,7 +27,7 @@ const Hero = () => (
           <polygon points="50,0 100,0 50,100 0,100" />
         </svg>
 
-        <div className="px-4 pt-6 sm:px-6 lg:px-8"></div>
+        <div className="px-4 pt-6 sm:px-6 lg:px-8" />
 
         <main className="mx-auto mt-10 max-w-screen-xl px-4 sm:mt-12 sm:px-6 md:mt-16 lg:mt-20 lg:px-8 xl:mt-28">
           <div className="sm:text-center lg:text-left">
@@ -88,6 +89,7 @@ const Principles = () => {
       description:
         "La curiosità è il motore del mondo. Sii curioso di scoprire Noi e con Noi cosa il sorprendente mondo farmaceutico può offrirti.",
       img: (
+        // rome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
         <svg
           className="w-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -379,6 +381,7 @@ const Principles = () => {
       description:
         " Un punto di vista diverso è la chiave del successo. Guardare le cose che ci circondano tutti i giorni da un’altra prospettiva potrà condurci su sentieri inesplorati.",
       img: (
+        // rome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
         <svg
           className="w-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -489,6 +492,7 @@ const Principles = () => {
       description:
         "Il cambiamento va abbracciato e vissuto con spirito positivo e intraprendente. Non siate spettatori passivi di un mondo che intorno a voi sta cambiando. Afferrate il cambiamento in modo che siate voi a dominarlo.",
       img: (
+        // rome-ignore lint/a11y/noSvgWithoutTitle: <explanation>
         <svg
           className="w-full"
           xmlns="http://www.w3.org/2000/svg"
@@ -596,11 +600,11 @@ const Principles = () => {
         <h2 className="text-3xl font-extrabold leading-9 tracking-tight text-pink-600  sm:text-4xl sm:leading-10">
           I principi che ci ispirano
         </h2>
-        <p className="mx-auto mt-3 max-w-2xl text-xl leading-7 text-gray-500 sm:mt-4"></p>
       </div>
       <div className="mx-auto mt-12 max-w-xl px-4 sm:px-6 lg:max-w-screen-xl lg:px-8">
         <div className="lg:grid lg:grid-cols-3 lg:gap-8">
           {principles.map((principle, idx) => (
+            // rome-ignore lint/suspicious/noArrayIndexKey: <explanation>
             <div key={idx} className="mt-10 lg:mt-0">
               <div className="m-auto w-1/2"> {principle.img}</div>
               <div className="mt-5">

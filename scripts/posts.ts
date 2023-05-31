@@ -864,7 +864,7 @@ export const posts: Post[] = [
       "http://res.cloudinary.com/dbdvy5b2z/image/upload/v1673166225/blog/images/eu3sx5brlfiilitpxefq.jpg",
     published_time: "2023-05-07T14:00:00.000Z",
     created_at: "2023-01-08T07:23:49.522Z",
-    updated_at: "2023-04-09T13:39:39.700Z",
+    updated_at: "2023-04-23T06:23:38.439Z",
     show_featured_image: true,
   },
   {
@@ -1205,6 +1205,40 @@ export const posts: Post[] = [
     created_at: "2022-02-21T10:17:51.333Z",
     updated_at: "2022-02-21T10:17:51.333Z",
     show_featured_image: false,
+  },
+  {
+    id: "post:cli2tstcl000v01qgjntb8gun",
+    path: "/blog/2023/05/ima-la-storia-della-multinazi/",
+    published: true,
+    author_id: "silviaver",
+    tags: ["blog"],
+    description:
+      "Una storia italiana nel cuore della Packaging Valley, il cluster della meccanica avanzata e dell’automazione industriale dell’Emilia-Romagna",
+    body: "Si trova nel cuore della <em>Packaging Valley</em>, il cluster della meccanica avanzata e dell’automazione industriale dell’Emilia-Romagna, e da più di 50 anni, produce macchine automatiche per il processo e il confezionamento di prodotti farmaceutici, cosmetici e non solo.\n\nStiamo parlando di <strong>IMA Group</strong>.\n\nSiamo nel 1961 quando **Andrea Romagnoli** e suo cognato **Renato Taino** fondano, a Ozzano dell’Emilia, IMA ovvero Industria Macchine Automatiche s.a.s.\n\n<strong>Nel 1963 la Famiglia Vacchi diventa azionista di maggioranza</strong>, acquisendo il 52% di IMA che viene trasformata da Società in Accomandita Semplice a Società per Azioni, promuovendone lo sviluppo industriale. E’ in questo periodo che inizia la produzione di macchine automatiche per il confezionamento del tè in sacchetti filtro, settore nel quale IMA diverrà leader mondiale.\n\nComincia, in questi anni, l’evoluzione di IMA che da piccola realtà locale diviene un Gruppo multinazionale dinamico ed innovativo.\n\n**Nel 1976 l’azienda bolognese fa il suo ingresso nel settore farmaceutico.** Inizia a costruire le prime macchine per il confezionamento farmaceutico con il lancio di una macchina per la produzione dei blisters. La famiglia Vacchi sa che per crescere deve puntare anche su importanti e costanti acquisizioni e centra l’obiettivo.\n\nOggi IMA è presente in 80 paesi, ha ben 53 siti produttivi, con 1,7 miliardi di ricavi e conta oltre 6.200 dipendenti, di cui circa il 63% in Italia e il 37% nel resto del mondo (dati 2021).\n\n***Una curiosità sull’azienda?*** La multinazionale bolognese del packaging ha stanziato 700mila euro, di cui 500mila destinati al fondo predisposto dalla Regione Emilia-Romagna e 20mila come fondo di solidarietà per assistere i propri lavoratori che hanno subito danni e disagi dagli straordinari eventi meteo climatici che hanno interessato l’area in seguito alle alluvioni di queste settimane.",
+    title: "IMA, la storia della multinazionale del packaging",
+    featured_image:
+      "http://res.cloudinary.com/dbdvy5b2z/image/upload/v1685000503/blog/images/xrdlkvt3isd89g8kuoxd.jpg",
+    published_time: "2023-05-28T05:00:00.000Z",
+    created_at: "2023-05-25T05:41:53.686Z",
+    updated_at: "2023-05-25T05:43:13.835Z",
+    show_featured_image: true,
+  },
+  {
+    id: "post:cli5o3gig000w01qgyi2sq6g1",
+    path: "/blog/2023/05/fy-goes-to-simposio-afi/",
+    published: true,
+    author_id: "silviaver",
+    tags: ["blog"],
+    description:
+      "Saremo al 62°Simposio AFI, l’8 giugno, per organizzare la Sessione Giovani, uno spazio concepito per approfondire alcuni ruoli del settore e scoprire di più sul mondo del placement e del recruiting.",
+    body: '🏝 Siamo carichi e pronti come non mai per il prossimo appuntamento con tutti noi di Farmaceutica Younger 💊\n\n<strong>Saremo al 62° Simposio AFI - Associazione Farmaceutici Industria di Rimini, l’8 giugno, per organizzare la Sessione Giovani</strong>, uno spazio concepito per approfondire alcuni ruoli del settore e scoprire di più sul mondo del placement e del recruiting. Tra i nostri ospiti ci sarà anche <strong>Massimo Scaccabarozzi</strong>, Past President di Farmindustria e tanti giovani appassionati come te del settore delle Scienze della Vita.\n\nInoltre non poteva mancare il momento ludico in pieno stile FY. Presenteremo il nostro gioco 👾 **“A spasso per il Simposio”** 🕹, un momento interattivo, divertente, frizzante, pensato per ampliare il proprio network, vincere fantastici premi e sfidare se stessi per capire quanto si conosce sul settore del Life Science.\n\n🤝 **Sarà un importantissimo momento di networking** 🗣\n\nTutto questo all’interno di uno degli eventi più importanti del settore che da oltre 60 anni coinvolge tutti gli attori del settore farmaceutico e si conferma di anno in anno un essenziale momento di incontro e di scambio.\n\nTi lascio il link per iscriversi al Simposio AFI (<strong>la Sessione Giovani sarà accessibile gratuitamente</strong>) e un estratto del programma della Sessione Giovani.\n\n**IL PROGRAMMA DELLA SESSIONE GIOVANI**\n\n<img src="https://res.cloudinary.com/dbdvy5b2z/image/upload/v1685290684/fy/events/photo_2023-05-28_18.17.58_ic4mfl.jpg" alt="programma"/>\n\n<span class="flex items-center">\n<a class="btn btn-primary m-auto" href="https://newaurameeting.it/prodotto/62-simposio-iscrizione-visitatori/" target="_blank"> Iscriviti Qui </a>\n</span>\n\n\n*Ci vediamo l’8 giugno numerosissimiiiii pronti e carichi come non mai per divertirci e crescere insieme tra le onde della riviera 🌊*',
+    title: "FY goes to...Simposio AFI",
+    featured_image:
+      "http://res.cloudinary.com/dbdvy5b2z/image/upload/v1685172323/blog/images/uoy9qqomsoez1ehvfaam.jpg",
+    published_time: "2023-05-27T05:00:00.000Z",
+    created_at: "2023-05-27T05:25:31.097Z",
+    updated_at: "2023-05-28T14:19:58.923Z",
+    show_featured_image: true,
   },
   {
     id: "ckzwlue7901727hxq2jgyuy3e",
